@@ -141,6 +141,12 @@ main{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem}
 .risk-tag{font-family:'Space Mono',monospace;font-size:.55rem;padding:.1rem .45rem;
   border-radius:2px;flex-shrink:0;margin-top:.25rem;font-weight:700;white-space:nowrap}
 
+/* ══ HORIZON TAG ══════════════════════════════════ */
+.horizon-tag{font-family:'Space Mono',monospace;font-size:.55rem;padding:.1rem .45rem;
+  border-radius:2px;flex-shrink:0;margin-top:.25rem;font-weight:600;white-space:nowrap}
+.outlook-li{flex-wrap:wrap;gap:.35rem}
+.outlook-li > span:last-child{flex:1;min-width:0}
+
 /* ══ SOURCES ══════════════════════════════════════ */
 .card-src{margin-top:.9rem;padding-top:.6rem;border-top:1px solid var(--border);
   font-family:'Space Mono',monospace;font-size:.56rem;color:#aaa;letter-spacing:.03em}
@@ -170,7 +176,7 @@ footer a{color:#777}
   <div class="hd-label">IEA Emergency Analysis Report — Confidential Research</div>
   <h1 class="hd-title">中東危機 エネルギー情勢モニター<br><span style="font-size:0.6em; color:#aaa;">by 前川勇 / AIによる自動分析</span></h1>
   <div class="hd-meta">
-    生成日: 2026年5月18日月曜日 13:13 JST<br>
+    生成日: 2026年5月18日月曜日 13:34 JST<br>
     ベースデータ: IEA Oil Market Report May 2026 · Gas Market Report Q2-2026
   </div>
   <button class="hd-alert-btn"><span>▲</span> UNPRECEDENTED SUPPLY DISRUPTION</button>
@@ -301,9 +307,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('JP-outlook')">
       <span class="sec-arrow" id="arr-JP-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 短期〜長期</span>
     </div>
-    <div class="sec-body" id="sec-JP-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>夏の電力需要ピーク（7〜8月）に需給逼迫が深刻化する恐れ</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>ホルムズ部分再開が長期化した場合、備蓄140日分では2026年末まで持たない試算</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>円安加速（対ドル165円超）がエネルギー輸入コストをさらに押し上げる可能性</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>Power Asiaによるベトナム経由調達が軌道に乗れば中東依存度を5〜10%低下できる見込み</span></li></ul></div>
+    <div class="sec-body" id="sec-JP-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
+      <span>夏の電力需要ピーク（7〜8月）に需給逼迫が深刻化する恐れ</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
+      <span>ホルムズ部分再開が長期化した場合、備蓄140日分では2026年末まで持たない試算</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜1ヶ月）</span>
+      <span>円安加速（対ドル165円超）がエネルギー輸入コストをさらに押し上げる可能性</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#6b635515;color:#6b6355;border:1px solid #6b635535">長期（6ヶ月超）</span>
+      <span>Power Asiaによるベトナム経由調達が軌道に乗れば中東依存度を5〜10%低下できる見込み</span>
+    </li></ul></div>
     <div class="card-src">出典: Al Jazeera, Argus Media, IndexBox, CGTN</div>
   </div>
 </div>
@@ -355,9 +377,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('KR-outlook')">
       <span class="sec-arrow" id="arr-KR-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 即時〜短期</span>
     </div>
-    <div class="sec-body" id="sec-KR-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span><span>備蓄26日分は産業・発電需要を支えるには不十分、6月末までに枯渇リスク</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>ウォン安がさらに進行した場合、インフレ率が二桁に達する恐れ</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>KOSPI続落で韓国企業の資金調達コストが上昇、投資引き揚げが加速</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>足止め船舶解放が長引くと物流コストがさらに上昇</span></li></ul></div>
+    <div class="sec-body" id="sec-KR-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span>
+      <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時（〜1ヶ月）</span>
+      <span>備蓄26日分は産業・発電需要を支えるには不十分、6月末までに枯渇リスク</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜2ヶ月）</span>
+      <span>ウォン安がさらに進行した場合、インフレ率が二桁に達する恐れ</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
+      <span>KOSPI続落で韓国企業の資金調達コストが上昇、投資引き揚げが加速</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
+      <span>足止め船舶解放が長引くと物流コストがさらに上昇</span>
+    </li></ul></div>
     <div class="card-src">出典: ORF Online, BISI, CNBC</div>
   </div>
 </div>
@@ -409,9 +447,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('TW-outlook')">
       <span class="sec-arrow" id="arr-TW-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 即時〜中期</span>
     </div>
-    <div class="sec-body" id="sec-TW-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span><span>7〜8月の冷房需要ピーク時に大規模停電が発生すれば半導体生産に壊滅的影響</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>廃炉原発再稼働が遅れれば6月中旬にもLNG備蓄が枯渇する恐れ</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>電力不足が続けばTSMCの生産能力低下がグローバルサプライチェーンに波及</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>スポットLNG価格の高騰（JKM $17/MMBtu）で調達コストが急増</span></li></ul></div>
+    <div class="sec-body" id="sec-TW-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜2ヶ月）</span>
+      <span>7〜8月の冷房需要ピーク時に大規模停電が発生すれば半導体生産に壊滅的影響</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時（〜1ヶ月）</span>
+      <span>廃炉原発再稼働が遅れれば6月中旬にもLNG備蓄が枯渇する恐れ</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
+      <span>電力不足が続けばTSMCの生産能力低下がグローバルサプライチェーンに波及</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
+      <span>スポットLNG価格の高騰（JKM $17/MMBtu）で調達コストが急増</span>
+    </li></ul></div>
     <div class="card-src">出典: Atlantic Council, Zero Carbon Analytics, CNBC</div>
   </div>
 </div>
@@ -473,9 +527,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('CN-outlook')">
       <span class="sec-arrow" id="arr-CN-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 短期〜当面</span>
     </div>
-    <div class="sec-body" id="sec-CN-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>ホルムズ封鎖が長期化した場合、ロシア・中央アジア供給だけでは完全補填不可</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>米中協調によるホルムズ再開外交が不調に終わると外交的孤立リスク</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>大規模備蓄により短〜中期的なエネルギー危機への耐性は主要国中最高水準</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>ロシア制裁回避による割引原油調達で相対的なコスト優位を維持</span></li></ul></div>
+    <div class="sec-body" id="sec-CN-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
+      <span>ホルムズ封鎖が長期化した場合、ロシア・中央アジア供給だけでは完全補填不可</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
+      <span>米中協調によるホルムズ再開外交が不調に終わると外交的孤立リスク</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短〜中期</span>
+      <span>大規模備蓄により短〜中期的なエネルギー危機への耐性は主要国中最高水準</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
+      <span>ロシア制裁回避による割引原油調達で相対的なコスト優位を維持</span>
+    </li></ul></div>
     <div class="card-src">出典: Columbia CGEP, CNBC, The Diplomat, EIA</div>
   </div>
 </div>
@@ -537,9 +607,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('PH-outlook')">
       <span class="sec-arrow" id="arr-PH-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 即時〜中期</span>
     </div>
-    <div class="sec-body" id="sec-PH-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span><span>電力危機の継続による経済活動の麻痺と社会不安の高まり</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>食料価格急騰（農業・物流停滞）によるインフレ加速、貧困層への打撃</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>外貨準備の急減により通貨（ペソ）の信用不安が生じる可能性</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>政情不安が外資誘致に影響し中期的な経済成長が損なわれる懸念</span></li></ul></div>
+    <div class="sec-body" id="sec-PH-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span>
+      <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時〜継続中</span>
+      <span>電力危機の継続による経済活動の麻痺と社会不安の高まり</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
+      <span>食料価格急騰（農業・物流停滞）によるインフレ加速、貧困層への打撃</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
+      <span>外貨準備の急減により通貨（ペソ）の信用不安が生じる可能性</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
+      <span>政情不安が外資誘致に影響し中期的な経済成長が損なわれる懸念</span>
+    </li></ul></div>
     <div class="card-src">出典: Wikipedia, CNN, The Diplomat, OSAC, Lowy Institute</div>
   </div>
 </div>
@@ -591,9 +677,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('VN-outlook')">
       <span class="sec-arrow" id="arr-VN-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 短期〜長期</span>
     </div>
-    <div class="sec-body" id="sec-VN-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>燃料価格安定基金の枯渇により、2026年後半に価格急騰が表面化する懸念</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>中東依存40%のうち代替調達が確保できなければ製油所稼働に影響</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>石炭発電拡大で2030年カーボンニュートラル目標との整合性が問われる</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>Power Asia協定による日本の支援で短〜中期的なエネルギー安全保障を確保</span></li></ul></div>
+    <div class="sec-body" id="sec-VN-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
+      <span>燃料価格安定基金の枯渇により、2026年後半に価格急騰が表面化する懸念</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
+      <span>中東依存40%のうち代替調達が確保できなければ製油所稼働に影響</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#6b635515;color:#6b6355;border:1px solid #6b635535">長期（6ヶ月超）</span>
+      <span>石炭発電拡大で2030年カーボンニュートラル目標との整合性が問われる</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短〜中期</span>
+      <span>Power Asia協定による日本の支援で短〜中期的なエネルギー安全保障を確保</span>
+    </li></ul></div>
     <div class="card-src">出典: Vietnam Briefing, Al Jazeera, CNN</div>
   </div>
 </div>
@@ -655,9 +757,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('DE-outlook')">
       <span class="sec-arrow" id="arr-DE-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 短期〜中期</span>
     </div>
-    <div class="sec-body" id="sec-DE-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>2026〜27年冬のガス貯蔵量が目標の80%を大幅に下回り、暖房危機が現実化</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>化学・金属産業の稼働縮小が製造業全体の景気後退を引き起こす</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>TTF価格高止まりで財政支援コストが膨らみ、国家財政に圧力</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>エネルギー高騰によるインフレ再加速でECBの利下げ余地が縮小</span></li></ul></div>
+    <div class="sec-body" id="sec-DE-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中〜長期（半年〜）</span>
+      <span>2026〜27年冬のガス貯蔵量が目標の80%を大幅に下回り、暖房危機が現実化</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
+      <span>化学・金属産業の稼働縮小が製造業全体の景気後退を引き起こす</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜3ヶ月）</span>
+      <span>TTF価格高止まりで財政支援コストが膨らみ、国家財政に圧力</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜2ヶ月）</span>
+      <span>エネルギー高騰によるインフレ再加速でECBの利下げ余地が縮小</span>
+    </li></ul></div>
     <div class="card-src">出典: Bruegel, IndexBox, ECB, IEEFA</div>
   </div>
 </div>
@@ -709,9 +827,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('FR-outlook')">
       <span class="sec-arrow" id="arr-FR-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 短期〜当面</span>
     </div>
-    <div class="sec-body" id="sec-FR-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>原発老朽化（平均38年）による予期しない緊急停止が冬の需給を直撃する恐れ</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>ガス貯蔵25%未満は冬季暖房需要に不十分で、寒波来襲時に不足が顕在化</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>エールフランス路線縮小が観光業・経済活動に二次的影響</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>原子力+イベリアLNGの組み合わせで欧州諸国の中では相対的に安定</span></li></ul></div>
+    <div class="sec-body" id="sec-FR-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中〜長期（随時）</span>
+      <span>原発老朽化（平均38年）による予期しない緊急停止が冬の需給を直撃する恐れ</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中〜長期（半年〜）</span>
+      <span>ガス貯蔵25%未満は冬季暖房需要に不十分で、寒波来襲時に不足が顕在化</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
+      <span>エールフランス路線縮小が観光業・経済活動に二次的影響</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
+      <span>原子力+イベリアLNGの組み合わせで欧州諸国の中では相対的に安定</span>
+    </li></ul></div>
     <div class="card-src">出典: Bruegel, ECB, Euronews</div>
   </div>
 </div>
@@ -763,9 +897,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('GB-outlook')">
       <span class="sec-arrow" id="arr-GB-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 即時〜中期</span>
     </div>
-    <div class="sec-body" id="sec-GB-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>2026〜27年冬にホルムズ封鎖が継続すれば、LNG確保競争でアジア諸国に価格競負け</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>ホルムズ防衛活動中のインシデントが軍事的エスカレーションに発展するリスク</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>北海ガス自給能力の低下により中期的なエネルギー安全保障が悪化</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>エネルギーコスト高騰がインフレ再加速をもたらし景気後退が長引く</span></li></ul></div>
+    <div class="sec-body" id="sec-GB-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中〜長期（半年〜）</span>
+      <span>2026〜27年冬にホルムズ封鎖が継続すれば、LNG確保競争でアジア諸国に価格競負け</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時〜短期</span>
+      <span>ホルムズ防衛活動中のインシデントが軍事的エスカレーションに発展するリスク</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中〜長期</span>
+      <span>北海ガス自給能力の低下により中期的なエネルギー安全保障が悪化</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
+      <span>エネルギーコスト高騰がインフレ再加速をもたらし景気後退が長引く</span>
+    </li></ul></div>
     <div class="card-src">出典: CNBC, BISI, IEEFA</div>
   </div>
 </div>
@@ -827,9 +977,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('US-outlook')">
       <span class="sec-arrow" id="arr-US-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 短期〜当面</span>
     </div>
-    <div class="sec-body" id="sec-US-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>対イラン交渉が決裂した場合、軍事的オプションの再発動で地域緊張が急騰</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>高油価継続でインフレが再加速し、FRBの政策に制約が生じる可能性</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>エネルギー自給国かつ輸出国として、危機の恩恵を最も享受できる立場</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>外交解決に成功すれば同盟国への供給拡大で地政学的影響力を強化</span></li></ul></div>
+    <div class="sec-body" id="sec-US-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜3ヶ月）</span>
+      <span>対イラン交渉が決裂した場合、軍事的オプションの再発動で地域緊張が急騰</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
+      <span>高油価継続でインフレが再加速し、FRBの政策に制約が生じる可能性</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
+      <span>エネルギー自給国かつ輸出国として、危機の恩恵を最も享受できる立場</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
+      <span>外交解決に成功すれば同盟国への供給拡大で地政学的影響力を強化</span>
+    </li></ul></div>
     <div class="card-src">出典: EIA STEO May 2026, CNBC, Discover Alert</div>
   </div>
 </div>
@@ -881,9 +1047,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('CA-outlook')">
       <span class="sec-arrow" id="arr-CA-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 長期〜当面</span>
     </div>
-    <div class="sec-body" id="sec-CA-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>エネルギー輸出国として危機を経済的機会に転換できる最良の立場</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>TMXの本格稼働でアジア市場へのアクセスが確立し、対米依存が低下</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>LNG Canada Phase 2完工（2028年）後はLNGでも主要輸出国に</span></li><li><span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span><span>国内需要への影響は軽微で、危機対応より供給拡大にリソースを集中</span></li></ul></div>
+    <div class="sec-body" id="sec-CA-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
+      <span>エネルギー輸出国として危機を経済的機会に転換できる最良の立場</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
+      <span>TMXの本格稼働でアジア市場へのアクセスが確立し、対米依存が低下</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#6b635515;color:#6b6355;border:1px solid #6b635535">長期（2028年〜）</span>
+      <span>LNG Canada Phase 2完工（2028年）後はLNGでも主要輸出国に</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
+      <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
+      <span>国内需要への影響は軽微で、危機対応より供給拡大にリソースを集中</span>
+    </li></ul></div>
     <div class="card-src">出典: S&amp;P Global, Canada Action, Discover Alert</div>
   </div>
 </div>
@@ -945,9 +1127,25 @@ footer a{color:#777}
     
     <div class="sec-toggle" onclick="toggleSec('AU-outlook')">
       <span class="sec-arrow" id="arr-AU-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
+      <span>🔮 リスク見通し — 即時〜中期</span>
     </div>
-    <div class="sec-body" id="sec-AU-outlook"><ul class="bullet-list"><li><span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span><span>燃料備蓄22日分は危機長期化に対して著しく不十分、社会インフラ機能停止のリスク</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>食料供給チェーンの断絶が進めば国内食料インフレが二桁に達する</span></li><li><span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span><span>精製能力の欠如で危機が長期化した場合の自立的回復が困難</span></li><li><span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span><span>採掘業（主要輸出産業）の生産低下が国家財政に影響</span></li></ul></div>
+    <div class="sec-body" id="sec-AU-outlook"><ul class="bullet-list"><li class="outlook-li">
+      <span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span>
+      <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時〜短期</span>
+      <span>燃料備蓄22日分は危機長期化に対して著しく不十分、社会インフラ機能停止のリスク</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜2ヶ月）</span>
+      <span>食料供給チェーンの断絶が進めば国内食料インフレが二桁に達する</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中〜長期</span>
+      <span>精製能力の欠如で危機が長期化した場合の自立的回復が困難</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
+      <span>採掘業（主要輸出産業）の生産低下が国家財政に影響</span>
+    </li></ul></div>
     <div class="card-src">出典: OilPrice.com, IEEFA, Discover Alert, EIA</div>
   </div>
 </div>

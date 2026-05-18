@@ -76,15 +76,54 @@ function bulletList(items, icon) {
   ).join('')}</ul>`;
 }
 
+const HORIZON_COLOR = {
+  '即時': '#c0392b', '即時〜': '#c0392b',
+  '短期': '#e67e22', '短〜中期': '#e67e22',
+  '中期': '#2980b9', '中〜長期': '#2980b9',
+  '長期': '#6b6355', '当面': '#27ae60',
+};
+
+function horizonColor(h) {
+  for (const [k,v] of Object.entries(HORIZON_COLOR)) {
+    if (h.startsWith(k)) return v;
+  }
+  return '#6b6355';
+}
+
 function riskOutlookList(items) {
   if (!items || !items.length) return '';
   return `<ul class="bullet-list">${items.map(i => {
-    const m = i.match(/^【(最高|高|中|低)リスク】/);
-    const colorMap = { '最高':'#c0392b','高':'#e67e22','中':'#2980b9','低':'#27ae60' };
-    const color = m ? colorMap[m[1]] : '#6b6355';
-    const text = m ? i.replace(m[0],'') : i;
-    return `<li><span class="risk-tag" style="background:${color}20;color:${color};border:1px solid ${color}40">${m ? m[1]+'リスク' : '情報'}</span><span>${esc(text)}</span></li>`;
+    const level   = i.level   || '情報';
+    const horizon = i.horizon || '';
+    const text    = i.text    || String(i);
+    const levelColorMap = { '最高':'#c0392b','高':'#e67e22','中':'#2980b9','低':'#27ae60' };
+    const lc = levelColorMap[level] || '#6b6355';
+    const hc = horizonColor(horizon);
+    return `<li class="outlook-li">
+      <span class="risk-tag" style="background:${lc}20;color:${lc};border:1px solid ${lc}40">${esc(level)}リスク</span>
+      <span class="horizon-tag" style="background:${hc}15;color:${hc};border:1px solid ${hc}35">${esc(horizon)}</span>
+      <span>${esc(text)}</span>
+    </li>`;
   }).join('')}</ul>`;
+}
+
+function outlookHorizonRange(items) {
+  if (!items || !items.length) return '';
+  const labels = items.map(i => i.horizon || '').filter(Boolean);
+  if (!labels.length) return '';
+  const hasImmediate = labels.some(h => h.startsWith('即時'));
+  const hasShort     = labels.some(h => h.startsWith('短期') || h.startsWith('短〜'));
+  const hasMid       = labels.some(h => h.startsWith('中期') || h.startsWith('中〜'));
+  const hasLong      = labels.some(h => h.startsWith('長期') || h.startsWith('長'));
+  const hasCurrent   = labels.some(h => h.startsWith('当面'));
+  const parts = [];
+  if (hasImmediate) parts.push('即時');
+  if (hasShort)     parts.push('短期');
+  if (hasMid)       parts.push('中期');
+  if (hasLong)      parts.push('長期');
+  if (hasCurrent)   parts.push('当面');
+  if (parts.length <= 1) return parts[0] || '';
+  return `${parts[0]}〜${parts[parts.length - 1]}`;
 }
 
 function collapsibleSection(code, sectionId, label, content) {
@@ -126,7 +165,7 @@ function countryCard(code) {
     <p class="card-summary">${esc(cd.summary || '')}</p>
     ${collapsibleSection(code,'energy','⚡ エネルギー・産業影響', bulletList(cd.energy_impact,'⚡'))}
     ${collapsibleSection(code,'policy','🏛️ 政策対応', bulletList(cd.policy_response,'🏛️'))}
-    ${collapsibleSection(code,'outlook','🔮 リスク見通し', riskOutlookList(cd.risk_outlook))}
+    ${collapsibleSection(code,'outlook',`🔮 リスク見通し${outlookHorizonRange(cd.risk_outlook) ? ' — ' + outlookHorizonRange(cd.risk_outlook) : ''}`, riskOutlookList(cd.risk_outlook))}
     ${cd.sources ? `<div class="card-src">出典: ${esc(cd.sources)}</div>` : ''}
   </div>
 </div>`;
@@ -310,6 +349,12 @@ main{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem}
 .b-icon{flex-shrink:0;font-size:.82rem;margin-top:.1rem}
 .risk-tag{font-family:'Space Mono',monospace;font-size:.55rem;padding:.1rem .45rem;
   border-radius:2px;flex-shrink:0;margin-top:.25rem;font-weight:700;white-space:nowrap}
+
+/* ══ HORIZON TAG ══════════════════════════════════ */
+.horizon-tag{font-family:'Space Mono',monospace;font-size:.55rem;padding:.1rem .45rem;
+  border-radius:2px;flex-shrink:0;margin-top:.25rem;font-weight:600;white-space:nowrap}
+.outlook-li{flex-wrap:wrap;gap:.35rem}
+.outlook-li > span:last-child{flex:1;min-width:0}
 
 /* ══ SOURCES ══════════════════════════════════════ */
 .card-src{margin-top:.9rem;padding-top:.6rem;border-top:1px solid var(--border);
