@@ -174,7 +174,7 @@ const html = `<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="中東危機によるホルムズ海峡封鎖が各国エネルギー情勢に与える影響のリアルタイム分析">
-<title>中東危機 IEA加盟国別エネルギー情勢モニター</title>
+<title>中東危機 エネルギー情勢モニター by 前川勇</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -338,13 +338,19 @@ footer a{color:#777}
 <header class="site-header">
   <div class="hd-byline">生産性カウンセラー® 前川 勇</div>
   <div class="hd-label">IEA Emergency Analysis Report — Confidential Research</div>
-  <h1 class="hd-title">中東危機に伴う<br>IEA加盟国別 エネルギー情勢</h1>
+  <h1 class="hd-title">中東危機 エネルギー情勢モニター<br><span style="font-size:0.6em; color:#aaa;">by 前川勇 / AIによる自動分析</span></h1>
   <div class="hd-meta">
     生成日: ${dateStr} ${timeStr} JST<br>
     ベースデータ: IEA Oil Market Report May 2026 · Gas Market Report Q2-2026
   </div>
   ${data.global_alert ? `<button class="hd-alert-btn"><span>▲</span> UNPRECEDENTED SUPPLY DISRUPTION</button>` : ''}
 </header>
+
+<div style="background:#fff3cd; color:#856404; padding:0.8rem 1.5rem; text-align:center; font-size:0.82rem; line-height:1.7; border-bottom:2px solid #ffc107;">
+⚠️ 本サイトはAI（Claude）が公開情報を自動収集・分析した情報サイトです。<br>
+内容の正確性・完全性を保証するものではありません。投資・政策判断の根拠としての使用はお控えください。<br>
+情報は毎朝更新されますが、速報性・網羅性に限界があります。重要な判断は必ず一次情報をご確認ください。
+</div>
 
 <!-- ═══ STATS BAR ═══ -->
 <div class="stats-bar">
@@ -387,10 +393,12 @@ ${REGIONS.map(r => regionSection(r)).join('\n')}
 </main>
 
 <footer>
-  🌍 中東危機 エネルギー情勢モニター ／ 生産性カウンセラー® 前川 勇<br>
-  データソース: ${(data.data_sources || []).map(esc).join(' · ')}<br>
-  本レポートはAIが自動収集・生成したものです。投資・政策判断には一次情報をご確認ください。<br>
-  <a href="https://github.com/maechan136/iea-world-monitor">GitHub</a>
+  中東危機 エネルギー情勢モニター ／ 生産性カウンセラー® 前川 勇<br>
+  本サイトはAI（Claude / Anthropic）が以下の公開情報をもとに自動生成しています<br>
+  データ出典: IEA（国際エネルギー機関）・EIA（米エネルギー情報局）・各国政府公表資料・主要報道機関<br>
+  © のコンテンツは各発行機関に帰属します。本サイトは非商用の情報提供を目的としています。<br>
+  内容の正確性を保証するものではありません。投資・売買・政策判断の根拠としての利用はご遠慮ください。<br>
+  お問い合わせ: productivity.counselors.369@gmail.com
 </footer>
 
 <script>
