@@ -16,7 +16,7 @@ if (!fs.existsSync(dataPath)) {
 }
 
 const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-const now = new Date(data.updated_at);
+const now = new Date();
 const dateStr = now.toLocaleDateString('ja-JP', {
   year: 'numeric', month: 'long', day: 'numeric',
   weekday: 'long', timeZone: 'Asia/Tokyo'
@@ -101,8 +101,8 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="IEA加盟国の中東危機エネルギー状況をリアルタイムで追跡。毎朝6時更新。">
-<title>IEA World Energy Monitor — 毎日更新</title>
+<meta name="description" content="中東危機による主要国のリアルタイム状況をまとめたモニターサイト。">
+<title>中東危機による主要国のリアルタイム状況</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -225,7 +225,7 @@ const html = `<!DOCTYPE html>
   <h1>🌍 中東危機 エネルギー情勢<br>リアルタイム国別モニター</h1>
   <div class="update-badge">
     <span class="live-dot"></span>
-    最終更新: ${dateStr} ${timeStr} JST ／ 毎朝6:00 自動更新
+    最終更新: ${dateStr} ${timeStr} JST
   </div>
 </header>
 
