@@ -1,92 +1,92 @@
 {
-  "updated_at": "2026-05-18T06:00:00+09:00",
+  "updated_at": "2026-05-18T10:00:00+09:00",
   "market": {
-    "brent": "107",
-    "wti": "103",
-    "ttf": "42.5",
-    "jkm": "21.3",
-    "hormuz_status": "部分再開（通航制限継続）"
+    "brent": "108.3",
+    "wti": "105.4",
+    "ttf": "50.2",
+    "jkm": "17.1",
+    "hormuz_status": "部分再開（イラン新手順による制限付き通航）"
   },
-  "global_alert": "EIA：ホルムズ海峡は5月末から6月初旬にかけて段階的に再開の見通し。在庫は記録的ペースで減少継続。",
+  "global_alert": "イランがホルムズ海峡通航に新手続き（PGSA申請）を義務付け。欧州ガス貯蔵量は容量の50%以下に低下。フィリピンは輪番停電が全国規模に拡大（5/15）。",
   "countries": {
     "JP": {
       "risk_level": "最高",
-      "summary": "夏季冷房需要ピーク到来と備蓄放出効果の漸減が重なる局面。政府は電気・ガス料金補助の延長を検討中。原油輸入の約90%がホルムズ経由のため、代替調達先の確保が急務。",
-      "key_event": "政府が追加備蓄放出を検討中。原発再稼働の政治的議論が加速。",
-      "sources": "IEA Oil Market Report May 2026, 経済産業省"
+      "summary": "5月1日から第2次国家石油備蓄放出を開始（総量約5,800万kL＝3,600万バレル）。高市首相がハノイ首脳会談でベトナムと「Power Asia」協定を締結し、原油調達支援と引き換えに医療品を確保。エネルギー消費削減策の検討も本格化している。",
+      "key_event": "第2次備蓄放出（5/1〜）開始。「Power Asia」プロジェクト始動でASEAN向けエネルギー外交を加速。",
+      "sources": "Al Jazeera, Argus Media, IndexBox, CGTN"
     },
     "KR": {
       "risk_level": "最高",
-      "summary": "大西洋岸原油への切り替えで石化向けナフサが慢性不足。韓国石油公社が米国・ブラジルとの長期契約交渉を加速中。李在明大統領が節電・節油キャンペーンを主導。",
-      "key_event": "大韓航空が燃料サーチャージを大幅引き上げ。一部国際線の運休を発表。",
-      "sources": "IEA, 韓国エネルギー省"
+      "summary": "原油輸入の70.7%・LNG輸入の20.4%が中東依存。備蓄残量は26日分（IEA基準90日）まで低下。KOSPIは1日で12%超下落、ウォンが17年ぶり安値を記録。ペルシャ湾内に韓国籍船26隻が依然として足止め状態。",
+      "key_event": "ウォン17年ぶり安値。KOSPI単日12%超急落。湾内足止め船舶26隻の早期解放を国際社会に要求。",
+      "sources": "ORF Online, BISI, CNBC"
     },
     "TW": {
       "risk_level": "最高",
-      "summary": "LNG備蓄が約11日分しかなく、世界で最もLNG供給圧力にさらされた市場とWood Mackenzieが評価。4〜5月にカタール・UAE産LNGがゼロ着荷。米国産LNGで代替中。",
-      "key_event": "Taipowerが廃炉原発2基の再稼働計画を核安全委員会に提出。",
-      "sources": "Wood Mackenzie, OilPrice.com, Atlantic Council"
+      "summary": "LNG備蓄が11日分のみで東アジア最低水準。カタール産LNGが輸入の約3分の1を占めるが、ホルムズ経由が止まったまま。夏の冷房需要ピークに向けて深刻な電力不足リスクが高まっており、廃炉予定原発の再稼働論議が再燃。",
+      "key_event": "夏の電力需給逼迫に備えLNG緊急調達を継続。廃炉原発2基の再稼働計画を核安全委員会が審議中。",
+      "sources": "Atlantic Council, Zero Carbon Analytics, CNBC"
     },
     "CN": {
       "risk_level": "中",
-      "summary": "約14億バレルの備蓄（120日超）と中国籍船舶への通航優遇で物理的供給リスクは低い。しかし輸出市場の需要消失がGDP成長率（4.4%に下方修正）を圧迫。燃料輸出停止でASEAN諸国に影響。",
-      "key_event": "習近平・トランプ会談でホルムズ再開への協調を確認。米中LNG貿易拡大で合意。",
-      "sources": "Columbia CGEP, CSIS ChinaPower, CNBC"
+      "summary": "戦略備蓄14億バレル（110〜180日分）と世界最大の在庫水準を維持。トランプ・習近平首脳会談後に米国産原油の輸入を増加。ホルムズ経由に依存しないロシア・中央アジア経由のパイプライン供給が下支え。輸出市場の縮小がGDP成長率を圧迫。",
+      "key_event": "トランプ・習近平会談でホルムズ再開への協調を確認。中国が米国産原油の購入拡大を表明。",
+      "sources": "Columbia CGEP, CNBC, The Diplomat, EIA"
     },
     "PH": {
       "risk_level": "最高",
-      "summary": "石油輸入の98%が中東産。4月インフレ率7.2%（3年ぶり高水準）。ペソは史上最安値。エネルギー緊急宣言下で政府が代替調達と再エネ加速を同時進行中。",
-      "key_event": "マルコス大統領：「6月30日まで石油供給確保済み」と宣言。7月以降の調達が最大課題。",
-      "sources": "Rappler, Wikipedia 2026 Philippine energy crisis"
+      "summary": "5月13日にルソン島グリッドに高警戒発令、輪番停電が全国に拡大（約200万人が1回2〜3時間の停電）。5月15日にはルソン・ビサヤ両グリッドが同時赤・黄警戒。石炭・バイオマスへの燃料転換を緊急承認済み。国家エネルギー緊急宣言下で対応継続中。",
+      "key_event": "ルソン・ビサヤ両グリッドで同時赤・黄警戒発令（5/15）。輪番停電が全国規模に拡大。",
+      "sources": "Wikipedia, CNN, The Diplomat, OSAC, Lowy Institute"
     },
     "VN": {
       "risk_level": "高",
-      "summary": "備蓄約20日分。GDP成長率が原油$100/bbl持続で8.2%→7.5%未満に低下リスク。燃料価格安定基金を取り崩して介入中。EV販売急増が唯一のポジティブ指標。",
-      "key_event": "アルジェリアとLNG供給交渉開始。タイの石油輸出禁止で調達ルートがさらに制限。",
-      "sources": "MUFG Research, Al Jazeera, IEEFA"
+      "summary": "E10バイオ燃料への移行を前倒しで実施し、ガソリン需給の一部を代替。燃料価格安定基金を取り崩して国内価格を抑制中。LNG不足補填のため石炭発電の稼働を拡大。日本との「Power Asia」協定でNghi Son製油所向け原油調達支援を受ける。",
+      "key_event": "日越「Power Asia」協定締結（5/2、ハノイ）。E10バイオ燃料の早期全国展開を決定。",
+      "sources": "Vietnam Briefing, Al Jazeera, CNN"
     },
     "DE": {
       "risk_level": "高",
-      "summary": "ガス貯蔵量25%未満（2018年来最低）で夏のリフィルシーズン入り。11月までに90%目標達成は事実上不可能。アジアとのLNGカーゴ争奪が激化。化学・金属産業の稼働縮小が続く。",
-      "key_event": "TTF価格+45%超（2月末比）。欧州委員会が緊急LNG調達調整グループを設置。",
-      "sources": "Columbia CGEP, IndexBox, ECB"
+      "summary": "欧州全体のガス貯蔵量は容量の50%以下、ドイツ・フランスはともに25%未満まで低下。欧州委員会とともに10億ユーロ超の緊急財政措置を発動。TTFは5月15日に50€/MWh超まで上昇。化学・金属産業では稼働縮小が継続。",
+      "key_event": "ドイツがスペインと並びEU緊急エネルギー財政措置の最大拠出国に。TTF価格50€/MWh超突破。",
+      "sources": "Bruegel, IndexBox, ECB, IEEFA"
     },
     "FR": {
       "risk_level": "高",
-      "summary": "原子力70%が欧州内で最大の緩和要因。ガス貯蔵量はドイツと同水準だが、電力輸出余力が外交カードとなっている。航空業界はジェット燃料高騰で一部路線縮小を検討中。",
-      "key_event": "エールフランス、欧州内短距離路線の一部を6月から運休へ。",
-      "sources": "Columbia CGEP, EU Gas Coordination Group"
+      "summary": "原子力発電（発電の70%）が欧州内最大の緩和要因として機能。ガス貯蔵はドイツと同水準の25%未満。エールフランスは欧州域内短距離路線の一部を6月から運休予定。イベリア半島のLNG輸入インフラを活用した調達多様化を進めている。",
+      "key_event": "エールフランス、欧州内短距離路線を6月から一部運休へ。イベリア経由LNG輸入拡大で欧州に協力。",
+      "sources": "Bruegel, ECB, Euronews"
     },
     "GB": {
       "risk_level": "高",
-      "summary": "北海ガス生産の長期減退とLNG調達競合が重なる。3月に脆弱世帯へ暖房燃料費一時給付を実施済み。洋上風力開発加速が政策的追い風を受けている。",
+      "summary": "ドローン・戦闘機・海軍艦艇をホルムズ防衛ミッション（国際商業船舶保護）に派遣（5月）。北海ガス生産の長期減少とLNG市場での争奪戦が重なる。IEA緊急行動計画に基づく備蓄放出調整を実施中。",
       "key_event": "英国がホルムズ防衛ミッションにドローン・戦闘機・海軍艦艇を派遣（5月）。",
-      "sources": "OECD Energy Support Tracker, IEEFA"
+      "sources": "CNBC, BISI, IEEFA"
     },
     "US": {
       "risk_level": "中",
-      "summary": "原油輸出12.9 mb/d（史上最高）。ガソリン+$1.16/ガロン（3月比）でインフレ再燃。スピリット航空が燃料コスト圧迫で全運航停止（5月2日）。FRBの利下げ路線延期が実体経済を下押し。",
-      "key_event": "トランプ・習近平首脳会談でホルムズ再開への協調確認。米国LNGの中国輸出拡大で合意。",
-      "sources": "EIA STEO May 2026, CNBC"
+      "summary": "原油輸出は高水準を維持し、中国・欧州向け緊急供給を拡大。EIA STEOによれば5〜6月のBrent価格は約106ドル/bbl水準を予測。トランプ大統領が「Project Freedom」軍事作戦を停止し、パキスタン仲介で対イラン外交交渉が進行中。",
+      "key_event": "トランプ大統領がProject Freedom（ホルムズ軍事護衛作戦）を停止。対イラン包括合意に向け交渉継続中。",
+      "sources": "EIA STEO May 2026, CNBC, Discover Alert"
     },
     "CA": {
       "risk_level": "低",
-      "summary": "石油輸出国として高価格の恩恵を享受。アルバータ州が財政黒字を拡大。アジア向けLNG長期契約交渉が6〜9月にラッシュを迎える見通し。国内ガソリン高騰が政策的矛盾を生む。",
-      "key_event": "Woodfibre LNG、日韓向け長期契約交渉を加速。",
-      "sources": "IEA Oil Market Report May 2026"
+      "summary": "Trans Mountain拡張パイプライン経由のアジア向け輸出が本格稼働。IEA協調備蓄放出に2,360万バレルを拠出予定。4月から生産量を14万b/d増産。アルバータ州の財政黒字が拡大。高油価の恩恵を享受しながら対アジア供給を強化中。",
+      "key_event": "Trans Mountain経由アジア向け輸出が拡大。IEA協調放出に2,360万バレルを拠出。",
+      "sources": "S&P Global, Canada Action, Discover Alert"
     },
     "AU": {
       "risk_level": "最高",
-      "summary": "液体燃料の約90%を輸入。ディーゼル備蓄が44〜46日分まで改善（3月のボトム33日から回復中）。148億豪ドルの燃料レジリエンスパッケージが進行中。農業・物流が深刻な打撃を受けている。",
-      "key_event": "政府、ディーゼル消費税50%減免（3カ月）と国内精製拡張への税控除を決定。",
-      "sources": "IBTimes AU, WEF energy stories May 2026"
+      "summary": "国内原油産出約32万b/dに対し輸入精製品は約85万b/dと輸入依存が深刻。数十年ぶりに米国を緊急燃料供給源として活用。農業・物流・採掘業への打撃が継続しており、政府の燃料レジリエンスパッケージが実施段階に入った。",
+      "key_event": "数十年ぶりに米国を緊急燃料供給源として活用。政府の燃料レジリエンスパッケージが実施段階に入る。",
+      "sources": "OilPrice.com, IEEFA, Discover Alert, EIA"
     }
   },
   "data_sources": [
     "IEA Oil Market Report May 2026",
-    "IEA Gas Market Report Q2-2026",
     "EIA Short-Term Energy Outlook May 2026",
-    "Columbia CGEP",
-    "Wood Mackenzie"
+    "Al Jazeera / CNBC / CNN (2026/05/15-18)",
+    "Wikipedia 2026 Strait of Hormuz crisis",
+    "Bruegel 2026 European energy crisis tracker"
   ]
 }
