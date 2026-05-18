@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(git *)",
+      "Bash(gh *)",
+      "Bash(node *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(date *)",
+      "Bash(curl *)",
+      "WebSearch(*)",
+      "WebFetch(*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /*)",
+      "Bash(sudo rm *)",
+      "Bash(chmod 777 *)"
+    ]
+  }
+}
