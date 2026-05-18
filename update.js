@@ -448,7 +448,13 @@ ${REGIONS.map(r => regionSection(r)).join('\n')}
 
 <script>
 function toggleCard(id) {
-  document.getElementById(id).classList.toggle('open');
+  const card = document.getElementById(id);
+  const opening = !card.classList.contains('open');
+  card.classList.toggle('open');
+  if (opening) {
+    card.querySelectorAll('.sec-body').forEach(b => b.classList.add('open'));
+    card.querySelectorAll('.sec-arrow').forEach(a => a.style.transform = 'rotate(90deg)');
+  }
 }
 function toggleSec(id) {
   const body  = document.getElementById('sec-' + id);
