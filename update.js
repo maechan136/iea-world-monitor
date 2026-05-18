@@ -2,7 +2,7 @@
 /**
  * update.js
  * data/latest.json を読み込んでindex.htmlを自動生成する
- * ダーク Intelligence Dashboard テーマ
+ * IEA Emergency Analysis Report スタイル（黒ヘッダー＋クリーム地）
  */
 
 const fs = require('fs');
@@ -25,34 +25,34 @@ const timeStr = now.toLocaleTimeString('ja-JP', {
 });
 
 const RISK_CONFIG = {
-  '最高': { cls: 'risk-critical', dot: '#da3633', label: '危険度: 最高', badge: 'CRITICAL' },
-  '高':   { cls: 'risk-high',     dot: '#fb923c', label: '危険度: 高',   badge: 'HIGH'     },
-  '中':   { cls: 'risk-moderate', dot: '#d29922', label: '危険度: 中',   badge: 'MODERATE' },
-  '低':   { cls: 'risk-low',      dot: '#3fb950', label: '危険度: 低',   badge: 'LOW'      },
+  '最高': { cls: 'risk-crit', label: '危険度: 最高', color: '#c0392b' },
+  '高':   { cls: 'risk-high', label: '危険度: 高',   color: '#e67e22' },
+  '中':   { cls: 'risk-mod',  label: '危険度: 中',   color: '#2980b9' },
+  '低':   { cls: 'risk-low',  label: '危険度: 低',   color: '#27ae60' },
 };
 
 const COUNTRY_META = {
-  JP: { flag: '🇯🇵', name: '日本',           nameEn: 'JAPAN'         },
+  JP: { flag: '🇯🇵', name: '日本',           nameEn: 'JAPAN'        },
   KR: { flag: '🇰🇷', name: '韓国',           nameEn: 'SOUTH KOREA'  },
-  TW: { flag: '🇹🇼', name: '台湾',           nameEn: 'TAIWAN'        },
-  CN: { flag: '🇨🇳', name: '中国',           nameEn: 'CHINA'         },
-  PH: { flag: '🇵🇭', name: 'フィリピン',     nameEn: 'PHILIPPINES'   },
-  VN: { flag: '🇻🇳', name: 'ベトナム',       nameEn: 'VIETNAM'       },
-  DE: { flag: '🇩🇪', name: 'ドイツ',         nameEn: 'GERMANY'       },
-  FR: { flag: '🇫🇷', name: 'フランス',       nameEn: 'FRANCE'        },
-  GB: { flag: '🇬🇧', name: 'イギリス',       nameEn: 'UK'            },
-  US: { flag: '🇺🇸', name: 'アメリカ',       nameEn: 'USA'           },
-  CA: { flag: '🇨🇦', name: 'カナダ',         nameEn: 'CANADA'        },
-  AU: { flag: '🇦🇺', name: 'オーストラリア', nameEn: 'AUSTRALIA'     },
+  TW: { flag: '🇹🇼', name: '台湾',           nameEn: 'TAIWAN'       },
+  CN: { flag: '🇨🇳', name: '中国',           nameEn: 'CHINA'        },
+  PH: { flag: '🇵🇭', name: 'フィリピン',     nameEn: 'PHILIPPINES'  },
+  VN: { flag: '🇻🇳', name: 'ベトナム',       nameEn: 'VIETNAM'      },
+  DE: { flag: '🇩🇪', name: 'ドイツ',         nameEn: 'GERMANY'      },
+  FR: { flag: '🇫🇷', name: 'フランス',       nameEn: 'FRANCE'       },
+  GB: { flag: '🇬🇧', name: 'イギリス',       nameEn: 'UK'           },
+  US: { flag: '🇺🇸', name: 'アメリカ',       nameEn: 'USA'          },
+  CA: { flag: '🇨🇦', name: 'カナダ',         nameEn: 'CANADA'       },
+  AU: { flag: '🇦🇺', name: 'オーストラリア', nameEn: 'AUSTRALIA'    },
 };
 
 const REGIONS = [
-  { id: 'asia',         icon: '🌏', title: 'アジア太平洋',   sub: 'ASIA-PACIFIC',          codes: ['JP', 'KR', 'TW'] },
-  { id: 'china',        icon: '🐉', title: '中国',           sub: 'CHINA',                 codes: ['CN'] },
-  { id: 'asean',        icon: '🌴', title: '東南アジア',     sub: 'SOUTHEAST ASIA',        codes: ['PH', 'VN'] },
-  { id: 'europe',       icon: '🌍', title: '欧州',           sub: 'EUROPE',                codes: ['DE', 'FR', 'GB'] },
-  { id: 'north-america',icon: '🌎', title: '北米',           sub: 'NORTH AMERICA',         codes: ['US', 'CA'] },
-  { id: 'oceania',      icon: '🦘', title: 'オセアニア',     sub: 'OCEANIA',               codes: ['AU'] },
+  { id: 'asia',          icon: '🌏', title: 'アジア太平洋', sub: 'ASIA-PACIFIC',    codes: ['JP','KR','TW'] },
+  { id: 'china',         icon: '🐉', title: '中国',         sub: 'CHINA',           codes: ['CN'] },
+  { id: 'asean',         icon: '🌴', title: '東南アジア',   sub: 'SOUTHEAST ASIA',  codes: ['PH','VN'] },
+  { id: 'europe',        icon: '🌍', title: '欧州',         sub: 'EUROPE',          codes: ['DE','FR','GB'] },
+  { id: 'north-america', icon: '🌎', title: '北米',         sub: 'NORTH AMERICA',   codes: ['US','CA'] },
+  { id: 'oceania',       icon: '🦘', title: 'オセアニア',   sub: 'OCEANIA',         codes: ['AU'] },
 ];
 
 function esc(s) {
@@ -63,8 +63,8 @@ function metricChips(metrics) {
   if (!metrics || !metrics.length) return '';
   return `<div class="metric-chips">${metrics.map(m =>
     `<div class="chip${m.alert ? ' chip-alert' : ''}">
-      <span class="chip-val">${esc(m.value)}</span>
-      <span class="chip-lbl">${esc(m.label)}</span>
+      <div class="chip-val">${esc(m.value)}</div>
+      <div class="chip-lbl">${esc(m.label)}</div>
     </div>`
   ).join('')}</div>`;
 }
@@ -72,92 +72,75 @@ function metricChips(metrics) {
 function bulletList(items, icon) {
   if (!items || !items.length) return '';
   return `<ul class="bullet-list">${items.map(i =>
-    `<li><span class="bullet-icon">${icon}</span><span>${esc(i)}</span></li>`
+    `<li><span class="b-icon">${icon}</span><span>${esc(i)}</span></li>`
   ).join('')}</ul>`;
 }
 
 function riskOutlookList(items) {
   if (!items || !items.length) return '';
   return `<ul class="bullet-list">${items.map(i => {
-    const alertMatch = i.match(/^【(最高|高|中|低)リスク】/);
-    const levelMap = { '最高': 'risk-critical', '高': 'risk-high', '中': 'risk-moderate', '低': 'risk-low' };
-    const cls = alertMatch ? levelMap[alertMatch[1]] : '';
-    const text = alertMatch ? i.replace(alertMatch[0], '') : i;
-    return `<li><span class="risk-tag ${cls}">${alertMatch ? alertMatch[1] : ''}リスク</span><span>${esc(text)}</span></li>`;
+    const m = i.match(/^【(最高|高|中|低)リスク】/);
+    const colorMap = { '最高':'#c0392b','高':'#e67e22','中':'#2980b9','低':'#27ae60' };
+    const color = m ? colorMap[m[1]] : '#6b6355';
+    const text = m ? i.replace(m[0],'') : i;
+    return `<li><span class="risk-tag" style="background:${color}20;color:${color};border:1px solid ${color}40">${m ? m[1]+'リスク' : '情報'}</span><span>${esc(text)}</span></li>`;
   }).join('')}</ul>`;
 }
 
-function countryCard(code, idx) {
+function collapsibleSection(code, sectionId, label, content) {
+  return `
+    <div class="sec-toggle" onclick="toggleSec('${code}-${sectionId}')">
+      <span class="sec-arrow" id="arr-${code}-${sectionId}">▶</span>
+      <span>${label}</span>
+    </div>
+    <div class="sec-body" id="sec-${code}-${sectionId}">${content}</div>`;
+}
+
+function countryCard(code) {
   const meta = COUNTRY_META[code];
   const cd = data.countries?.[code];
   if (!meta || !cd) return '';
   const risk = RISK_CONFIG[cd.risk_level] || RISK_CONFIG['中'];
-  const cardId = `card-${code.toLowerCase()}`;
+  const id = `card-${code.toLowerCase()}`;
 
   return `
-<div class="country-card" id="${cardId}">
-  <div class="card-header" onclick="toggleCard('${cardId}')">
-    <div class="card-header-left">
+<div class="country-card" id="${id}">
+  <div class="card-hdr" onclick="toggleCard('${id}')">
+    <div class="card-hdr-left">
+      <span class="card-code">${code}</span>
       <span class="card-flag">${meta.flag}</span>
-      <div class="card-title-group">
-        <span class="card-name">${meta.name}</span>
-        <span class="card-name-en">${meta.nameEn}</span>
-      </div>
+      <span class="card-name">${meta.name}</span>
     </div>
-    <div class="card-header-right">
-      <span class="risk-pill ${risk.cls}">
-        <span class="risk-dot" style="background:${risk.dot}"></span>
-        ${risk.label}
-      </span>
-      <span class="card-chevron">›</span>
+    <div class="card-hdr-right">
+      <span class="risk-badge ${risk.cls}">${risk.label}</span>
+      <span class="card-arrow">▲</span>
     </div>
   </div>
   <div class="card-body">
     ${metricChips(cd.metrics)}
+    <div class="risk-meter"><div class="risk-meter-fill" style="width:${{最高:'92%',高:'70%',中:'45%',低:'20%'}[cd.risk_level]||'50%'};background:${risk.color}"></div></div>
     <div class="key-event-row">
-      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-icon">📌</span>
       <span class="ke-text">${esc(cd.key_event || '—')}</span>
     </div>
     <p class="card-summary">${esc(cd.summary || '')}</p>
-
-    <div class="section-toggle" onclick="toggleSection('${code}-energy')">
-      <span class="st-arrow" id="arr-${code}-energy">▶</span>
-      <span>⚡ エネルギー・産業影響</span>
-    </div>
-    <div class="section-body" id="sec-${code}-energy">
-      ${bulletList(cd.energy_impact, '⚡')}
-    </div>
-
-    <div class="section-toggle" onclick="toggleSection('${code}-policy')">
-      <span class="st-arrow" id="arr-${code}-policy">▶</span>
-      <span>🏛️ 政策対応</span>
-    </div>
-    <div class="section-body" id="sec-${code}-policy">
-      ${bulletList(cd.policy_response, '🏛️')}
-    </div>
-
-    <div class="section-toggle" onclick="toggleSection('${code}-outlook')">
-      <span class="st-arrow" id="arr-${code}-outlook">▶</span>
-      <span>🔮 リスク見通し</span>
-    </div>
-    <div class="section-body" id="sec-${code}-outlook">
-      ${riskOutlookList(cd.risk_outlook)}
-    </div>
-
-    ${cd.sources ? `<div class="card-sources">出典: ${esc(cd.sources)}</div>` : ''}
+    ${collapsibleSection(code,'energy','⚡ エネルギー・産業影響', bulletList(cd.energy_impact,'⚡'))}
+    ${collapsibleSection(code,'policy','🏛️ 政策対応', bulletList(cd.policy_response,'🏛️'))}
+    ${collapsibleSection(code,'outlook','🔮 リスク見通し', riskOutlookList(cd.risk_outlook))}
+    ${cd.sources ? `<div class="card-src">出典: ${esc(cd.sources)}</div>` : ''}
   </div>
 </div>`;
 }
 
-function regionSection(region) {
-  const cards = region.codes.map((c, i) => countryCard(c, i)).join('\n');
+function regionSection(r) {
+  const cards = r.codes.map(c => countryCard(c)).join('\n');
   return `
-<section class="region-section" id="reg-${region.id}">
+<section class="region-sec" id="reg-${r.id}">
   <div class="region-hdr">
-    <span class="region-icon">${region.icon}</span>
-    <div class="region-title-group">
-      <span class="region-title">${region.title}</span>
-      <span class="region-sub">${region.sub}</span>
+    <span class="region-icon">${r.icon}</span>
+    <div>
+      <div class="region-title">${r.title}</div>
+      <div class="region-sub">${r.sub}</div>
     </div>
   </div>
   ${cards}
@@ -168,20 +151,22 @@ const hormuzStatus = data.market?.hormuz_status || '情報確認中';
 const hormuzDetail = data.market?.hormuz_detail || '';
 const hormuzIsBlocked = hormuzStatus.includes('封鎖');
 const hormuzIsPartial = hormuzStatus.includes('部分');
-const hormuzColor = hormuzIsBlocked ? '#da3633' : hormuzIsPartial ? '#fb923c' : '#3fb950';
-const hormuzFlowPct = data.risk_summary?.hormuz_flow_rate || (hormuzIsBlocked ? 0 : hormuzIsPartial ? 40 : 100);
-const globalRiskIndex = data.risk_summary?.global_risk_index || 75;
+const hormuzColor = hormuzIsBlocked ? '#c0392b' : hormuzIsPartial ? '#e67e22' : '#27ae60';
+const hormuzFlow = data.risk_summary?.hormuz_flow_rate || (hormuzIsBlocked ? 0 : hormuzIsPartial ? 40 : 100);
+const globalRisk = data.risk_summary?.global_risk_index || 75;
 
-const marketItems = [
-  { label: 'Brent原油', value: data.market?.brent ? `$${data.market.brent}` : '—', unit: '/bbl', cls: 'val-up' },
-  { label: 'WTI原油',  value: data.market?.wti   ? `$${data.market.wti}`   : '—', unit: '/bbl', cls: 'val-up' },
-  { label: 'TTF天然ガス', value: data.market?.ttf ? `${data.market.ttf}€` : '—', unit: '/MWh', cls: 'val-warn' },
-  { label: 'JKM LNG',  value: data.market?.jkm   ? `$${data.market.jkm}`  : '—', unit: '/MMBtu', cls: 'val-warn' },
-];
-
-const riskCounts = Object.values(data.countries || {}).reduce((acc, c) => {
-  acc[c.risk_level] = (acc[c.risk_level] || 0) + 1; return acc;
+const riskCounts = Object.values(data.countries || {}).reduce((a, c) => {
+  a[c.risk_level] = (a[c.risk_level] || 0) + 1; return a;
 }, {});
+
+const STATS = [
+  { val: data.market?.brent ? `$${data.market.brent}` : '—',  lbl: '現在のBrent価格' },
+  { val: data.market?.wti   ? `$${data.market.wti}`   : '—',  lbl: 'WTI原油価格' },
+  { val: data.market?.ttf   ? `${data.market.ttf}€`   : '—',  lbl: 'TTF天然ガス /MWh' },
+  { val: data.market?.jkm   ? `$${data.market.jkm}`   : '—',  lbl: 'JKM LNG /MMBtu' },
+  { val: `${hormuzFlow}%`,                                      lbl: 'ホルムズ通過量（危機前比）' },
+  { val: data.risk_summary?.iea_strategic_release || '—',       lbl: 'IEA緊急備蓄放出量' },
+];
 
 const html = `<!DOCTYPE html>
 <html lang="ja">
@@ -189,263 +174,247 @@ const html = `<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="中東危機によるホルムズ海峡封鎖が各国エネルギー情勢に与える影響のリアルタイム分析">
-<title>中東危機 エネルギー情勢モニター | World Intelligence Dashboard</title>
+<title>中東危機 IEA加盟国別エネルギー情勢モニター</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:      #0d1117;
-  --bg2:     #161b22;
-  --bg3:     #21262d;
-  --border:  #30363d;
-  --text:    #e6edf3;
-  --text2:   #8b949e;
-  --accent:  #388bfd;
-  --crit:    #da3633;
-  --high:    #fb923c;
-  --warn:    #d29922;
-  --ok:      #3fb950;
-  --purple:  #a78bfa;
-  --font-mono: 'SF Mono','Fira Code','Consolas',monospace;
+  --ink:    #0d0d0d;
+  --paper:  #f5f0e8;
+  --white:  #ffffff;
+  --accent: #c0392b;
+  --accent2:#e67e22;
+  --accent3:#2980b9;
+  --muted:  #6b6355;
+  --border: #c8bfa8;
+  --bg-chip:#ede8df;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;line-height:1.6}
+body{background:var(--paper);color:var(--ink);font-family:'Noto Serif JP',serif;line-height:1.8}
 
-/* ── HEADER ─────────────────────────────── */
-.hd{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.hd-logo{display:flex;align-items:center;gap:10px}
-.hd-logo-icon{font-size:22px}
-.hd-logo-text{font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em}
-.hd-logo-text span{color:var(--accent)}
-.hd-sep{flex:1}
-.hd-live{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;color:var(--text2)}
-.live-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.hd-risk-index{font-family:var(--font-mono);font-size:11px;background:var(--bg3);border:1px solid var(--border);padding:4px 10px;border-radius:4px}
-.hd-risk-index strong{color:var(--crit);font-size:15px;margin-right:4px}
+/* ══ HEADER ══════════════════════════════════════ */
+.site-header{background:var(--ink);color:var(--paper);padding:3rem 2rem 2.5rem;text-align:center}
+.hd-byline{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.25em;color:#888;margin-bottom:.5rem}
+.hd-label{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:1.2rem}
+.hd-title{font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;line-height:1.35;margin-bottom:.6rem;letter-spacing:-.01em}
+.hd-meta{font-family:'Space Mono',monospace;font-size:.62rem;color:#777;margin-bottom:1.4rem;line-height:2}
+.hd-alert-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:#fff;
+  font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.12em;padding:.5rem 1.2rem;
+  border:none;cursor:default}
+.hd-alert-btn span{font-size:.9rem}
 
-/* ── ALERT BANNER ───────────────────────── */
-.alert-banner{background:#3d1111;border-bottom:1px solid var(--crit);padding:10px 24px;display:flex;align-items:flex-start;gap:10px;font-size:12px}
-.alert-icon{color:var(--crit);font-size:16px;flex-shrink:0;margin-top:1px}
-.alert-text{color:#ffa0a0;line-height:1.5}
+/* ══ STATS BAR ═══════════════════════════════════ */
+.stats-bar{background:#1a1a1a;border-bottom:1px solid #333;
+  display:grid;grid-template-columns:repeat(6,1fr);text-align:center;padding:.8rem 0}
+.stat-item{padding:.4rem 1rem;border-right:1px solid #333}
+.stat-item:last-child{border-right:none}
+.stat-val{font-family:'Space Mono',monospace;font-size:1.1rem;font-weight:700;color:var(--accent);
+  display:block;line-height:1.2}
+.stat-lbl{font-family:'Space Mono',monospace;font-size:.58rem;color:#666;margin-top:.2rem;
+  display:block;letter-spacing:.03em}
 
-/* ── HORMUZ BAR ─────────────────────────── */
-.hormuz-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px}
-.hz-label{font-family:var(--font-mono);font-size:10px;color:var(--text2);letter-spacing:.08em;white-space:nowrap}
-.hz-status-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.hz-status{font-family:var(--font-mono);font-size:12px;font-weight:700}
-.hz-detail{font-size:11px;color:var(--text2)}
-.hz-flow{text-align:right;font-family:var(--font-mono);font-size:11px;color:var(--text2)}
-.hz-flow-bar{width:120px;height:6px;background:var(--bg3);border-radius:3px;margin-top:4px;overflow:hidden}
-.hz-flow-fill{height:100%;border-radius:3px;transition:width .5s}
+/* ══ HORMUZ BAR ══════════════════════════════════ */
+.hormuz-bar{background:${hormuzColor}18;border-bottom:3px solid ${hormuzColor};
+  padding:.7rem 2rem;display:flex;align-items:center;flex-wrap:wrap;gap:.8rem}
+.hz-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:var(--muted)}
+.hz-status{font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;color:${hormuzColor}}
+.hz-detail{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);flex:1;text-align:right}
+.hz-flow-wrap{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted)}
+.hz-bar{width:100px;height:5px;background:var(--border);border-radius:2px;overflow:hidden}
+.hz-bar-fill{height:100%;border-radius:2px;background:${hormuzColor};width:${hormuzFlow}%}
 
-/* ── MARKET BAR ─────────────────────────── */
-.market-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;gap:24px;flex-wrap:wrap;align-items:center}
-.mkt-item{display:flex;flex-direction:column;align-items:center;min-width:90px}
-.mkt-val{font-family:var(--font-mono);font-size:16px;font-weight:700;line-height:1.2}
-.mkt-label{font-family:var(--font-mono);font-size:9px;color:var(--text2);letter-spacing:.05em;margin-top:2px}
-.val-up{color:#f85149}
-.val-warn{color:var(--warn)}
-.val-ok{color:var(--ok)}
-.mkt-sep{width:1px;height:32px;background:var(--border);flex-shrink:0}
+/* ══ RISK SUMMARY ════════════════════════════════ */
+.risk-bar{background:var(--ink);color:var(--paper);padding:.6rem 2rem;
+  display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;
+  font-family:'Space Mono',monospace;font-size:.62rem}
+.rbar-label{color:#666;letter-spacing:.1em}
+.rbar-chip{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);padding:.2rem .7rem;border-radius:2px}
+.rbar-dot{width:7px;height:7px;border-radius:50%}
 
-/* ── RISK SUMMARY BAR ───────────────────── */
-.risk-summary-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:8px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.rs-label{font-family:var(--font-mono);font-size:10px;color:var(--text2);letter-spacing:.08em}
-.rs-chip{display:flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:11px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 8px}
-.rs-dot{width:7px;height:7px;border-radius:50%}
-
-/* ── NAV ────────────────────────────────── */
-.region-nav{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none}
+/* ══ NAV ══════════════════════════════════════════ */
+.region-nav{position:sticky;top:0;z-index:100;background:var(--ink);
+  display:flex;overflow-x:auto;scrollbar-width:none;border-bottom:2px solid #222}
 .region-nav::-webkit-scrollbar{display:none}
-.nav-btn{flex-shrink:0;padding:10px 14px;font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--text2);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s}
-.nav-btn:hover{color:var(--text)}
+.nav-btn{flex-shrink:0;padding:.75rem 1.1rem;font-family:'Space Mono',monospace;
+  font-size:.62rem;letter-spacing:.07em;color:#666;background:none;border:none;
+  border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s;margin-bottom:-2px}
+.nav-btn:hover{color:#ccc}
 .nav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-/* ── MAIN LAYOUT ────────────────────────── */
-main{max-width:1000px;margin:0 auto;padding:24px 16px 48px}
+/* ══ MAIN ═════════════════════════════════════════ */
+main{max-width:960px;margin:0 auto;padding:2rem 1.5rem 4rem}
 
-/* ── REGION SECTION ─────────────────────── */
-.region-section{margin-bottom:32px;scroll-margin-top:42px}
-.region-hdr{display:flex;align-items:center;gap:10px;padding:10px 0 10px;border-bottom:1px solid var(--border);margin-bottom:12px}
-.region-icon{font-size:18px}
-.region-title-group{display:flex;align-items:baseline;gap:8px}
-.region-title{font-size:15px;font-weight:600}
-.region-sub{font-family:var(--font-mono);font-size:10px;color:var(--text2);letter-spacing:.08em}
+/* ══ REGION ═══════════════════════════════════════ */
+.region-sec{margin-bottom:3rem;scroll-margin-top:44px}
+.region-hdr{display:flex;align-items:center;gap:.8rem;padding:1rem 0 .7rem;
+  border-top:2px solid var(--ink);margin-bottom:1rem}
+.region-icon{font-size:1.3rem}
+.region-title{font-size:1.1rem;font-weight:700;line-height:1.2}
+.region-sub{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em;margin-top:.1rem}
 
-/* ── COUNTRY CARD ───────────────────────── */
-.country-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;overflow:hidden;transition:border-color .15s}
-.country-card:hover{border-color:#484f58}
-.card-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;user-select:none}
-.card-header-left{display:flex;align-items:center;gap:10px}
-.card-flag{font-size:20px;line-height:1}
-.card-title-group{display:flex;flex-direction:column;gap:1px}
-.card-name{font-size:14px;font-weight:600}
-.card-name-en{font-family:var(--font-mono);font-size:9px;color:var(--text2);letter-spacing:.08em}
-.card-header-right{display:flex;align-items:center;gap:10px}
-.risk-pill{display:flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:10px;padding:3px 8px;border-radius:12px;border:1px solid var(--border);font-weight:600}
-.risk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.risk-critical{color:#ffa0a0;background:rgba(218,54,51,.15);border-color:rgba(218,54,51,.4)}
-.risk-high{color:#ffc180;background:rgba(251,146,60,.15);border-color:rgba(251,146,60,.4)}
-.risk-moderate{color:#ffe082;background:rgba(210,153,34,.15);border-color:rgba(210,153,34,.4)}
-.risk-low{color:#90ee90;background:rgba(63,185,80,.15);border-color:rgba(63,185,80,.4)}
-.card-chevron{color:var(--text2);font-size:18px;transition:transform .2s;transform:rotate(90deg)}
-.country-card.open .card-chevron{transform:rotate(-90deg)}
-.card-body{display:none;padding:0 16px 16px}
+/* ══ COUNTRY CARD ═════════════════════════════════ */
+.country-card{border:1px solid var(--border);margin-bottom:1rem;background:var(--white)}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;
+  padding:.7rem 1.1rem;background:var(--ink);color:var(--paper);cursor:pointer;gap:.6rem}
+.card-hdr-left{display:flex;align-items:center;gap:.6rem}
+.card-code{font-family:'Space Mono',monospace;font-size:.72rem;color:#666;letter-spacing:.05em}
+.card-flag{font-size:1.2rem;line-height:1}
+.card-name{font-size:.95rem;font-weight:600}
+.card-hdr-right{display:flex;align-items:center;gap:.6rem}
+.risk-badge{font-family:'Space Mono',monospace;font-size:.58rem;padding:.25rem .6rem;font-weight:700;flex-shrink:0}
+.risk-crit{background:var(--accent);color:#fff}
+.risk-high{background:var(--accent2);color:#fff}
+.risk-mod{background:var(--accent3);color:#fff}
+.risk-low{background:#27ae60;color:#fff}
+.card-arrow{font-size:.8rem;color:#666;transition:transform .2s}
+.country-card.open .card-arrow{transform:rotate(180deg)}
+.card-body{display:none;padding:1.2rem 1.4rem}
 .country-card.open .card-body{display:block}
 
-/* ── METRIC CHIPS ───────────────────────── */
-.metric-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;padding-top:4px}
-.chip{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:4px 10px;display:flex;flex-direction:column;align-items:center;min-width:80px}
-.chip-alert{border-color:rgba(218,54,51,.5);background:rgba(218,54,51,.1)}
-.chip-val{font-family:var(--font-mono);font-size:13px;font-weight:700;line-height:1.2;color:var(--text)}
-.chip-alert .chip-val{color:#ffa0a0}
-.chip-lbl{font-family:var(--font-mono);font-size:9px;color:var(--text2);margin-top:2px;text-align:center;letter-spacing:.03em}
+/* ══ METRIC CHIPS ═════════════════════════════════ */
+.metric-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.9rem}
+.chip{background:var(--bg-chip);border:1px solid var(--border);
+  padding:.4rem .8rem;min-width:90px;display:flex;flex-direction:column;align-items:center}
+.chip-alert{background:#fdecea;border-color:#f0aaaa}
+.chip-val{font-family:'Space Mono',monospace;font-size:.88rem;font-weight:700;line-height:1.2;color:var(--ink)}
+.chip-alert .chip-val{color:var(--accent)}
+.chip-lbl{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--muted);margin-top:.15rem;text-align:center;letter-spacing:.03em}
 
-/* ── KEY EVENT ──────────────────────────── */
-.key-event-row{background:#1c2027;border-left:3px solid var(--accent);border-radius:0 4px 4px 0;padding:8px 12px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start}
-.ke-label{font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.05em;white-space:nowrap;margin-top:2px;flex-shrink:0}
-.ke-text{font-size:12px;font-weight:600;color:var(--text);line-height:1.5}
+/* ══ RISK METER ═══════════════════════════════════ */
+.risk-meter{height:4px;background:var(--border);margin:.3rem 0 .9rem;border-radius:2px;overflow:hidden}
+.risk-meter-fill{height:100%;border-radius:2px;transition:width .5s}
 
-/* ── SUMMARY ────────────────────────────── */
-.card-summary{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:10px}
+/* ══ KEY EVENT ════════════════════════════════════ */
+.key-event-row{display:flex;gap:.6rem;align-items:flex-start;
+  background:#fdf8f2;border-left:3px solid var(--accent);
+  padding:.55rem .85rem;margin-bottom:.7rem}
+.ke-icon{flex-shrink:0;font-size:.9rem;margin-top:.1rem}
+.ke-text{font-size:.84rem;font-weight:600;line-height:1.5;color:var(--ink)}
 
-/* ── COLLAPSIBLE SECTION ────────────────── */
-.section-toggle{display:flex;align-items:center;gap:6px;padding:6px 8px;margin:4px 0 0;background:var(--bg3);border-radius:4px;cursor:pointer;font-size:12px;color:var(--text2);user-select:none;transition:background .15s}
-.section-toggle:hover{background:#2d333b;color:var(--text)}
-.st-arrow{font-family:var(--font-mono);font-size:10px;transition:transform .2s;display:inline-block}
-.section-body{display:none;padding:6px 0 4px 8px}
-.section-body.open{display:block}
+/* ══ SUMMARY ══════════════════════════════════════ */
+.card-summary{font-size:.84rem;line-height:1.85;color:#333;margin-bottom:.6rem}
 
-/* ── BULLET LIST ────────────────────────── */
-.bullet-list{list-style:none;display:flex;flex-direction:column;gap:5px}
-.bullet-list li{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text2);line-height:1.5}
-.bullet-icon{flex-shrink:0;font-size:11px;margin-top:1px}
-.risk-tag{font-family:var(--font-mono);font-size:9px;padding:1px 5px;border-radius:3px;flex-shrink:0;margin-top:2px;font-weight:600}
-.risk-tag.risk-critical{background:rgba(218,54,51,.25);color:#ffa0a0}
-.risk-tag.risk-high{background:rgba(251,146,60,.25);color:#ffc180}
-.risk-tag.risk-moderate{background:rgba(210,153,34,.25);color:#ffe082}
-.risk-tag.risk-low{background:rgba(63,185,80,.25);color:#90ee90}
+/* ══ COLLAPSIBLE SECTION ══════════════════════════ */
+.sec-toggle{display:flex;align-items:center;gap:.5rem;padding:.45rem .6rem;
+  margin:.4rem 0 0;border-top:1px solid var(--border);cursor:pointer;
+  font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.04em;color:var(--accent);
+  user-select:none;transition:background .15s}
+.sec-toggle:hover{background:#fdf8f2}
+.sec-arrow{font-size:.65rem;transition:transform .2s;display:inline-block}
+.sec-body{display:none;padding:.5rem 0 .3rem .5rem}
+.sec-body.open{display:block}
 
-/* ── SOURCES ────────────────────────────── */
-.card-sources{margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:9px;color:#484f58;letter-spacing:.03em}
+/* ══ BULLET LIST ══════════════════════════════════ */
+.bullet-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:.3rem 0}
+.bullet-list li{display:flex;gap:.6rem;align-items:flex-start;font-size:.82rem;color:#333;line-height:1.6}
+.b-icon{flex-shrink:0;font-size:.82rem;margin-top:.1rem}
+.risk-tag{font-family:'Space Mono',monospace;font-size:.55rem;padding:.1rem .45rem;
+  border-radius:2px;flex-shrink:0;margin-top:.25rem;font-weight:700;white-space:nowrap}
 
-/* ── FOOTER ─────────────────────────────── */
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:16px 24px;font-family:var(--font-mono);font-size:10px;color:var(--text2);text-align:center;line-height:2}
+/* ══ SOURCES ══════════════════════════════════════ */
+.card-src{margin-top:.9rem;padding-top:.6rem;border-top:1px solid var(--border);
+  font-family:'Space Mono',monospace;font-size:.56rem;color:#aaa;letter-spacing:.03em}
+
+/* ══ FOOTER ═══════════════════════════════════════ */
+footer{background:var(--ink);color:#555;padding:1.5rem 2rem;
+  font-family:'Space Mono',monospace;font-size:.58rem;text-align:center;line-height:2.2}
+footer a{color:#777}
 
 @media(max-width:600px){
-  .hd{padding:10px 12px;gap:10px}
-  .hormuz-bar{grid-template-columns:1fr;gap:6px}
-  .hz-flow{text-align:left}
-  .market-bar{gap:12px;padding:10px 12px}
-  main{padding:16px 12px 40px}
-  .metric-chips{gap:4px}
-  .chip{min-width:70px}
+  .site-header{padding:2rem 1rem 1.8rem}
+  .stats-bar{grid-template-columns:repeat(3,1fr)}
+  .stat-item:nth-child(3){border-right:none}
+  .hormuz-bar{flex-direction:column;align-items:flex-start;gap:.4rem}
+  .hz-detail{text-align:left}
+  main{padding:1.5rem 1rem 3rem}
+  .metric-chips{gap:.35rem}
+  .chip{min-width:80px}
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ HEADER ═══ -->
-<div class="hd">
-  <div class="hd-logo">
-    <span class="hd-logo-icon">🌍</span>
-    <span class="hd-logo-text">WORLD <span>MONITOR</span></span>
+<!-- ═══ SITE HEADER ═══ -->
+<header class="site-header">
+  <div class="hd-byline">生産性カウンセラー® 前川 勇</div>
+  <div class="hd-label">IEA Emergency Analysis Report — Confidential Research</div>
+  <h1 class="hd-title">中東危機に伴う<br>IEA加盟国別 エネルギー情勢</h1>
+  <div class="hd-meta">
+    生成日: ${dateStr} ${timeStr} JST<br>
+    ベースデータ: IEA Oil Market Report May 2026 · Gas Market Report Q2-2026
   </div>
-  <div class="hd-sep"></div>
-  <div class="hd-risk-index">
-    <strong>${globalRiskIndex}</strong>グローバルリスク指数
-  </div>
-  <div class="hd-live">
-    <span class="live-dot"></span>
-    最終更新: ${dateStr} ${timeStr} JST
-  </div>
-</div>
+  ${data.global_alert ? `<button class="hd-alert-btn"><span>▲</span> UNPRECEDENTED SUPPLY DISRUPTION</button>` : ''}
+</header>
 
-${data.global_alert ? `<!-- ═══ ALERT BANNER ═══ -->
-<div class="alert-banner">
-  <span class="alert-icon">⚡</span>
-  <span class="alert-text"><strong>本日の最重要動向: </strong>${esc(data.global_alert)}</span>
-</div>` : ''}
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
+${STATS.map(s => `  <div class="stat-item">
+    <span class="stat-val">${esc(s.val)}</span>
+    <span class="stat-lbl">${esc(s.lbl)}</span>
+  </div>`).join('\n')}
+</div>
 
 <!-- ═══ HORMUZ BAR ═══ -->
 <div class="hormuz-bar">
-  <span class="hz-label">🚢 ホルムズ海峡</span>
-  <div class="hz-status-row">
-    <span class="hz-status" style="color:${hormuzColor}">${esc(hormuzStatus)}</span>
-    ${hormuzDetail ? `<span class="hz-detail">${esc(hormuzDetail)}</span>` : ''}
-  </div>
-  <div class="hz-flow">
-    <div style="color:${hormuzColor};font-weight:700;font-size:12px">${hormuzFlowPct}%</div>
-    <div>通過流量（危機前比）</div>
-    <div class="hz-flow-bar"><div class="hz-flow-fill" style="width:${hormuzFlowPct}%;background:${hormuzColor}"></div></div>
+  <span class="hz-label">🚢 ホルムズ海峡ステータス</span>
+  <span class="hz-status">${esc(hormuzStatus)}</span>
+  ${hormuzDetail ? `<span class="hz-detail">${esc(hormuzDetail)}</span>` : ''}
+  <div class="hz-flow-wrap">
+    通過流量 ${hormuzFlow}%
+    <div class="hz-bar"><div class="hz-bar-fill"></div></div>
   </div>
 </div>
 
-<!-- ═══ MARKET BAR ═══ -->
-<div class="market-bar">
-  ${marketItems.map((m, i) => `${i > 0 ? '<div class="mkt-sep"></div>' : ''}
-  <div class="mkt-item">
-    <span class="mkt-val ${m.cls}">${esc(m.value)}</span>
-    <span class="mkt-label">${esc(m.label)}${esc(m.unit)}</span>
-  </div>`).join('')}
-  <div class="mkt-sep"></div>
-  <div class="mkt-item">
-    <span class="mkt-val" style="color:var(--text2);font-size:12px">${esc(data.risk_summary?.brent_vs_precrisis || '—')}</span>
-    <span class="mkt-label">危機前比(Brent)</span>
-  </div>
+<!-- ═══ RISK SUMMARY BAR ═══ -->
+<div class="risk-bar">
+  <span class="rbar-label">国別危険度:</span>
+  ${riskCounts['最高'] ? `<span class="rbar-chip"><span class="rbar-dot" style="background:#c0392b"></span>最高: ${riskCounts['最高']}カ国</span>` : ''}
+  ${riskCounts['高']   ? `<span class="rbar-chip"><span class="rbar-dot" style="background:#e67e22"></span>高: ${riskCounts['高']}カ国</span>` : ''}
+  ${riskCounts['中']   ? `<span class="rbar-chip"><span class="rbar-dot" style="background:#2980b9"></span>中: ${riskCounts['中']}カ国</span>` : ''}
+  ${riskCounts['低']   ? `<span class="rbar-chip"><span class="rbar-dot" style="background:#27ae60"></span>低: ${riskCounts['低']}カ国</span>` : ''}
+  ${data.risk_summary?.iea_strategic_release ? `<span class="rbar-label" style="margin-left:12px">IEA協調放出:</span><span class="rbar-chip">${esc(data.risk_summary.iea_strategic_release)}</span>` : ''}
+  <span class="rbar-label" style="margin-left:auto">グローバルリスク指数 <strong style="color:var(--accent);font-size:.8rem">${globalRisk}</strong></span>
 </div>
 
-<!-- ═══ RISK SUMMARY ═══ -->
-<div class="risk-summary-bar">
-  <span class="rs-label">国別危険度:</span>
-  ${riskCounts['最高'] ? `<span class="rs-chip"><span class="rs-dot" style="background:var(--crit)"></span>最高: ${riskCounts['最高']}カ国</span>` : ''}
-  ${riskCounts['高']   ? `<span class="rs-chip"><span class="rs-dot" style="background:var(--high)"></span>高: ${riskCounts['高']}カ国</span>` : ''}
-  ${riskCounts['中']   ? `<span class="rs-chip"><span class="rs-dot" style="background:var(--warn)"></span>中: ${riskCounts['中']}カ国</span>` : ''}
-  ${riskCounts['低']   ? `<span class="rs-chip"><span class="rs-dot" style="background:var(--ok)"></span>低: ${riskCounts['低']}カ国</span>` : ''}
-  ${data.risk_summary?.iea_strategic_release ? `<span class="rs-label" style="margin-left:8px">IEA協調放出:</span><span class="rs-chip">${esc(data.risk_summary.iea_strategic_release)}</span>` : ''}
-</div>
-
-<!-- ═══ NAV ═══ -->
+<!-- ═══ REGION NAV ═══ -->
 <nav class="region-nav" id="regionNav">
-${REGIONS.map((r, i) => `  <button class="nav-btn${i === 0 ? ' active' : ''}" onclick="goRegion('reg-${r.id}',this)">${r.icon} ${r.title}</button>`).join('\n')}
+${REGIONS.map((r, i) => `  <button class="nav-btn${i===0?' active':''}" onclick="goRegion('reg-${r.id}',this)">${r.icon} ${r.title}</button>`).join('\n')}
 </nav>
 
-<!-- ═══ MAIN ═══ -->
+<!-- ═══ MAIN CONTENT ═══ -->
 <main>
 ${REGIONS.map(r => regionSection(r)).join('\n')}
 </main>
 
 <footer>
-  🌍 中東危機 エネルギー情勢モニター &nbsp;|&nbsp; 生産性カウンセラー® 前川 勇<br>
+  🌍 中東危機 エネルギー情勢モニター ／ 生産性カウンセラー® 前川 勇<br>
   データソース: ${(data.data_sources || []).map(esc).join(' · ')}<br>
-  本レポートはAIが自動収集・生成したものです。投資・政策判断には一次情報をご確認ください。
+  本レポートはAIが自動収集・生成したものです。投資・政策判断には一次情報をご確認ください。<br>
+  <a href="https://github.com/maechan136/iea-world-monitor">GitHub</a>
 </footer>
 
 <script>
 function toggleCard(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('open');
+  document.getElementById(id).classList.toggle('open');
 }
-
-function toggleSection(id) {
-  const body = document.getElementById('sec-' + id);
+function toggleSec(id) {
+  const body  = document.getElementById('sec-' + id);
   const arrow = document.getElementById('arr-' + id);
-  const isOpen = body.classList.toggle('open');
-  arrow.style.transform = isOpen ? 'rotate(90deg)' : '';
+  const open  = body.classList.toggle('open');
+  arrow.style.transform = open ? 'rotate(90deg)' : '';
 }
-
 function goRegion(id, btn) {
   document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 }
-
 window.addEventListener('scroll', () => {
-  const regionIds = [${REGIONS.map(r => `'reg-${r.id}'`).join(',')}];
+  const ids  = [${REGIONS.map(r=>`'reg-${r.id}'`).join(',')}];
   const tabs = document.querySelectorAll('.nav-btn');
   let cur = 0;
-  regionIds.forEach((id, i) => {
+  ids.forEach((id, i) => {
     const el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top <= 60) cur = i;
+    if (el && el.getBoundingClientRect().top <= 52) cur = i;
   });
   tabs.forEach((t, i) => t.classList.toggle('active', i === cur));
 });
@@ -456,6 +425,6 @@ window.addEventListener('scroll', () => {
 const outPath = path.join(__dirname, 'index.html');
 fs.writeFileSync(outPath, html, 'utf-8');
 console.log(`✅ index.html 生成完了 (${dateStr} ${timeStr})`);
-console.log(`   ホルムズ: ${hormuzStatus}`);
-console.log(`   Brent: $${data.market?.brent || '—'} | WTI: $${data.market?.wti || '—'} | TTF: ${data.market?.ttf || '—'}€`);
+console.log(`   ホルムズ: ${hormuzStatus} (${hormuzFlow}%)`);
+console.log(`   Brent: $${data.market?.brent||'—'} | TTF: ${data.market?.ttf||'—'}€ | JKM: $${data.market?.jkm||'—'}`);
 console.log(`   国別リスク: 最高=${riskCounts['最高']||0} 高=${riskCounts['高']||0} 中=${riskCounts['中']||0} 低=${riskCounts['低']||0}`);
