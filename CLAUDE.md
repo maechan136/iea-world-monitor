@@ -141,11 +141,19 @@ git push origin main
 
 index.htmlの生成が完了したら、以下のコマンドでNetlifyに直接デプロイしてください。
 
+> ⚠️ **必ず `--site` でサイトIDを明示すること。**
+> 省略すると別サイトに誤デプロイされる危険があります。
+
 ```bash
 netlify deploy \
   --prod \
   --dir . \
-  --site $NETLIFY_SITE_ID \
-  --auth $NETLIFY_AUTH_TOKEN \
+  --site 7f80fb08-0451-4dc8-9066-205658b4ba40 \
   --message "Daily update $(date +'%Y-%m-%d')"
 ```
+
+| 項目 | 値 |
+|------|-----|
+| サイト名 | world-monitor-stocks |
+| サイトID | `7f80fb08-0451-4dc8-9066-205658b4ba40` |
+| 本番URL | https://world-monitor-stocks.netlify.app |
