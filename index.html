@@ -3,470 +3,1123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="中東危機による主要国のリアルタイム状況をまとめたモニターサイト。">
-<title>中東危機による主要国のリアルタイム状況</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="中東危機によるホルムズ海峡封鎖が各国エネルギー情勢に与える影響のリアルタイム分析">
+<title>中東危機 エネルギー情勢モニター | World Intelligence Dashboard</title>
 <style>
-  :root {
-    --ink: #0d0d0d;
-    --paper: #f5f0e8;
-    --accent: #c0392b;
-    --accent2: #e67e22;
-    --accent3: #2980b9;
-    --muted: #6b6355;
-    --border: #c8bfa8;
-    --critical: #fdecea;
-    --moderate: #fef9e7;
-    --low: #eaf4fb;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--paper); color: var(--ink); font-family: 'Noto Serif JP', serif; line-height: 1.8; }
+:root {
+  --bg:      #0d1117;
+  --bg2:     #161b22;
+  --bg3:     #21262d;
+  --border:  #30363d;
+  --text:    #e6edf3;
+  --text2:   #8b949e;
+  --accent:  #388bfd;
+  --crit:    #da3633;
+  --high:    #fb923c;
+  --warn:    #d29922;
+  --ok:      #3fb950;
+  --purple:  #a78bfa;
+  --font-mono: 'SF Mono','Fira Code','Consolas',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;line-height:1.6}
 
-  header { background: var(--ink); color: var(--paper); padding: 2.5rem 2rem 2rem; text-align: center; }
-  .header-label { font-family: 'Space Mono', monospace; font-size: 0.68rem; letter-spacing: 0.3em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem; }
-  header h1 { font-size: clamp(1.3rem, 3vw, 2rem); font-weight: 700; line-height: 1.4; margin-bottom: 0.6rem; }
-  .update-badge {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-    padding: 0.4em 1em; margin-top: 1rem;
-    font-family: 'Space Mono', monospace; font-size: 0.68rem; color: #ccc;
-  }
-  .live-dot { width: 8px; height: 8px; background: #2ecc71; border-radius: 50%; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+/* ── HEADER ─────────────────────────────── */
+.hd{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hd-logo{display:flex;align-items:center;gap:10px}
+.hd-logo-icon{font-size:22px}
+.hd-logo-text{font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em}
+.hd-logo-text span{color:var(--accent)}
+.hd-sep{flex:1}
+.hd-live{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;color:var(--text2)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hd-risk-index{font-family:var(--font-mono);font-size:11px;background:var(--bg3);border:1px solid var(--border);padding:4px 10px;border-radius:4px}
+.hd-risk-index strong{color:var(--crit);font-size:15px;margin-right:4px}
 
-  /* グローバルアラート */
-  .global-alert {
-    background: var(--accent); color: white;
-    padding: 0.8rem 2rem; text-align: center;
-    font-family: 'Space Mono', monospace; font-size: 0.72rem;
-    letter-spacing: 0.05em;
-  }
+/* ── ALERT BANNER ───────────────────────── */
+.alert-banner{background:#3d1111;border-bottom:1px solid var(--crit);padding:10px 24px;display:flex;align-items:flex-start;gap:10px;font-size:12px}
+.alert-icon{color:var(--crit);font-size:16px;flex-shrink:0;margin-top:1px}
+.alert-text{color:#ffa0a0;line-height:1.5}
 
-  /* 市場データバー */
-  .market-bar {
-    background: #1a1a1a; color: #e0d8cc;
-    padding: 1rem 2rem; display: flex; flex-wrap: wrap;
-    gap: 1.2rem; justify-content: center;
-    font-family: 'Space Mono', monospace; font-size: 0.7rem;
-    border-bottom: 2px solid var(--accent);
-  }
-  .market-item { text-align: center; }
-  .market-val { font-size: 1.1rem; font-weight: 700; display: block; }
-  .market-lbl { color: #888; font-size: 0.6rem; }
-  .market-val.up { color: #e74c3c; }
-  .market-val.down { color: #2ecc71; }
-  .market-val.neutral { color: #f39c12; }
+/* ── HORMUZ BAR ─────────────────────────── */
+.hormuz-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:12px 24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px}
+.hz-label{font-family:var(--font-mono);font-size:10px;color:var(--text2);letter-spacing:.08em;white-space:nowrap}
+.hz-status-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hz-status{font-family:var(--font-mono);font-size:12px;font-weight:700}
+.hz-detail{font-size:11px;color:var(--text2)}
+.hz-flow{text-align:right;font-family:var(--font-mono);font-size:11px;color:var(--text2)}
+.hz-flow-bar{width:120px;height:6px;background:var(--bg3);border-radius:3px;margin-top:4px;overflow:hidden}
+.hz-flow-fill{height:100%;border-radius:3px;transition:width .5s}
 
-  /* ホルムズステータス */
-  .hormuz-bar {
-    background: #e67e2222; border-left: 4px solid #e67e22;
-    padding: 0.7rem 2rem; text-align: center;
-    font-family: 'Space Mono', monospace; font-size: 0.72rem;
-  }
-  .hormuz-status { color: #e67e22; font-weight: 700; }
+/* ── MARKET BAR ─────────────────────────── */
+.market-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;gap:24px;flex-wrap:wrap;align-items:center}
+.mkt-item{display:flex;flex-direction:column;align-items:center;min-width:90px}
+.mkt-val{font-family:var(--font-mono);font-size:16px;font-weight:700;line-height:1.2}
+.mkt-label{font-family:var(--font-mono);font-size:9px;color:var(--text2);letter-spacing:.05em;margin-top:2px}
+.val-up{color:#f85149}
+.val-warn{color:var(--warn)}
+.val-ok{color:var(--ok)}
+.mkt-sep{width:1px;height:32px;background:var(--border);flex-shrink:0}
 
-  /* ナビ */
-  .region-nav { position: sticky; top: 0; z-index: 100; background: var(--ink); display: flex; overflow-x: auto; scrollbar-width: none; }
-  .region-nav::-webkit-scrollbar { display: none; }
-  .nav-tab { flex-shrink: 0; padding: 0.8rem 1.1rem; font-family: 'Space Mono', monospace; font-size: 0.63rem; letter-spacing: 0.08em; color: #888; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; transition: all 0.2s; }
-  .nav-tab:hover { color: var(--paper); }
-  .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+/* ── RISK SUMMARY BAR ───────────────────── */
+.risk-summary-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:8px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.rs-label{font-family:var(--font-mono);font-size:10px;color:var(--text2);letter-spacing:.08em}
+.rs-chip{display:flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:11px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:3px 8px}
+.rs-dot{width:7px;height:7px;border-radius:50%}
 
-  main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+/* ── NAV ────────────────────────────────── */
+.region-nav{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none}
+.region-nav::-webkit-scrollbar{display:none}
+.nav-btn{flex-shrink:0;padding:10px 14px;font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--text2);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s}
+.nav-btn:hover{color:var(--text)}
+.nav-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-  /* 地域セクション */
-  .region-section { margin-bottom: 3rem; scroll-margin-top: 50px; }
-  .region-header { display: flex; align-items: center; gap: 1rem; border-top: 2px solid var(--ink); padding-top: 1rem; margin-bottom: 1.2rem; }
-  .region-flag { font-size: 1.5rem; }
-  .region-title { flex: 1; }
-  .region-title h2 { font-size: 1.2rem; font-weight: 700; }
-  .region-title .sub { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--muted); letter-spacing: 0.08em; }
-  .risk-badge { font-family: 'Space Mono', monospace; font-size: 0.6rem; padding: 0.3em 0.7em; letter-spacing: 0.08em; }
-  .risk-critical { background: var(--accent); color: white; }
-  .risk-high { background: var(--accent2); color: white; }
-  .risk-moderate { background: var(--accent3); color: white; }
+/* ── MAIN LAYOUT ────────────────────────── */
+main{max-width:1000px;margin:0 auto;padding:24px 16px 48px}
 
-  /* 国カード */
-  .country-card { border: 1px solid var(--border); margin-bottom: 1.2rem; background: white; }
-  .country-header { display: flex; align-items: center; padding: 0.8rem 1.1rem; background: var(--ink); color: var(--paper); cursor: pointer; gap: 0.7rem; }
-  .country-flag { font-size: 1.2rem; }
-  .country-name { flex: 1; font-weight: 600; font-size: 0.95rem; }
-  .country-risk { font-family: 'Space Mono', monospace; font-size: 0.58rem; padding: 0.2em 0.5em; }
-  .crit { background: var(--accent); }
-  .high { background: var(--accent2); }
-  .mod { background: var(--accent3); }
-  .low-r { background: #27ae60; }
-  .toggle-icon { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: #aaa; transition: transform 0.2s; }
-  .country-card.open .toggle-icon { transform: rotate(180deg); }
-  .country-body { display: none; padding: 1.2rem 1.4rem; }
-  .country-card.open .country-body { display: block; }
+/* ── REGION SECTION ─────────────────────── */
+.region-section{margin-bottom:32px;scroll-margin-top:42px}
+.region-hdr{display:flex;align-items:center;gap:10px;padding:10px 0 10px;border-bottom:1px solid var(--border);margin-bottom:12px}
+.region-icon{font-size:18px}
+.region-title-group{display:flex;align-items:baseline;gap:8px}
+.region-title{font-size:15px;font-weight:600}
+.region-sub{font-family:var(--font-mono);font-size:10px;color:var(--text2);letter-spacing:.08em}
 
-  /* 注目イベント */
-  .key-event-box { display: flex; gap: 0.6rem; align-items: flex-start; background: var(--critical); border-left: 3px solid var(--accent); padding: 0.6rem 0.9rem; margin-bottom: 0.8rem; }
-  .key-event-label { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--accent); flex-shrink: 0; margin-top: 0.1rem; }
-  .key-event-text { font-size: 0.85rem; font-weight: 600; }
+/* ── COUNTRY CARD ───────────────────────── */
+.country-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;overflow:hidden;transition:border-color .15s}
+.country-card:hover{border-color:#484f58}
+.card-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;cursor:pointer;user-select:none}
+.card-header-left{display:flex;align-items:center;gap:10px}
+.card-flag{font-size:20px;line-height:1}
+.card-title-group{display:flex;flex-direction:column;gap:1px}
+.card-name{font-size:14px;font-weight:600}
+.card-name-en{font-family:var(--font-mono);font-size:9px;color:var(--text2);letter-spacing:.08em}
+.card-header-right{display:flex;align-items:center;gap:10px}
+.risk-pill{display:flex;align-items:center;gap:5px;font-family:var(--font-mono);font-size:10px;padding:3px 8px;border-radius:12px;border:1px solid var(--border);font-weight:600}
+.risk-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.risk-critical{color:#ffa0a0;background:rgba(218,54,51,.15);border-color:rgba(218,54,51,.4)}
+.risk-high{color:#ffc180;background:rgba(251,146,60,.15);border-color:rgba(251,146,60,.4)}
+.risk-moderate{color:#ffe082;background:rgba(210,153,34,.15);border-color:rgba(210,153,34,.4)}
+.risk-low{color:#90ee90;background:rgba(63,185,80,.15);border-color:rgba(63,185,80,.4)}
+.card-chevron{color:var(--text2);font-size:18px;transition:transform .2s;transform:rotate(90deg)}
+.country-card.open .card-chevron{transform:rotate(-90deg)}
+.card-body{display:none;padding:0 16px 16px}
+.country-card.open .card-body{display:block}
 
-  .country-summary { font-size: 0.88rem; line-height: 1.8; color: #333; margin-bottom: 0.8rem; }
-  .source-note { font-family: 'Space Mono', monospace; font-size: 0.58rem; color: var(--muted); padding-top: 0.5rem; border-top: 1px solid var(--border); }
+/* ── METRIC CHIPS ───────────────────────── */
+.metric-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;padding-top:4px}
+.chip{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:4px 10px;display:flex;flex-direction:column;align-items:center;min-width:80px}
+.chip-alert{border-color:rgba(218,54,51,.5);background:rgba(218,54,51,.1)}
+.chip-val{font-family:var(--font-mono);font-size:13px;font-weight:700;line-height:1.2;color:var(--text)}
+.chip-alert .chip-val{color:#ffa0a0}
+.chip-lbl{font-family:var(--font-mono);font-size:9px;color:var(--text2);margin-top:2px;text-align:center;letter-spacing:.03em}
 
-  /* フッター */
-  footer { background: var(--ink); color: #666; padding: 1.5rem 2rem; font-family: 'Space Mono', monospace; font-size: 0.6rem; text-align: center; line-height: 2; }
-  footer a { color: #888; }
+/* ── KEY EVENT ──────────────────────────── */
+.key-event-row{background:#1c2027;border-left:3px solid var(--accent);border-radius:0 4px 4px 0;padding:8px 12px;margin-bottom:10px;display:flex;gap:8px;align-items:flex-start}
+.ke-label{font-family:var(--font-mono);font-size:9px;color:var(--accent);letter-spacing:.05em;white-space:nowrap;margin-top:2px;flex-shrink:0}
+.ke-text{font-size:12px;font-weight:600;color:var(--text);line-height:1.5}
 
-  @media (max-width: 600px) {
-    header { padding: 2rem 1rem 1.5rem; }
-    main { padding: 1.5rem 1rem 3rem; }
-    .market-bar { gap: 0.8rem; }
-  }
+/* ── SUMMARY ────────────────────────────── */
+.card-summary{font-size:12px;color:var(--text2);line-height:1.7;margin-bottom:10px}
+
+/* ── COLLAPSIBLE SECTION ────────────────── */
+.section-toggle{display:flex;align-items:center;gap:6px;padding:6px 8px;margin:4px 0 0;background:var(--bg3);border-radius:4px;cursor:pointer;font-size:12px;color:var(--text2);user-select:none;transition:background .15s}
+.section-toggle:hover{background:#2d333b;color:var(--text)}
+.st-arrow{font-family:var(--font-mono);font-size:10px;transition:transform .2s;display:inline-block}
+.section-body{display:none;padding:6px 0 4px 8px}
+.section-body.open{display:block}
+
+/* ── BULLET LIST ────────────────────────── */
+.bullet-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.bullet-list li{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text2);line-height:1.5}
+.bullet-icon{flex-shrink:0;font-size:11px;margin-top:1px}
+.risk-tag{font-family:var(--font-mono);font-size:9px;padding:1px 5px;border-radius:3px;flex-shrink:0;margin-top:2px;font-weight:600}
+.risk-tag.risk-critical{background:rgba(218,54,51,.25);color:#ffa0a0}
+.risk-tag.risk-high{background:rgba(251,146,60,.25);color:#ffc180}
+.risk-tag.risk-moderate{background:rgba(210,153,34,.25);color:#ffe082}
+.risk-tag.risk-low{background:rgba(63,185,80,.25);color:#90ee90}
+
+/* ── SOURCES ────────────────────────────── */
+.card-sources{margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-family:var(--font-mono);font-size:9px;color:#484f58;letter-spacing:.03em}
+
+/* ── FOOTER ─────────────────────────────── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:16px 24px;font-family:var(--font-mono);font-size:10px;color:var(--text2);text-align:center;line-height:2}
+
+@media(max-width:600px){
+  .hd{padding:10px 12px;gap:10px}
+  .hormuz-bar{grid-template-columns:1fr;gap:6px}
+  .hz-flow{text-align:left}
+  .market-bar{gap:12px;padding:10px 12px}
+  main{padding:16px 12px 40px}
+  .metric-chips{gap:4px}
+  .chip{min-width:70px}
+}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-label">IEA Emergency Monitor — Daily Intelligence</div>
-  <h1>🌍 中東危機 エネルギー情勢<br>リアルタイム国別モニター</h1>
-  <div class="update-badge">
+<!-- ═══ HEADER ═══ -->
+<div class="hd">
+  <div class="hd-logo">
+    <span class="hd-logo-icon">🌍</span>
+    <span class="hd-logo-text">WORLD <span>MONITOR</span></span>
+  </div>
+  <div class="hd-sep"></div>
+  <div class="hd-risk-index">
+    <strong>87</strong>グローバルリスク指数
+  </div>
+  <div class="hd-live">
     <span class="live-dot"></span>
-    最終更新: 2026年5月18日月曜日 12:33 JST
+    最終更新: 2026年5月18日月曜日 13:04 JST
   </div>
-</header>
+</div>
 
-<div class="global-alert">⚡ 本日の最重要動向: イランがホルムズ海峡通航に新手続き（PGSA申請）を義務付け。欧州ガス貯蔵量は容量の50%以下に低下。フィリピンは輪番停電が全国規模に拡大（5/15）。</div>
+<!-- ═══ ALERT BANNER ═══ -->
+<div class="alert-banner">
+  <span class="alert-icon">⚡</span>
+  <span class="alert-text"><strong>本日の最重要動向: </strong>イランがホルムズ海峡通航に新手続き（PGSA申請）を義務付け。欧州ガス貯蔵量は容量の50%以下に低下。フィリピンは輪番停電が全国規模に拡大（5/15）。</span>
+</div>
 
+<!-- ═══ HORMUZ BAR ═══ -->
 <div class="hormuz-bar">
-  ホルムズ海峡ステータス:
-  <span class="hormuz-status">部分再開（イラン新手順による制限付き通航）</span>
+  <span class="hz-label">🚢 ホルムズ海峡</span>
+  <div class="hz-status-row">
+    <span class="hz-status" style="color:#fb923c">部分再開（イラン新手順による制限付き通航）</span>
+    <span class="hz-detail">PGSAライセンス申請必須。通過許可まで平均72時間待機。タンカー通過量は危機前の約40%水準。</span>
+  </div>
+  <div class="hz-flow">
+    <div style="color:#fb923c;font-weight:700;font-size:12px">40%</div>
+    <div>通過流量（危機前比）</div>
+    <div class="hz-flow-bar"><div class="hz-flow-fill" style="width:40%;background:#fb923c"></div></div>
+  </div>
 </div>
 
+<!-- ═══ MARKET BAR ═══ -->
 <div class="market-bar">
-  <div class="market-item">
-    <span class="market-val up">$108.3</span>
-    <span class="market-lbl">Brent原油 /bbl</span>
+  
+  <div class="mkt-item">
+    <span class="mkt-val val-up">$108.3</span>
+    <span class="mkt-label">Brent原油/bbl</span>
+  </div><div class="mkt-sep"></div>
+  <div class="mkt-item">
+    <span class="mkt-val val-up">$105.4</span>
+    <span class="mkt-label">WTI原油/bbl</span>
+  </div><div class="mkt-sep"></div>
+  <div class="mkt-item">
+    <span class="mkt-val val-warn">50.2€</span>
+    <span class="mkt-label">TTF天然ガス/MWh</span>
+  </div><div class="mkt-sep"></div>
+  <div class="mkt-item">
+    <span class="mkt-val val-warn">$17.1</span>
+    <span class="mkt-label">JKM LNG/MMBtu</span>
   </div>
-  <div class="market-item">
-    <span class="market-val up">$105.4</span>
-    <span class="market-lbl">WTI原油 /bbl</span>
-  </div>
-  <div class="market-item">
-    <span class="market-val neutral">50.2 €/MWh</span>
-    <span class="market-lbl">TTF天然ガス（欧州）</span>
-  </div>
-  <div class="market-item">
-    <span class="market-val neutral">$17.1/MMBtu</span>
-    <span class="market-lbl">JKM LNG（アジア）</span>
+  <div class="mkt-sep"></div>
+  <div class="mkt-item">
+    <span class="mkt-val" style="color:var(--text2);font-size:12px">+68%</span>
+    <span class="mkt-label">危機前比(Brent)</span>
   </div>
 </div>
 
+<!-- ═══ RISK SUMMARY ═══ -->
+<div class="risk-summary-bar">
+  <span class="rs-label">国別危険度:</span>
+  <span class="rs-chip"><span class="rs-dot" style="background:var(--crit)"></span>最高: 5カ国</span>
+  <span class="rs-chip"><span class="rs-dot" style="background:var(--high)"></span>高: 4カ国</span>
+  <span class="rs-chip"><span class="rs-dot" style="background:var(--warn)"></span>中: 2カ国</span>
+  <span class="rs-chip"><span class="rs-dot" style="background:var(--ok)"></span>低: 1カ国</span>
+  <span class="rs-label" style="margin-left:8px">IEA協調放出:</span><span class="rs-chip">6,000万バレル（協調放出第2弾）</span>
+</div>
+
+<!-- ═══ NAV ═══ -->
 <nav class="region-nav" id="regionNav">
-  <button class="nav-tab active" onclick="scrollToRegion('asia')">🌏 アジア太平洋</button>
-  <button class="nav-tab" onclick="scrollToRegion('china-taiwan')">🐉 中国・台湾</button>
-  <button class="nav-tab" onclick="scrollToRegion('asean')">🌴 東南アジア</button>
-  <button class="nav-tab" onclick="scrollToRegion('europe')">🌍 欧州</button>
-  <button class="nav-tab" onclick="scrollToRegion('north-america')">🌎 北米</button>
-  <button class="nav-tab" onclick="scrollToRegion('oceania')">🦘 オセアニア</button>
+  <button class="nav-btn active" onclick="goRegion('reg-asia',this)">🌏 アジア太平洋</button>
+  <button class="nav-btn" onclick="goRegion('reg-china',this)">🐉 中国</button>
+  <button class="nav-btn" onclick="goRegion('reg-asean',this)">🌴 東南アジア</button>
+  <button class="nav-btn" onclick="goRegion('reg-europe',this)">🌍 欧州</button>
+  <button class="nav-btn" onclick="goRegion('reg-north-america',this)">🌎 北米</button>
+  <button class="nav-btn" onclick="goRegion('reg-oceania',this)">🦘 オセアニア</button>
 </nav>
 
+<!-- ═══ MAIN ═══ -->
 <main>
 
-
-<section class="region-section" id="asia">
-  <div class="region-header">
-    <div class="region-flag">🌏</div>
-    <div class="region-title">
-      <h2>アジア太平洋地域</h2>
-      <div class="sub">ASIA-PACIFIC</div>
+<section class="region-section" id="reg-asia">
+  <div class="region-hdr">
+    <span class="region-icon">🌏</span>
+    <div class="region-title-group">
+      <span class="region-title">アジア太平洋</span>
+      <span class="region-sub">ASIA-PACIFIC</span>
     </div>
-    <div class="risk-badge risk-critical">HIGH RISK</div>
   </div>
   
-  <div class="country-card" id="card-jp">
-    <div class="country-header" onclick="toggleCard('card-jp')">
-      <span class="country-flag">🇯🇵</span>
-      <span class="country-name">日本</span>
-      <span class="country-risk crit">🔴 危険度: 最高</span>
-      <span class="toggle-icon">▼</span>
-    </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">第2次備蓄放出（5/1〜）開始。「Power Asia」プロジェクト始動でASEAN向けエネルギー外交を加速。</span>
+<div class="country-card" id="card-jp">
+  <div class="card-header" onclick="toggleCard('card-jp')">
+    <div class="card-header-left">
+      <span class="card-flag">🇯🇵</span>
+      <div class="card-title-group">
+        <span class="card-name">日本</span>
+        <span class="card-name-en">JAPAN</span>
       </div>
-      <p class="country-summary">5月1日から第2次国家石油備蓄放出を開始（総量約5,800万kL＝3,600万バレル）。高市首相がハノイ首脳会談でベトナムと「Power Asia」協定を締結し、原油調達支援と引き換えに医療品を確保。エネルギー消費削減策の検討も本格化している。</p>
-      <div class="source-note">出典: Al Jazeera, Argus Media, IndexBox, CGTN</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-critical">
+        <span class="risk-dot" style="background:#da3633"></span>
+        危険度: 最高
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip chip-alert">
+      <span class="chip-val">95%</span>
+      <span class="chip-lbl">中東原油依存</span>
+    </div><div class="chip">
+      <span class="chip-val">約140日</span>
+      <span class="chip-lbl">備蓄残量</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">+42%</span>
+      <span class="chip-lbl">エネルギーコスト増</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">22日</span>
+      <span class="chip-lbl">LNG備蓄</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">第2次備蓄放出（5/1〜）開始。「Power Asia」プロジェクト始動でASEAN向けエネルギー外交を加速。</span>
+    </div>
+    <p class="card-summary">5月1日から第2次国家石油備蓄放出を開始（総量約5,800万kL＝3,600万バレル）。高市首相がハノイ首脳会談でベトナムと「Power Asia」協定を締結し、原油調達支援と引き換えに医療品を確保。エネルギー消費削減策の検討も本格化している。</p>
 
-  <div class="country-card" id="card-kr">
-    <div class="country-header" onclick="toggleCard('card-kr')">
-      <span class="country-flag">🇰🇷</span>
-      <span class="country-name">韓国</span>
-      <span class="country-risk crit">🔴 危険度: 最高</span>
-      <span class="toggle-icon">▼</span>
+    <div class="section-toggle" onclick="toggleSection('JP-energy')">
+      <span class="st-arrow" id="arr-JP-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">ウォン17年ぶり安値。KOSPI単日12%超急落。湾内足止め船舶26隻の早期解放を国際社会に要求。</span>
+    <div class="section-body" id="sec-JP-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>第2次国家SPR放出開始（5/1〜）3,600万バレル投入</span></li><li><span class="bullet-icon">⚡</span><span>電力ひっ迫注意報が関東・東海・近畿に発令</span></li><li><span class="bullet-icon">⚡</span><span>製油所の精製コスト急騰でガソリン全国平均250円/L超</span></li><li><span class="bullet-icon">⚡</span><span>LNG不足補填のため老朽火力発電所の暫定再稼働を決定</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('JP-policy')">
+      <span class="st-arrow" id="arr-JP-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-JP-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>高市首相がハノイでベトナムと「Power Asia」協定を締結（5/2）</span></li><li><span class="bullet-icon">🏛️</span><span>省エネ強化令の閣議決定を準備中（7月施行予定）</span></li><li><span class="bullet-icon">🏛️</span><span>IEA協調備蓄放出に3,600万バレルを拠出</span></li><li><span class="bullet-icon">🏛️</span><span>UAE・サウジとの二国間原油融通協定の締結を交渉中</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('JP-outlook')">
+      <span class="st-arrow" id="arr-JP-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-JP-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-high">高リスク</span><span>夏の電力需要ピーク（7〜8月）に需給逼迫が深刻化する恐れ</span></li><li><span class="risk-tag risk-high">高リスク</span><span>ホルムズ部分再開が長期化した場合、備蓄140日分では2026年末まで持たない試算</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>円安加速（対ドル165円超）がエネルギー輸入コストをさらに押し上げる可能性</span></li><li><span class="risk-tag risk-low">低リスク</span><span>Power Asiaによるベトナム経由調達が軌道に乗れば中東依存度を5〜10%低下できる見込み</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: Al Jazeera, Argus Media, IndexBox, CGTN</div>
+  </div>
+</div>
+
+<div class="country-card" id="card-kr">
+  <div class="card-header" onclick="toggleCard('card-kr')">
+    <div class="card-header-left">
+      <span class="card-flag">🇰🇷</span>
+      <div class="card-title-group">
+        <span class="card-name">韓国</span>
+        <span class="card-name-en">SOUTH KOREA</span>
       </div>
-      <p class="country-summary">原油輸入の70.7%・LNG輸入の20.4%が中東依存。備蓄残量は26日分（IEA基準90日）まで低下。KOSPIは1日で12%超下落、ウォンが17年ぶり安値を記録。ペルシャ湾内に韓国籍船26隻が依然として足止め状態。</p>
-      <div class="source-note">出典: ORF Online, BISI, CNBC</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-critical">
+        <span class="risk-dot" style="background:#da3633"></span>
+        危険度: 最高
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip chip-alert">
+      <span class="chip-val">70.7%</span>
+      <span class="chip-lbl">中東原油依存</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">26日</span>
+      <span class="chip-lbl">備蓄残量</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">-18%</span>
+      <span class="chip-lbl">ウォン下落率</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">26隻</span>
+      <span class="chip-lbl">足止め船舶</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">ウォン17年ぶり安値。KOSPI単日12%超急落。湾内足止め船舶26隻の早期解放を国際社会に要求。</span>
+    </div>
+    <p class="card-summary">原油輸入の70.7%・LNG輸入の20.4%が中東依存。備蓄残量は26日分（IEA基準90日）まで低下。KOSPIは1日で12%超下落、ウォンが17年ぶり安値を記録。ペルシャ湾内に韓国籍船26隻が依然として足止め状態。</p>
+
+    <div class="section-toggle" onclick="toggleSection('KR-energy')">
+      <span class="st-arrow" id="arr-KR-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
+    </div>
+    <div class="section-body" id="sec-KR-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>原油輸入の70.7%が中東依存、代替調達が急務</span></li><li><span class="bullet-icon">⚡</span><span>備蓄26日分（IEA基準90日）まで低下、緊急補充を実施中</span></li><li><span class="bullet-icon">⚡</span><span>ウォン17年ぶり安値（対ドル1,570ウォン台）でエネルギー輸入コストが加速</span></li><li><span class="bullet-icon">⚡</span><span>ペルシャ湾内26隻の韓国籍タンカーが平均17日間足止め継続</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('KR-policy')">
+      <span class="st-arrow" id="arr-KR-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-KR-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>KOSCO（韓国石油公社）が米国・豪州からの緊急原油調達を契約</span></li><li><span class="bullet-icon">🏛️</span><span>国家エネルギー緊急令を発動、産業用電力の10%削減を義務化</span></li><li><span class="bullet-icon">🏛️</span><span>湾内足止め船舶の解放を国連安保理に付託</span></li><li><span class="bullet-icon">🏛️</span><span>米国との二国間エネルギー安全保障対話を緊急開催（ワシントン）</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('KR-outlook')">
+      <span class="st-arrow" id="arr-KR-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-KR-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-critical">最高リスク</span><span>備蓄26日分は産業・発電需要を支えるには不十分、6月末までに枯渇リスク</span></li><li><span class="risk-tag risk-high">高リスク</span><span>ウォン安がさらに進行した場合、インフレ率が二桁に達する恐れ</span></li><li><span class="risk-tag risk-high">高リスク</span><span>KOSPI続落で韓国企業の資金調達コストが上昇、投資引き揚げが加速</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>足止め船舶解放が長引くと物流コストがさらに上昇</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: ORF Online, BISI, CNBC</div>
+  </div>
+</div>
+
+<div class="country-card" id="card-tw">
+  <div class="card-header" onclick="toggleCard('card-tw')">
+    <div class="card-header-left">
+      <span class="card-flag">🇹🇼</span>
+      <div class="card-title-group">
+        <span class="card-name">台湾</span>
+        <span class="card-name-en">TAIWAN</span>
+      </div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-critical">
+        <span class="risk-dot" style="background:#da3633"></span>
+        危険度: 最高
+      </span>
+      <span class="card-chevron">›</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip chip-alert">
+      <span class="chip-val">11日</span>
+      <span class="chip-lbl">LNG備蓄</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">~33%</span>
+      <span class="chip-lbl">カタール依存</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">3.2%</span>
+      <span class="chip-lbl">電力予備率</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">高</span>
+      <span class="chip-lbl">停電リスク</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">夏の電力需給逼迫に備えLNG緊急調達を継続。廃炉原発2基の再稼働計画を核安全委員会が審議中。</span>
+    </div>
+    <p class="card-summary">LNG備蓄が11日分のみで東アジア最低水準。カタール産LNGが輸入の約3分の1を占めるが、ホルムズ経由が止まったまま。夏の冷房需要ピークに向けて深刻な電力不足リスクが高まっており、廃炉予定原発の再稼働論議が再燃。</p>
+
+    <div class="section-toggle" onclick="toggleSection('TW-energy')">
+      <span class="st-arrow" id="arr-TW-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
+    </div>
+    <div class="section-body" id="sec-TW-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>LNG備蓄11日分（東アジア最低水準）、7月の冷房ピークに在庫枯渇リスク</span></li><li><span class="bullet-icon">⚡</span><span>電力予備率3.2%（安全基準15%）と危険水域、輪番停電の可能性</span></li><li><span class="bullet-icon">⚡</span><span>カタール産LNG（輸入の33%）がホルムズ経由で途絶継続</span></li><li><span class="bullet-icon">⚡</span><span>TSMCをはじめ半導体工場が自家発電設備を全面稼働</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('TW-policy')">
+      <span class="st-arrow" id="arr-TW-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-TW-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>経済部が廃炉予定の核二・核三発電所の再稼働を核安全委に申請</span></li><li><span class="bullet-icon">🏛️</span><span>米国・オーストラリア・マレーシアからのスポットLNG緊急調達を実施</span></li><li><span class="bullet-icon">🏛️</span><span>産業用電力の15%削減を義務化（2026年5月〜8月）</span></li><li><span class="bullet-icon">🏛️</span><span>液化石炭ガス（LCG）発電の一時利用を承認</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('TW-outlook')">
+      <span class="st-arrow" id="arr-TW-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-TW-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-critical">最高リスク</span><span>7〜8月の冷房需要ピーク時に大規模停電が発生すれば半導体生産に壊滅的影響</span></li><li><span class="risk-tag risk-high">高リスク</span><span>廃炉原発再稼働が遅れれば6月中旬にもLNG備蓄が枯渇する恐れ</span></li><li><span class="risk-tag risk-high">高リスク</span><span>電力不足が続けばTSMCの生産能力低下がグローバルサプライチェーンに波及</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>スポットLNG価格の高騰（JKM $17/MMBtu）で調達コストが急増</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: Atlantic Council, Zero Carbon Analytics, CNBC</div>
+  </div>
+</div>
 </section>
 
-<section class="region-section" id="china-taiwan">
-  <div class="region-header">
-    <div class="region-flag">🐉</div>
-    <div class="region-title">
-      <h2>中国・台湾</h2>
-      <div class="sub">CHINA & TAIWAN</div>
+<section class="region-section" id="reg-china">
+  <div class="region-hdr">
+    <span class="region-icon">🐉</span>
+    <div class="region-title-group">
+      <span class="region-title">中国</span>
+      <span class="region-sub">CHINA</span>
     </div>
-    <div class="risk-badge risk-high">DIVERGENT RESILIENCE</div>
   </div>
   
-  <div class="country-card" id="card-cn">
-    <div class="country-header" onclick="toggleCard('card-cn')">
-      <span class="country-flag">🇨🇳</span>
-      <span class="country-name">中国</span>
-      <span class="country-risk mod">🔵 危険度: 中</span>
-      <span class="toggle-icon">▼</span>
-    </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">トランプ・習近平会談でホルムズ再開への協調を確認。中国が米国産原油の購入拡大を表明。</span>
+<div class="country-card" id="card-cn">
+  <div class="card-header" onclick="toggleCard('card-cn')">
+    <div class="card-header-left">
+      <span class="card-flag">🇨🇳</span>
+      <div class="card-title-group">
+        <span class="card-name">中国</span>
+        <span class="card-name-en">CHINA</span>
       </div>
-      <p class="country-summary">戦略備蓄14億バレル（110〜180日分）と世界最大の在庫水準を維持。トランプ・習近平首脳会談後に米国産原油の輸入を増加。ホルムズ経由に依存しないロシア・中央アジア経由のパイプライン供給が下支え。輸出市場の縮小がGDP成長率を圧迫。</p>
-      <div class="source-note">出典: Columbia CGEP, CNBC, The Diplomat, EIA</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-moderate">
+        <span class="risk-dot" style="background:#d29922"></span>
+        危険度: 中
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip">
+      <span class="chip-val">14億bbl</span>
+      <span class="chip-lbl">戦略備蓄</span>
+    </div><div class="chip">
+      <span class="chip-val">110〜180日</span>
+      <span class="chip-lbl">備蓄日数</span>
+    </div><div class="chip">
+      <span class="chip-val">~25%</span>
+      <span class="chip-lbl">ロシア供給比率</span>
+    </div><div class="chip">
+      <span class="chip-val">-1.2pt</span>
+      <span class="chip-lbl">GDP成長率修正</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">トランプ・習近平会談でホルムズ再開への協調を確認。中国が米国産原油の購入拡大を表明。</span>
+    </div>
+    <p class="card-summary">戦略備蓄14億バレル（110〜180日分）と世界最大の在庫水準を維持。トランプ・習近平首脳会談後に米国産原油の輸入を増加。ホルムズ経由に依存しないロシア・中央アジア経由のパイプライン供給が下支え。輸出市場の縮小がGDP成長率を圧迫。</p>
 
-  <div class="country-card" id="card-tw">
-    <div class="country-header" onclick="toggleCard('card-tw')">
-      <span class="country-flag">🇹🇼</span>
-      <span class="country-name">台湾</span>
-      <span class="country-risk crit">🔴 危険度: 最高</span>
-      <span class="toggle-icon">▼</span>
+    <div class="section-toggle" onclick="toggleSection('CN-energy')">
+      <span class="st-arrow" id="arr-CN-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">夏の電力需給逼迫に備えLNG緊急調達を継続。廃炉原発2基の再稼働計画を核安全委員会が審議中。</span>
-      </div>
-      <p class="country-summary">LNG備蓄が11日分のみで東アジア最低水準。カタール産LNGが輸入の約3分の1を占めるが、ホルムズ経由が止まったまま。夏の冷房需要ピークに向けて深刻な電力不足リスクが高まっており、廃炉予定原発の再稼働論議が再燃。</p>
-      <div class="source-note">出典: Atlantic Council, Zero Carbon Analytics, CNBC</div>
+    <div class="section-body" id="sec-CN-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>戦略備蓄14億バレル（世界最大）でエネルギー安全保障は相対的に高水準</span></li><li><span class="bullet-icon">⚡</span><span>ロシア・ESPO原油パイプライン経由の供給が全体の25%を占め中東依存を緩和</span></li><li><span class="bullet-icon">⚡</span><span>米国産原油（WTI）の購入拡大を表明、月間200万バレルを追加調達</span></li><li><span class="bullet-icon">⚡</span><span>輸出産業の縮小でGDP成長率を2026年目標の4.5%から3.3%に修正</span></li></ul>
     </div>
+
+    <div class="section-toggle" onclick="toggleSection('CN-policy')">
+      <span class="st-arrow" id="arr-CN-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-CN-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>トランプ・習近平首脳会談でホルムズ再開への協調枠組みに合意</span></li><li><span class="bullet-icon">🏛️</span><span>NDRC（国家発展改革委員会）が製造業向けエネルギー補助金を拡大</span></li><li><span class="bullet-icon">🏛️</span><span>中央アジア〜パイプライン供給量を月間3,000万バレルに増強</span></li><li><span class="bullet-icon">🏛️</span><span>欧米向け輸出の縮小分を内需刺激策（インフラ投資）で補填</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('CN-outlook')">
+      <span class="st-arrow" id="arr-CN-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-CN-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-moderate">中リスク</span><span>ホルムズ封鎖が長期化した場合、ロシア・中央アジア供給だけでは完全補填不可</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>米中協調によるホルムズ再開外交が不調に終わると外交的孤立リスク</span></li><li><span class="risk-tag risk-low">低リスク</span><span>大規模備蓄により短〜中期的なエネルギー危機への耐性は主要国中最高水準</span></li><li><span class="risk-tag risk-low">低リスク</span><span>ロシア制裁回避による割引原油調達で相対的なコスト優位を維持</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: Columbia CGEP, CNBC, The Diplomat, EIA</div>
   </div>
+</div>
 </section>
 
-<section class="region-section" id="asean">
-  <div class="region-header">
-    <div class="region-flag">🌴</div>
-    <div class="region-title">
-      <h2>東南アジア</h2>
-      <div class="sub">SOUTHEAST ASIA</div>
+<section class="region-section" id="reg-asean">
+  <div class="region-hdr">
+    <span class="region-icon">🌴</span>
+    <div class="region-title-group">
+      <span class="region-title">東南アジア</span>
+      <span class="region-sub">SOUTHEAST ASIA</span>
     </div>
-    <div class="risk-badge risk-critical">ACUTE SHORTAGE</div>
   </div>
   
-  <div class="country-card" id="card-ph">
-    <div class="country-header" onclick="toggleCard('card-ph')">
-      <span class="country-flag">🇵🇭</span>
-      <span class="country-name">フィリピン</span>
-      <span class="country-risk crit">🔴 危険度: 最高</span>
-      <span class="toggle-icon">▼</span>
-    </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">ルソン・ビサヤ両グリッドで同時赤・黄警戒発令（5/15）。輪番停電が全国規模に拡大。</span>
+<div class="country-card" id="card-ph">
+  <div class="card-header" onclick="toggleCard('card-ph')">
+    <div class="card-header-left">
+      <span class="card-flag">🇵🇭</span>
+      <div class="card-title-group">
+        <span class="card-name">フィリピン</span>
+        <span class="card-name-en">PHILIPPINES</span>
       </div>
-      <p class="country-summary">5月13日にルソン島グリッドに高警戒発令、輪番停電が全国に拡大（約200万人が1回2〜3時間の停電）。5月15日にはルソン・ビサヤ両グリッドが同時赤・黄警戒。石炭・バイオマスへの燃料転換を緊急承認済み。国家エネルギー緊急宣言下で対応継続中。</p>
-      <div class="source-note">出典: Wikipedia, CNN, The Diplomat, OSAC, Lowy Institute</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-critical">
+        <span class="risk-dot" style="background:#da3633"></span>
+        危険度: 最高
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip chip-alert">
+      <span class="chip-val">200万人</span>
+      <span class="chip-lbl">停電影響人口</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">~80%</span>
+      <span class="chip-lbl">輸入依存比率</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">2〜3時間</span>
+      <span class="chip-lbl">停電時間/日</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">+55%</span>
+      <span class="chip-lbl">燃料価格上昇</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">ルソン・ビサヤ両グリッドで同時赤・黄警戒発令（5/15）。輪番停電が全国規模に拡大。</span>
+    </div>
+    <p class="card-summary">5月13日にルソン島グリッドに高警戒発令、輪番停電が全国に拡大（約200万人が1回2〜3時間の停電）。5月15日にはルソン・ビサヤ両グリッドが同時赤・黄警戒。石炭・バイオマスへの燃料転換を緊急承認済み。国家エネルギー緊急宣言下で対応継続中。</p>
 
-  <div class="country-card" id="card-vn">
-    <div class="country-header" onclick="toggleCard('card-vn')">
-      <span class="country-flag">🇻🇳</span>
-      <span class="country-name">ベトナム</span>
-      <span class="country-risk high">🟠 危険度: 高</span>
-      <span class="toggle-icon">▼</span>
+    <div class="section-toggle" onclick="toggleSection('PH-energy')">
+      <span class="st-arrow" id="arr-PH-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">日越「Power Asia」協定締結（5/2、ハノイ）。E10バイオ燃料の早期全国展開を決定。</span>
+    <div class="section-body" id="sec-PH-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>ルソン・ビサヤ両グリッドで同時赤・黄警戒、全国的輪番停電（200万人以上）</span></li><li><span class="bullet-icon">⚡</span><span>燃料輸入コスト+55%で国家財政が逼迫、外貨準備が急減</span></li><li><span class="bullet-icon">⚡</span><span>農業・製造業の生産性が電力不安定化で30%超低下</span></li><li><span class="bullet-icon">⚡</span><span>石炭発電・バイオマス発電への緊急転換を承認済み</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('PH-policy')">
+      <span class="st-arrow" id="arr-PH-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-PH-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>マルコス大統領が国家エネルギー緊急宣言を発令</span></li><li><span class="bullet-icon">🏛️</span><span>DOE（エネルギー省）が石炭・バイオマスへの燃料転換を緊急承認</span></li><li><span class="bullet-icon">🏛️</span><span>米フィリピン軍の燃料融通を要請（ザンボアンガ基地）</span></li><li><span class="bullet-icon">🏛️</span><span>輪番停電スケジュールを公表し企業・家庭に節電を要請</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('PH-outlook')">
+      <span class="st-arrow" id="arr-PH-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-PH-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-critical">最高リスク</span><span>電力危機の継続による経済活動の麻痺と社会不安の高まり</span></li><li><span class="risk-tag risk-high">高リスク</span><span>食料価格急騰（農業・物流停滞）によるインフレ加速、貧困層への打撃</span></li><li><span class="risk-tag risk-high">高リスク</span><span>外貨準備の急減により通貨（ペソ）の信用不安が生じる可能性</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>政情不安が外資誘致に影響し中期的な経済成長が損なわれる懸念</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: Wikipedia, CNN, The Diplomat, OSAC, Lowy Institute</div>
+  </div>
+</div>
+
+<div class="country-card" id="card-vn">
+  <div class="card-header" onclick="toggleCard('card-vn')">
+    <div class="card-header-left">
+      <span class="card-flag">🇻🇳</span>
+      <div class="card-title-group">
+        <span class="card-name">ベトナム</span>
+        <span class="card-name-en">VIETNAM</span>
       </div>
-      <p class="country-summary">E10バイオ燃料への移行を前倒しで実施し、ガソリン需給の一部を代替。燃料価格安定基金を取り崩して国内価格を抑制中。LNG不足補填のため石炭発電の稼働を拡大。日本との「Power Asia」協定でNghi Son製油所向け原油調達支援を受ける。</p>
-      <div class="source-note">出典: Vietnam Briefing, Al Jazeera, CNN</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-high">
+        <span class="risk-dot" style="background:#fb923c"></span>
+        危険度: 高
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip chip-alert">
+      <span class="chip-val">~40%</span>
+      <span class="chip-lbl">中東原油依存</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">低下中</span>
+      <span class="chip-lbl">燃料基金残高</span>
+    </div><div class="chip">
+      <span class="chip-val">↑拡大</span>
+      <span class="chip-lbl">石炭発電比率</span>
+    </div><div class="chip">
+      <span class="chip-val">60%</span>
+      <span class="chip-lbl">E10展開率</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">日越「Power Asia」協定締結（5/2、ハノイ）。E10バイオ燃料の早期全国展開を決定。</span>
+    </div>
+    <p class="card-summary">E10バイオ燃料への移行を前倒しで実施し、ガソリン需給の一部を代替。燃料価格安定基金を取り崩して国内価格を抑制中。LNG不足補填のため石炭発電の稼働を拡大。日本との「Power Asia」協定でNghi Son製油所向け原油調達支援を受ける。</p>
+
+    <div class="section-toggle" onclick="toggleSection('VN-energy')">
+      <span class="st-arrow" id="arr-VN-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
+    </div>
+    <div class="section-body" id="sec-VN-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>Nghi Son製油所が日本支援の原油調達で稼働率を85%→95%に回復</span></li><li><span class="bullet-icon">⚡</span><span>燃料価格安定基金を取り崩し国内ガソリン価格を上限規制（25,000VND/L）</span></li><li><span class="bullet-icon">⚡</span><span>石炭発電の稼働を拡大し電力不足を部分的に補填</span></li><li><span class="bullet-icon">⚡</span><span>E10バイオ燃料（エタノール10%混合）の全国展開を前倒し</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('VN-policy')">
+      <span class="st-arrow" id="arr-VN-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-VN-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>高市首相との「Power Asia」協定でNghi Son向け原油調達支援を確保（5/2）</span></li><li><span class="bullet-icon">🏛️</span><span>E10バイオ燃料の全国義務化を2026年7月（予定より6カ月前倒し）に設定</span></li><li><span class="bullet-icon">🏛️</span><span>燃料価格安定基金からの補助金を月間5,000億VNDに増額</span></li><li><span class="bullet-icon">🏛️</span><span>メコン川流域水力発電の増強を緊急承認</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('VN-outlook')">
+      <span class="st-arrow" id="arr-VN-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-VN-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-high">高リスク</span><span>燃料価格安定基金の枯渇により、2026年後半に価格急騰が表面化する懸念</span></li><li><span class="risk-tag risk-high">高リスク</span><span>中東依存40%のうち代替調達が確保できなければ製油所稼働に影響</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>石炭発電拡大で2030年カーボンニュートラル目標との整合性が問われる</span></li><li><span class="risk-tag risk-low">低リスク</span><span>Power Asia協定による日本の支援で短〜中期的なエネルギー安全保障を確保</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: Vietnam Briefing, Al Jazeera, CNN</div>
+  </div>
+</div>
 </section>
 
-<section class="region-section" id="europe">
-  <div class="region-header">
-    <div class="region-flag">🌍</div>
-    <div class="region-title">
-      <h2>欧州</h2>
-      <div class="sub">EUROPE — GAS STORAGE CRISIS</div>
+<section class="region-section" id="reg-europe">
+  <div class="region-hdr">
+    <span class="region-icon">🌍</span>
+    <div class="region-title-group">
+      <span class="region-title">欧州</span>
+      <span class="region-sub">EUROPE</span>
     </div>
-    <div class="risk-badge risk-high">HIGH RISK</div>
   </div>
   
-  <div class="country-card" id="card-de">
-    <div class="country-header" onclick="toggleCard('card-de')">
-      <span class="country-flag">🇩🇪</span>
-      <span class="country-name">ドイツ</span>
-      <span class="country-risk high">🟠 危険度: 高</span>
-      <span class="toggle-icon">▼</span>
-    </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">ドイツがスペインと並びEU緊急エネルギー財政措置の最大拠出国に。TTF価格50€/MWh超突破。</span>
+<div class="country-card" id="card-de">
+  <div class="card-header" onclick="toggleCard('card-de')">
+    <div class="card-header-left">
+      <span class="card-flag">🇩🇪</span>
+      <div class="card-title-group">
+        <span class="card-name">ドイツ</span>
+        <span class="card-name-en">GERMANY</span>
       </div>
-      <p class="country-summary">欧州全体のガス貯蔵量は容量の50%以下、ドイツ・フランスはともに25%未満まで低下。欧州委員会とともに10億ユーロ超の緊急財政措置を発動。TTFは5月15日に50€/MWh超まで上昇。化学・金属産業では稼働縮小が継続。</p>
-      <div class="source-note">出典: Bruegel, IndexBox, ECB, IEEFA</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-high">
+        <span class="risk-dot" style="background:#fb923c"></span>
+        危険度: 高
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip chip-alert">
+      <span class="chip-val">&lt;25%</span>
+      <span class="chip-lbl">ガス貯蔵量</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">50€/MWh</span>
+      <span class="chip-lbl">TTF価格</span>
+    </div><div class="chip">
+      <span class="chip-val">&gt;10億€</span>
+      <span class="chip-lbl">緊急財政</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">-22%</span>
+      <span class="chip-lbl">産業稼働率</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">ドイツがスペインと並びEU緊急エネルギー財政措置の最大拠出国に。TTF価格50€/MWh超突破。</span>
+    </div>
+    <p class="card-summary">欧州全体のガス貯蔵量は容量の50%以下、ドイツ・フランスはともに25%未満まで低下。欧州委員会とともに10億ユーロ超の緊急財政措置を発動。TTFは5月15日に50€/MWh超まで上昇。化学・金属産業では稼働縮小が継続。</p>
 
-  <div class="country-card" id="card-fr">
-    <div class="country-header" onclick="toggleCard('card-fr')">
-      <span class="country-flag">🇫🇷</span>
-      <span class="country-name">フランス</span>
-      <span class="country-risk high">🟠 危険度: 高</span>
-      <span class="toggle-icon">▼</span>
+    <div class="section-toggle" onclick="toggleSection('DE-energy')">
+      <span class="st-arrow" id="arr-DE-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">エールフランス、欧州内短距離路線を6月から一部運休へ。イベリア経由LNG輸入拡大で欧州に協力。</span>
-      </div>
-      <p class="country-summary">原子力発電（発電の70%）が欧州内最大の緩和要因として機能。ガス貯蔵はドイツと同水準の25%未満。エールフランスは欧州域内短距離路線の一部を6月から運休予定。イベリア半島のLNG輸入インフラを活用した調達多様化を進めている。</p>
-      <div class="source-note">出典: Bruegel, ECB, Euronews</div>
+    <div class="section-body" id="sec-DE-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>ガス貯蔵量が容量の25%未満まで低下（例年この時期の50%以下）</span></li><li><span class="bullet-icon">⚡</span><span>TTF天然ガス価格が50€/MWh超（危機前の約3倍）、家庭・産業ともに打撃</span></li><li><span class="bullet-icon">⚡</span><span>BASF・ティッセンクルップなど化学・金属大手が稼働を20〜30%縮小</span></li><li><span class="bullet-icon">⚡</span><span>ノルドストリーム代替としてのLNG輸入能力がボトルネック</span></li></ul>
     </div>
-  </div>
 
-  <div class="country-card" id="card-gb">
-    <div class="country-header" onclick="toggleCard('card-gb')">
-      <span class="country-flag">🇬🇧</span>
-      <span class="country-name">イギリス</span>
-      <span class="country-risk high">🟠 危険度: 高</span>
-      <span class="toggle-icon">▼</span>
+    <div class="section-toggle" onclick="toggleSection('DE-policy')">
+      <span class="st-arrow" id="arr-DE-policy">▶</span>
+      <span>🏛️ 政策対応</span>
     </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">英国がホルムズ防衛ミッションにドローン・戦闘機・海軍艦艇を派遣（5月）。</span>
+    <div class="section-body" id="sec-DE-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>EU緊急エネルギー財政措置に最大拠出国として10億ユーロ超を拠出</span></li><li><span class="bullet-icon">🏛️</span><span>企業・家庭向けガス消費15%削減義務を2026年冬に向けて延長</span></li><li><span class="bullet-icon">🏛️</span><span>LNG輸入ターミナルの拡張工事を最優先インフラに指定</span></li><li><span class="bullet-icon">🏛️</span><span>電力市場の価格上限制度を2026年末まで延長</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('DE-outlook')">
+      <span class="st-arrow" id="arr-DE-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-DE-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-high">高リスク</span><span>2026〜27年冬のガス貯蔵量が目標の80%を大幅に下回り、暖房危機が現実化</span></li><li><span class="risk-tag risk-high">高リスク</span><span>化学・金属産業の稼働縮小が製造業全体の景気後退を引き起こす</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>TTF価格高止まりで財政支援コストが膨らみ、国家財政に圧力</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>エネルギー高騰によるインフレ再加速でECBの利下げ余地が縮小</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: Bruegel, IndexBox, ECB, IEEFA</div>
+  </div>
+</div>
+
+<div class="country-card" id="card-fr">
+  <div class="card-header" onclick="toggleCard('card-fr')">
+    <div class="card-header-left">
+      <span class="card-flag">🇫🇷</span>
+      <div class="card-title-group">
+        <span class="card-name">フランス</span>
+        <span class="card-name-en">FRANCE</span>
       </div>
-      <p class="country-summary">ドローン・戦闘機・海軍艦艇をホルムズ防衛ミッション（国際商業船舶保護）に派遣（5月）。北海ガス生産の長期減少とLNG市場での争奪戦が重なる。IEA緊急行動計画に基づく備蓄放出調整を実施中。</p>
-      <div class="source-note">出典: CNBC, BISI, IEEFA</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-high">
+        <span class="risk-dot" style="background:#fb923c"></span>
+        危険度: 高
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip">
+      <span class="chip-val">70%</span>
+      <span class="chip-lbl">原子力比率</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">&lt;25%</span>
+      <span class="chip-lbl">ガス貯蔵量</span>
+    </div><div class="chip">
+      <span class="chip-val">15%</span>
+      <span class="chip-lbl">航空便削減</span>
+    </div><div class="chip">
+      <span class="chip-val">+35%</span>
+      <span class="chip-lbl">LNG輸入増</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">エールフランス、欧州内短距離路線を6月から一部運休へ。イベリア経由LNG輸入拡大で欧州に協力。</span>
+    </div>
+    <p class="card-summary">原子力発電（発電の70%）が欧州内最大の緩和要因として機能。ガス貯蔵はドイツと同水準の25%未満。エールフランスは欧州域内短距離路線の一部を6月から運休予定。イベリア半島のLNG輸入インフラを活用した調達多様化を進めている。</p>
+
+    <div class="section-toggle" onclick="toggleSection('FR-energy')">
+      <span class="st-arrow" id="arr-FR-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
+    </div>
+    <div class="section-body" id="sec-FR-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>原子力発電70%が欧州最大の緩和要因として機能し、停電リスクをドイツより低く抑制</span></li><li><span class="bullet-icon">⚡</span><span>ガス貯蔵量25%未満はドイツと同水準、輸入LNGで補填中</span></li><li><span class="bullet-icon">⚡</span><span>エールフランスが6月から欧州域内15%路線を運休（燃油代高騰）</span></li><li><span class="bullet-icon">⚡</span><span>イベリア半島（スペイン・ポルトガル）のLNGターミナル経由での調達を拡大</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('FR-policy')">
+      <span class="st-arrow" id="arr-FR-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-FR-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>イベリア半島LNG輸入拡大でEU全体のエネルギー多様化をリード</span></li><li><span class="bullet-icon">🏛️</span><span>電力輸出（ドイツ・イタリア向け）を1日3GWh削減し国内供給を優先</span></li><li><span class="bullet-icon">🏛️</span><span>原子力発電所の定期点検を延期し稼働率を最大化（56基中54基稼働）</span></li><li><span class="bullet-icon">🏛️</span><span>エールフランスの燃油代補助として3億ユーロの緊急支援を決定</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('FR-outlook')">
+      <span class="st-arrow" id="arr-FR-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-FR-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-high">高リスク</span><span>原発老朽化（平均38年）による予期しない緊急停止が冬の需給を直撃する恐れ</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>ガス貯蔵25%未満は冬季暖房需要に不十分で、寒波来襲時に不足が顕在化</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>エールフランス路線縮小が観光業・経済活動に二次的影響</span></li><li><span class="risk-tag risk-low">低リスク</span><span>原子力+イベリアLNGの組み合わせで欧州諸国の中では相対的に安定</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: Bruegel, ECB, Euronews</div>
+  </div>
+</div>
+
+<div class="country-card" id="card-gb">
+  <div class="card-header" onclick="toggleCard('card-gb')">
+    <div class="card-header-left">
+      <span class="card-flag">🇬🇧</span>
+      <div class="card-title-group">
+        <span class="card-name">イギリス</span>
+        <span class="card-name-en">UK</span>
+      </div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-high">
+        <span class="risk-dot" style="background:#fb923c"></span>
+        危険度: 高
+      </span>
+      <span class="card-chevron">›</span>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip chip-alert">
+      <span class="chip-val">↓長期減少</span>
+      <span class="chip-lbl">北海ガス生産</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">激化</span>
+      <span class="chip-lbl">LNG争奪戦</span>
+    </div><div class="chip">
+      <span class="chip-val">ホルムズ</span>
+      <span class="chip-lbl">軍事派遣</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">&lt;30%</span>
+      <span class="chip-lbl">ガス貯蔵</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">英国がホルムズ防衛ミッションにドローン・戦闘機・海軍艦艇を派遣（5月）。</span>
+    </div>
+    <p class="card-summary">ドローン・戦闘機・海軍艦艇をホルムズ防衛ミッション（国際商業船舶保護）に派遣（5月）。北海ガス生産の長期減少とLNG市場での争奪戦が重なる。IEA緊急行動計画に基づく備蓄放出調整を実施中。</p>
+
+    <div class="section-toggle" onclick="toggleSection('GB-energy')">
+      <span class="st-arrow" id="arr-GB-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
+    </div>
+    <div class="section-body" id="sec-GB-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>北海ガス生産が長期的な減少傾向（ピーク比-65%）でエネルギー自給率が低下</span></li><li><span class="bullet-icon">⚡</span><span>LNG輸入スポット価格がJKM連動で$17/MMBtu超、電力卸価格に転嫁</span></li><li><span class="bullet-icon">⚡</span><span>ガス貯蔵量30%未満（欧州平均以下）で冬季リスクが高い</span></li><li><span class="bullet-icon">⚡</span><span>電力コスト上昇で製造業・中小企業への影響が深刻化</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('GB-policy')">
+      <span class="st-arrow" id="arr-GB-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-GB-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>ホルムズ防衛ミッションにドローン・タイフーン戦闘機・海軍艦艇を派遣（5月）</span></li><li><span class="bullet-icon">🏛️</span><span>IEA緊急行動計画に基づき備蓄放出量を協調調整</span></li><li><span class="bullet-icon">🏛️</span><span>北海新規ガス田開発の許認可を加速（2027年以降の生産開始目標）</span></li><li><span class="bullet-icon">🏛️</span><span>家庭向けエネルギー料金の上限制度を延長・強化</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('GB-outlook')">
+      <span class="st-arrow" id="arr-GB-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-GB-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-high">高リスク</span><span>2026〜27年冬にホルムズ封鎖が継続すれば、LNG確保競争でアジア諸国に価格競負け</span></li><li><span class="risk-tag risk-high">高リスク</span><span>ホルムズ防衛活動中のインシデントが軍事的エスカレーションに発展するリスク</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>北海ガス自給能力の低下により中期的なエネルギー安全保障が悪化</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>エネルギーコスト高騰がインフレ再加速をもたらし景気後退が長引く</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: CNBC, BISI, IEEFA</div>
+  </div>
+</div>
 </section>
 
-<section class="region-section" id="north-america">
-  <div class="region-header">
-    <div class="region-flag">🌎</div>
-    <div class="region-title">
-      <h2>北米</h2>
-      <div class="sub">NORTH AMERICA — NET EXPORTERS</div>
+<section class="region-section" id="reg-north-america">
+  <div class="region-hdr">
+    <span class="region-icon">🌎</span>
+    <div class="region-title-group">
+      <span class="region-title">北米</span>
+      <span class="region-sub">NORTH AMERICA</span>
     </div>
-    <div class="risk-badge risk-moderate">MODERATE</div>
   </div>
   
-  <div class="country-card" id="card-us">
-    <div class="country-header" onclick="toggleCard('card-us')">
-      <span class="country-flag">🇺🇸</span>
-      <span class="country-name">アメリカ</span>
-      <span class="country-risk mod">🔵 危険度: 中</span>
-      <span class="toggle-icon">▼</span>
-    </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">トランプ大統領がProject Freedom（ホルムズ軍事護衛作戦）を停止。対イラン包括合意に向け交渉継続中。</span>
+<div class="country-card" id="card-us">
+  <div class="card-header" onclick="toggleCard('card-us')">
+    <div class="card-header-left">
+      <span class="card-flag">🇺🇸</span>
+      <div class="card-title-group">
+        <span class="card-name">アメリカ</span>
+        <span class="card-name-en">USA</span>
       </div>
-      <p class="country-summary">原油輸出は高水準を維持し、中国・欧州向け緊急供給を拡大。EIA STEOによれば5〜6月のBrent価格は約106ドル/bbl水準を予測。トランプ大統領が「Project Freedom」軍事作戦を停止し、パキスタン仲介で対イラン外交交渉が進行中。</p>
-      <div class="source-note">出典: EIA STEO May 2026, CNBC, Discover Alert</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-moderate">
+        <span class="risk-dot" style="background:#d29922"></span>
+        危険度: 中
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip">
+      <span class="chip-val">500万b/d</span>
+      <span class="chip-lbl">原油輸出</span>
+    </div><div class="chip">
+      <span class="chip-val">~$106/bbl</span>
+      <span class="chip-lbl">Brent予測</span>
+    </div><div class="chip">
+      <span class="chip-val">1,340万b/d</span>
+      <span class="chip-lbl">シェール生産</span>
+    </div><div class="chip">
+      <span class="chip-val">3.7億bbl</span>
+      <span class="chip-lbl">SPR残量</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">トランプ大統領がProject Freedom（ホルムズ軍事護衛作戦）を停止。対イラン包括合意に向け交渉継続中。</span>
+    </div>
+    <p class="card-summary">原油輸出は高水準を維持し、中国・欧州向け緊急供給を拡大。EIA STEOによれば5〜6月のBrent価格は約106ドル/bbl水準を予測。トランプ大統領が「Project Freedom」軍事作戦を停止し、パキスタン仲介で対イラン外交交渉が進行中。</p>
 
-  <div class="country-card" id="card-ca">
-    <div class="country-header" onclick="toggleCard('card-ca')">
-      <span class="country-flag">🇨🇦</span>
-      <span class="country-name">カナダ</span>
-      <span class="country-risk low-r">🟢 危険度: 低</span>
-      <span class="toggle-icon">▼</span>
+    <div class="section-toggle" onclick="toggleSection('US-energy')">
+      <span class="st-arrow" id="arr-US-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">Trans Mountain経由アジア向け輸出が拡大。IEA協調放出に2,360万バレルを拠出。</span>
+    <div class="section-body" id="sec-US-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>シェール原油生産が過去最高水準（1,340万b/d）を維持し、エネルギー超大国の地位を確保</span></li><li><span class="bullet-icon">⚡</span><span>欧州・アジア向け原油・LNG輸出を大幅拡大し同盟国を支援</span></li><li><span class="bullet-icon">⚡</span><span>高油価（Brent $108/bbl）で石油・ガス産業の利益が急増、財政収入に貢献</span></li><li><span class="bullet-icon">⚡</span><span>国内ガソリン価格は上昇（全国平均$4.2/ガロン）も欧州・アジアより相対的に低水準</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('US-policy')">
+      <span class="st-arrow" id="arr-US-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-US-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>トランプ大統領がProject Freedom（ホルムズ軍事護衛作戦）を一時停止（5月）</span></li><li><span class="bullet-icon">🏛️</span><span>パキスタン仲介で対イラン包括合意（核・ホルムズ・制裁）の交渉を継続</span></li><li><span class="bullet-icon">🏛️</span><span>IEA協調備蓄放出で6,000万バレルを拠出済み</span></li><li><span class="bullet-icon">🏛️</span><span>中国との緊急エネルギー対話でホルムズ再開への共同圧力を検討</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('US-outlook')">
+      <span class="st-arrow" id="arr-US-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-US-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-moderate">中リスク</span><span>対イラン交渉が決裂した場合、軍事的オプションの再発動で地域緊張が急騰</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>高油価継続でインフレが再加速し、FRBの政策に制約が生じる可能性</span></li><li><span class="risk-tag risk-low">低リスク</span><span>エネルギー自給国かつ輸出国として、危機の恩恵を最も享受できる立場</span></li><li><span class="risk-tag risk-low">低リスク</span><span>外交解決に成功すれば同盟国への供給拡大で地政学的影響力を強化</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: EIA STEO May 2026, CNBC, Discover Alert</div>
+  </div>
+</div>
+
+<div class="country-card" id="card-ca">
+  <div class="card-header" onclick="toggleCard('card-ca')">
+    <div class="card-header-left">
+      <span class="card-flag">🇨🇦</span>
+      <div class="card-title-group">
+        <span class="card-name">カナダ</span>
+        <span class="card-name-en">CANADA</span>
       </div>
-      <p class="country-summary">Trans Mountain拡張パイプライン経由のアジア向け輸出が本格稼働。IEA協調備蓄放出に2,360万バレルを拠出予定。4月から生産量を14万b/d増産。アルバータ州の財政黒字が拡大。高油価の恩恵を享受しながら対アジア供給を強化中。</p>
-      <div class="source-note">出典: S&P Global, Canada Action, Discover Alert</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-low">
+        <span class="risk-dot" style="background:#3fb950"></span>
+        危険度: 低
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip">
+      <span class="chip-val">+14万b/d</span>
+      <span class="chip-lbl">増産幅</span>
+    </div><div class="chip">
+      <span class="chip-val">2,360万bbl</span>
+      <span class="chip-lbl">IEA拠出</span>
+    </div><div class="chip">
+      <span class="chip-val">拡大中</span>
+      <span class="chip-lbl">アルバータ黒字</span>
+    </div><div class="chip">
+      <span class="chip-val">本格稼働</span>
+      <span class="chip-lbl">TMX稼働</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">Trans Mountain経由アジア向け輸出が拡大。IEA協調放出に2,360万バレルを拠出。</span>
+    </div>
+    <p class="card-summary">Trans Mountain拡張パイプライン経由のアジア向け輸出が本格稼働。IEA協調備蓄放出に2,360万バレルを拠出予定。4月から生産量を14万b/d増産。アルバータ州の財政黒字が拡大。高油価の恩恵を享受しながら対アジア供給を強化中。</p>
+
+    <div class="section-toggle" onclick="toggleSection('CA-energy')">
+      <span class="st-arrow" id="arr-CA-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
+    </div>
+    <div class="section-body" id="sec-CA-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>Trans Mountain拡張（TMX）パイプラインでアジア向け輸出が日量89万バレルに拡大</span></li><li><span class="bullet-icon">⚡</span><span>アルバータ州の財政黒字が高油価で過去最大水準に拡大</span></li><li><span class="bullet-icon">⚡</span><span>国内ガソリン価格は上昇するも、エネルギー超大国として輸出メリットが上回る</span></li><li><span class="bullet-icon">⚡</span><span>日本・韓国向けのオイルサンド原油の長期契約交渉が活発化</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('CA-policy')">
+      <span class="st-arrow" id="arr-CA-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-CA-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>IEA協調備蓄放出に2,360万バレルを拠出し国際的役割を果たす</span></li><li><span class="bullet-icon">🏛️</span><span>日本・韓国との二国間エネルギー安全保障協定の締結を交渉中</span></li><li><span class="bullet-icon">🏛️</span><span>オイルサンド生産を年末までに14万b/d追加増産</span></li><li><span class="bullet-icon">🏛️</span><span>アジア向けLNG輸出ターミナルの建設を加速（BC州・LNG Canada Phase 2）</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('CA-outlook')">
+      <span class="st-arrow" id="arr-CA-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-CA-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-low">低リスク</span><span>エネルギー輸出国として危機を経済的機会に転換できる最良の立場</span></li><li><span class="risk-tag risk-low">低リスク</span><span>TMXの本格稼働でアジア市場へのアクセスが確立し、対米依存が低下</span></li><li><span class="risk-tag risk-low">低リスク</span><span>LNG Canada Phase 2完工（2028年）後はLNGでも主要輸出国に</span></li><li><span class="risk-tag risk-low">低リスク</span><span>国内需要への影響は軽微で、危機対応より供給拡大にリソースを集中</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: S&amp;P Global, Canada Action, Discover Alert</div>
+  </div>
+</div>
 </section>
 
-<section class="region-section" id="oceania">
-  <div class="region-header">
-    <div class="region-flag">🦘</div>
-    <div class="region-title">
-      <h2>オセアニア</h2>
-      <div class="sub">OCEANIA — REFINED PRODUCTS CRISIS</div>
+<section class="region-section" id="reg-oceania">
+  <div class="region-hdr">
+    <span class="region-icon">🦘</span>
+    <div class="region-title-group">
+      <span class="region-title">オセアニア</span>
+      <span class="region-sub">OCEANIA</span>
     </div>
-    <div class="risk-badge risk-critical">CRITICAL</div>
   </div>
   
-  <div class="country-card" id="card-au">
-    <div class="country-header" onclick="toggleCard('card-au')">
-      <span class="country-flag">🇦🇺</span>
-      <span class="country-name">オーストラリア</span>
-      <span class="country-risk crit">🔴 危険度: 最高</span>
-      <span class="toggle-icon">▼</span>
-    </div>
-    <div class="country-body">
-      <div class="key-event-box">
-        <span class="key-event-label">📌 本日の注目</span>
-        <span class="key-event-text">数十年ぶりに米国を緊急燃料供給源として活用。政府の燃料レジリエンスパッケージが実施段階に入る。</span>
+<div class="country-card" id="card-au">
+  <div class="card-header" onclick="toggleCard('card-au')">
+    <div class="card-header-left">
+      <span class="card-flag">🇦🇺</span>
+      <div class="card-title-group">
+        <span class="card-name">オーストラリア</span>
+        <span class="card-name-en">AUSTRALIA</span>
       </div>
-      <p class="country-summary">国内原油産出約32万b/dに対し輸入精製品は約85万b/dと輸入依存が深刻。数十年ぶりに米国を緊急燃料供給源として活用。農業・物流・採掘業への打撃が継続しており、政府の燃料レジリエンスパッケージが実施段階に入った。</p>
-      <div class="source-note">出典: OilPrice.com, IEEFA, Discover Alert, EIA</div>
+    </div>
+    <div class="card-header-right">
+      <span class="risk-pill risk-critical">
+        <span class="risk-dot" style="background:#da3633"></span>
+        危険度: 最高
+      </span>
+      <span class="card-chevron">›</span>
     </div>
   </div>
-</section>
+  <div class="card-body">
+    <div class="metric-chips"><div class="chip chip-alert">
+      <span class="chip-val">~73%</span>
+      <span class="chip-lbl">精製品輸入依存</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">32万b/d</span>
+      <span class="chip-lbl">国内産出</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">約22日</span>
+      <span class="chip-lbl">燃料備蓄</span>
+    </div><div class="chip chip-alert">
+      <span class="chip-val">深刻打撃</span>
+      <span class="chip-lbl">農業・物流</span>
+    </div></div>
+    <div class="key-event-row">
+      <span class="ke-label">📌 本日の注目</span>
+      <span class="ke-text">数十年ぶりに米国を緊急燃料供給源として活用。政府の燃料レジリエンスパッケージが実施段階に入る。</span>
+    </div>
+    <p class="card-summary">国内原油産出約32万b/dに対し輸入精製品は約85万b/dと輸入依存が深刻。数十年ぶりに米国を緊急燃料供給源として活用。農業・物流・採掘業への打撃が継続しており、政府の燃料レジリエンスパッケージが実施段階に入った。</p>
 
+    <div class="section-toggle" onclick="toggleSection('AU-energy')">
+      <span class="st-arrow" id="arr-AU-energy">▶</span>
+      <span>⚡ エネルギー・産業影響</span>
+    </div>
+    <div class="section-body" id="sec-AU-energy">
+      <ul class="bullet-list"><li><span class="bullet-icon">⚡</span><span>精製品輸入依存度73%（自国生産32万b/d vs 輸入85万b/d）で危機に対する脆弱性が最大級</span></li><li><span class="bullet-icon">⚡</span><span>燃料備蓄約22日分（IEA基準90日を大幅下回る）で緊急調達が続く</span></li><li><span class="bullet-icon">⚡</span><span>農業機械・物流トラックの燃料不足で食料サプライチェーンへの打撃が深刻</span></li><li><span class="bullet-icon">⚡</span><span>採掘業（鉄鉱石・石炭・LNG）は自家燃料備蓄で短期乗り切り中</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('AU-policy')">
+      <span class="st-arrow" id="arr-AU-policy">▶</span>
+      <span>🏛️ 政策対応</span>
+    </div>
+    <div class="section-body" id="sec-AU-policy">
+      <ul class="bullet-list"><li><span class="bullet-icon">🏛️</span><span>数十年ぶりに米国を主要燃料緊急供給源として活用（月間3,000万リットル）</span></li><li><span class="bullet-icon">🏛️</span><span>燃料レジリエンスパッケージ（国内精製能力強化・備蓄増強）を実施段階に移行</span></li><li><span class="bullet-icon">🏛️</span><span>米国・日本との三国間エネルギー安全保障対話を開始</span></li><li><span class="bullet-icon">🏛️</span><span>農業・物流部門への燃料優先割当制度を導入</span></li></ul>
+    </div>
+
+    <div class="section-toggle" onclick="toggleSection('AU-outlook')">
+      <span class="st-arrow" id="arr-AU-outlook">▶</span>
+      <span>🔮 リスク見通し</span>
+    </div>
+    <div class="section-body" id="sec-AU-outlook">
+      <ul class="bullet-list"><li><span class="risk-tag risk-critical">最高リスク</span><span>燃料備蓄22日分は危機長期化に対して著しく不十分、社会インフラ機能停止のリスク</span></li><li><span class="risk-tag risk-high">高リスク</span><span>食料供給チェーンの断絶が進めば国内食料インフレが二桁に達する</span></li><li><span class="risk-tag risk-high">高リスク</span><span>精製能力の欠如で危機が長期化した場合の自立的回復が困難</span></li><li><span class="risk-tag risk-moderate">中リスク</span><span>採掘業（主要輸出産業）の生産低下が国家財政に影響</span></li></ul>
+    </div>
+
+    <div class="card-sources">出典: OilPrice.com, IEEFA, Discover Alert, EIA</div>
+  </div>
+</div>
+</section>
 </main>
 
 <footer>
-  IEA World Energy Monitor ／ 生産性カウンセラー® 前川 勇<br>
+  🌍 中東危機 エネルギー情勢モニター &nbsp;|&nbsp; 生産性カウンセラー® 前川 勇<br>
   データソース: IEA Oil Market Report May 2026 · EIA Short-Term Energy Outlook May 2026 · Al Jazeera / CNBC / CNN (2026/05/15-18) · Wikipedia 2026 Strait of Hormuz crisis · Bruegel 2026 European energy crisis tracker<br>
-  本レポートはAIが自動収集・生成したものです。投資・政策判断には一次情報をご確認ください。<br>
-  <a href="https://github.com/あなたのID/iea-world-monitor">GitHub</a>
+  本レポートはAIが自動収集・生成したものです。投資・政策判断には一次情報をご確認ください。
 </footer>
 
 <script>
-  function toggleCard(id) {
-    document.getElementById(id).classList.toggle('open');
-  }
-  function scrollToRegion(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    event.target.classList.add('active');
-  }
-  window.addEventListener('scroll', () => {
-    const regions = ['asia','china-taiwan','asean','europe','north-america','oceania'];
-    const tabs = document.querySelectorAll('.nav-tab');
-    let current = 0;
-    regions.forEach((id, i) => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top <= 80) current = i;
-    });
-    tabs.forEach((t, i) => t.classList.toggle('active', i === current));
+function toggleCard(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+function toggleSection(id) {
+  const body = document.getElementById('sec-' + id);
+  const arrow = document.getElementById('arr-' + id);
+  const isOpen = body.classList.toggle('open');
+  arrow.style.transform = isOpen ? 'rotate(90deg)' : '';
+}
+
+function goRegion(id, btn) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+window.addEventListener('scroll', () => {
+  const regionIds = ['reg-asia','reg-china','reg-asean','reg-europe','reg-north-america','reg-oceania'];
+  const tabs = document.querySelectorAll('.nav-btn');
+  let cur = 0;
+  regionIds.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 60) cur = i;
   });
+  tabs.forEach((t, i) => t.classList.toggle('active', i === cur));
+});
 </script>
 </body>
 </html>
