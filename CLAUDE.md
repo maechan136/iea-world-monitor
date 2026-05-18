@@ -117,3 +117,20 @@ git push origin main
 - 推測と確認済み情報を明確に区別する
 - 日本語で記述する
 - 生成日時を必ず更新する
+
+---
+
+## 手動実行時の追加手順
+
+### Step 5: Netlifyへデプロイ
+
+index.htmlの生成が完了したら、以下のコマンドでNetlifyに直接デプロイしてください。
+
+```bash
+netlify deploy \
+  --prod \
+  --dir . \
+  --site $NETLIFY_SITE_ID \
+  --auth $NETLIFY_AUTH_TOKEN \
+  --message "Daily update $(date +'%Y-%m-%d')"
+```
