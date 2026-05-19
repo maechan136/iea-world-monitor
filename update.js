@@ -382,7 +382,7 @@ footer a{color:#777}
 <!-- ═══ SITE HEADER ═══ -->
 <header class="site-header">
   <div class="hd-byline">生産性カウンセラー® 前川 勇</div>
-  <div class="hd-label">エネルギー情勢分析レポート / Independent Research by 前川勇</div>
+  <div class="hd-label">エネルギー情勢分析 / Independent Research</div>
   <h1 class="hd-title">中東危機 エネルギー情勢モニター<br><span style="font-size:.62rem; color:#aaa; letter-spacing:.1em; font-family:'Space Mono',monospace;">by 前川勇 / AIによる自動分析</span></h1>
   <div class="hd-meta">
     生成日: ${dateStr} ${timeStr} JST<br>
