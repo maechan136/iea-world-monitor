@@ -43,14 +43,14 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Serif JP',serif;
   display:block;letter-spacing:.03em}
 
 /* ══ HORMUZ BAR ══════════════════════════════════ */
-.hormuz-bar{background:#e67e2218;border-bottom:3px solid #e67e22;
+.hormuz-bar{background:#27ae6018;border-bottom:3px solid #27ae60;
   padding:.7rem 2rem;display:flex;align-items:center;flex-wrap:wrap;gap:.8rem}
 .hz-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:var(--muted)}
-.hz-status{font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;color:#e67e22}
+.hz-status{font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;color:#27ae60}
 .hz-detail{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);flex:1;text-align:right}
 .hz-flow-wrap{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted)}
 .hz-bar{width:100px;height:5px;background:var(--border);border-radius:2px;overflow:hidden}
-.hz-bar-fill{height:100%;border-radius:2px;background:#e67e22;width:40%}
+.hz-bar-fill{height:100%;border-radius:2px;background:#27ae60;width:20%}
 
 /* ══ RISK SUMMARY ════════════════════════════════ */
 .risk-bar{background:var(--ink);color:var(--paper);padding:.6rem 2rem;
@@ -176,7 +176,7 @@ footer a{color:#777}
   <div class="hd-label">エネルギー情勢分析レポート / Independent Research by 前川勇</div>
   <h1 class="hd-title">中東危機 エネルギー情勢モニター<br><span style="font-size:.62rem; color:#aaa; letter-spacing:.1em; font-family:'Space Mono',monospace;">by 前川勇 / AIによる自動分析</span></h1>
   <div class="hd-meta">
-    生成日: 2026年5月18日月曜日 19:32 JST<br>
+    生成日: 2026年5月19日火曜日 09:43 JST<br>
     ベースデータ: IEA Oil Market Report May 2026 · Gas Market Report Q2-2026
   </div>
   <button class="hd-alert-btn"><span>▲</span> UNPRECEDENTED SUPPLY DISRUPTION</button>
@@ -191,15 +191,15 @@ footer a{color:#777}
 <!-- ═══ STATS BAR ═══ -->
 <div class="stats-bar">
   <div class="stat-item">
-    <span class="stat-val">$108.3</span>
+    <span class="stat-val">$104.5</span>
     <span class="stat-lbl">現在のBrent価格</span>
   </div>
   <div class="stat-item">
-    <span class="stat-val">$105.4</span>
+    <span class="stat-val">$101.2</span>
     <span class="stat-lbl">WTI原油価格</span>
   </div>
   <div class="stat-item">
-    <span class="stat-val">50.2€</span>
+    <span class="stat-val">50.4€</span>
     <span class="stat-lbl">TTF天然ガス /MWh</span>
   </div>
   <div class="stat-item">
@@ -207,7 +207,7 @@ footer a{color:#777}
     <span class="stat-lbl">JKM LNG /MMBtu</span>
   </div>
   <div class="stat-item">
-    <span class="stat-val">40%</span>
+    <span class="stat-val">20%</span>
     <span class="stat-lbl">ホルムズ通過量（危機前比）</span>
   </div>
   <div class="stat-item">
@@ -219,10 +219,10 @@ footer a{color:#777}
 <!-- ═══ HORMUZ BAR ═══ -->
 <div class="hormuz-bar">
   <span class="hz-label">🚢 ホルムズ海峡ステータス</span>
-  <span class="hz-status">部分再開（イラン新手順による制限付き通航）</span>
-  <span class="hz-detail">PGSAライセンス申請必須。通過許可まで平均72時間待機。タンカー通過量は危機前の約40%水準。</span>
+  <span class="hz-status">停戦継続・MOU交渉難航（通航依然制限）</span>
+  <span class="hz-detail">米・イラン条件付き停戦（4/8〜）が継続中。5/6トランプがProject Freedom停止・一枚MOU交渉入り。5/11トランプがイランの提案を拒否し交渉が難航、停戦は「崩壊寸前」と報道。通航はPGSA手続き継続で依然低水準。</span>
   <div class="hz-flow-wrap">
-    通過流量 40%
+    通過流量 20%
     <div class="hz-bar"><div class="hz-bar-fill"></div></div>
   </div>
 </div>
@@ -230,12 +230,12 @@ footer a{color:#777}
 <!-- ═══ RISK SUMMARY BAR ═══ -->
 <div class="risk-bar">
   <span class="rbar-label">国別危険度:</span>
-  <span class="rbar-chip"><span class="rbar-dot" style="background:#c0392b"></span>最高: 5カ国</span>
-  <span class="rbar-chip"><span class="rbar-dot" style="background:#e67e22"></span>高: 4カ国</span>
+  <span class="rbar-chip"><span class="rbar-dot" style="background:#c0392b"></span>最高: 4カ国</span>
+  <span class="rbar-chip"><span class="rbar-dot" style="background:#e67e22"></span>高: 5カ国</span>
   <span class="rbar-chip"><span class="rbar-dot" style="background:#2980b9"></span>中: 2カ国</span>
   <span class="rbar-chip"><span class="rbar-dot" style="background:#27ae60"></span>低: 1カ国</span>
   <span class="rbar-label" style="margin-left:12px">IEA協調放出:</span><span class="rbar-chip">6,000万バレル（協調放出第2弾）</span>
-  <span class="rbar-label" style="margin-left:auto">グローバルリスク指数 <strong style="color:var(--accent);font-size:.8rem">87</strong></span>
+  <span class="rbar-label" style="margin-left:auto">グローバルリスク指数 <strong style="color:var(--accent);font-size:.8rem">88</strong></span>
 </div>
 
 <!-- ═══ REGION NAV ═══ -->
@@ -289,9 +289,9 @@ footer a{color:#777}
     <div class="risk-meter"><div class="risk-meter-fill" style="width:92%;background:#c0392b"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">第2次備蓄放出（5/1〜）開始。「Power Asia」プロジェクト始動でASEAN向けエネルギー外交を加速。</span>
+      <span class="ke-text">PM高市が第3次備蓄放出を見送り（5/12）。6月分原油調達の70%以上確保、米国産は前年比8倍。</span>
     </div>
-    <p class="card-summary">5月1日から第2次国家石油備蓄放出を開始（総量約5,800万kL＝3,600万バレル）。METI公表（5/18）の備蓄残量は5月15日時点で206日分（国家117日＋民間88日＋産油国1日）。高市首相がハノイ首脳会談でベトナムと「Power Asia」協定を締結し、原油調達支援と引き換えに医療品を確保。</p>
+    <p class="card-summary">高市首相が5月12日、6月分の原油調達見通しが立ったとして第3次備蓄放出を見送ると表明。6月の原油調達は70%以上確保の見通しで、米国からの調達は前年同期比約8倍に急増。METI公表（5/18）の備蓄残量は5月15日時点で206日分（国家117日＋民間88日＋産油国1日）。エネルギー消費削減令の閣議決定準備が本格化。</p>
     
     <div class="sec-toggle" onclick="toggleSec('JP-energy')">
       <span class="sec-arrow" id="arr-JP-energy">▶</span>
@@ -303,7 +303,7 @@ footer a{color:#777}
       <span class="sec-arrow" id="arr-JP-policy">▶</span>
       <span>🏛️ 政策対応</span>
     </div>
-    <div class="sec-body" id="sec-JP-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>第2次国家石油備蓄放出（約8,000万バレル相当、過去最大規模）を5/1〜実施。IEA協調放出分3,600万バレルを拠出</span></li><li><span class="b-icon">🏛️</span><span>高市首相がハノイでベトナムと「Power Asia」協定を締結（5/2）、原油調達支援ルートを多様化</span></li><li><span class="b-icon">🏛️</span><span>UAE・サウジとの二国間緊急融通協定の締結交渉を加速、中東依存からの分散に向けAU・カナダとも連携</span></li><li><span class="b-icon">🏛️</span><span>METI主導で省エネ強化令の閣議決定を準備中（7月施行予定）、産業用電力10%削減を義務化方針</span></li></ul></div>
+    <div class="sec-body" id="sec-JP-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>第2次国家石油備蓄放出（約8,000万バレル相当、過去最大規模）を5/1〜実施。IEA協調放出分3,600万バレルを拠出</span></li><li><span class="b-icon">🏛️</span><span>高市首相が6月分調達見通しが立ったとして第3次備蓄放出を見送り（5/12）。米国産原油調達は前年比約8倍に急増し6月分70%以上確保の目途</span></li><li><span class="b-icon">🏛️</span><span>UAE・サウジとの二国間緊急融通協定の締結交渉を加速、中東依存からの分散に向けAU・カナダとも連携</span></li><li><span class="b-icon">🏛️</span><span>METI主導で省エネ強化令の閣議決定を準備中（7月施行予定）、産業用電力10%削減を義務化方針</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('JP-outlook')">
       <span class="sec-arrow" id="arr-JP-outlook">▶</span>
@@ -312,11 +312,11 @@ footer a{color:#777}
     <div class="sec-body" id="sec-JP-outlook"><ul class="bullet-list"><li class="outlook-li">
       <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
-      <span>夏の電力需要ピーク（7〜8月）に需給逼迫が深刻化する恐れ</span>
+      <span>夏の電力需要ピーク（7〜8月）に需給逼迫が深刻化する恐れ。ガソリン補助予算は6〜7月に枯渇見通し</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
       <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
-      <span>ホルムズ部分再開が長期化した場合でも、備蓄206日分（国家117日＋民間88日＋産油国1日）で当面の供給は確保されるが、代替調達比率（5月約6割、6月約7割）の確保が継続課題</span>
+      <span>ホルムズ交渉が決裂・再封鎖に転じた場合、調達多様化（70%）の維持が課題。代替ルートの安定化が急務</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜1ヶ月）</span>
@@ -324,9 +324,9 @@ footer a{color:#777}
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
       <span class="horizon-tag" style="background:#6b635515;color:#6b6355;border:1px solid #6b635535">長期（6ヶ月超）</span>
-      <span>Power Asiaによるベトナム経由調達が軌道に乗れば中東依存度を5〜10%低下できる見込み</span>
+      <span>Power Asiaによるベトナム経由調達と米国産原油の拡大で中東依存度を5〜10%低下できる見込み</span>
     </li></ul></div>
-    <div class="card-src">出典: Al Jazeera, Argus Media, IndexBox, CGTN</div>
+    <div class="card-src">出典: S&amp;P Global, Argus Media, IndexBox, METI（5/18公表）</div>
   </div>
 </div>
 
@@ -350,30 +350,30 @@ footer a{color:#777}
       <div class="chip-val">26日</div>
       <div class="chip-lbl">備蓄残量</div>
     </div><div class="chip chip-alert">
-      <div class="chip-val">1,523円/$</div>
+      <div class="chip-val">1,523/$</div>
       <div class="chip-lbl">ウォン最安値</div>
-    </div><div class="chip chip-alert">
-      <div class="chip-val">26隻</div>
-      <div class="chip-lbl">足止め船舶</div>
+    </div><div class="chip">
+      <div class="chip-val">170億ドル</div>
+      <div class="chip-lbl">緊急予算</div>
     </div></div>
     <div class="risk-meter"><div class="risk-meter-fill" style="width:92%;background:#c0392b"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">ウォン対ドル1,523台・17年ぶり安値。KOSPI単日12%超急落・サーキットブレーカー発動。湾内足止め船舶26隻の早期解放を国際社会に要求。</span>
+      <span class="ke-text">政府が170億ドル緊急予算を発動。石炭発電所再稼働決定。ウォン対ドル1,523台・17年ぶり安値。</span>
     </div>
-    <p class="card-summary">原油輸入の70.7%・LNG輸入の20.4%が中東依存。備蓄残量は26日分（IEA基準90日）まで低下。KOSPIは1日で12%超下落しサーキットブレーカーが発動、ウォンが対ドル1,523円台と17年ぶり安値を記録。ペルシャ湾内に韓国籍船26隻が依然として足止め状態。</p>
+    <p class="card-summary">原油輸入の70.7%・LNG輸入の20.4%が中東依存。備蓄残量は26日分（IEA基準90日）まで低下。KOSPIは1日で12%超下落しサーキットブレーカーが発動、ウォンが対ドル1,523台と17年ぶり安値を記録。政府は170億ドルの緊急予算を展開し石炭発電再稼働も決定。</p>
     
     <div class="sec-toggle" onclick="toggleSec('KR-energy')">
       <span class="sec-arrow" id="arr-KR-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-KR-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>石化大手3社（ロッテケミカル・LG化学・韓和ソリューションズ）が相次いで不可抗力（フォースマジュール）を通告</span></li><li><span class="b-icon">⚡</span><span>国内最大エチレン製造会社・麗川NCC（Yeochun NCC）が供給途絶を宣言、プラスチック原料不足が製造業全体に波及</span></li><li><span class="b-icon">⚡</span><span>半導体産業向けヘリウムの64.7%がペルシャ湾経由のため、SK・サムスン工場向け供給が逼迫</span></li><li><span class="b-icon">⚡</span><span>備蓄26日分（IEA基準90日の28%）まで低下、ウォン対ドル1,523円台（17年ぶり安値）で輸入コストが二重苦</span></li></ul></div>
+    <div class="sec-body" id="sec-KR-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>石化大手3社（ロッテケミカル・LG化学・韓和ソリューションズ）が相次いで不可抗力（フォースマジュール）を通告</span></li><li><span class="b-icon">⚡</span><span>国内最大エチレン製造会社・麗川NCC（Yeochun NCC）が供給途絶を宣言、プラスチック原料不足が製造業全体に波及</span></li><li><span class="b-icon">⚡</span><span>半導体産業向けヘリウムの64.7%がペルシャ湾経由のため、SK・サムスン工場向け供給が逼迫</span></li><li><span class="b-icon">⚡</span><span>備蓄26日分（IEA基準90日の28%）まで低下、ウォン対ドル1,523台（17年ぶり安値）で輸入コストが二重苦</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('KR-policy')">
       <span class="sec-arrow" id="arr-KR-policy">▶</span>
       <span>🏛️ 政策対応</span>
     </div>
-    <div class="sec-body" id="sec-KR-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>大統領首席補佐官がオマーン・カザフスタン・サウジアラビアを歴訪し、ホルムズ非経由の原油確保を交渉中</span></li><li><span class="b-icon">🏛️</span><span>KOSCO（韓国石油公社）が米国・豪州からの緊急原油調達契約を締結、月間500万バレルを確保</span></li><li><span class="b-icon">🏛️</span><span>国家エネルギー緊急令を発動し産業用電力10%削減を義務化、鉄鋼・自動車に操業短縮要請</span></li><li><span class="b-icon">🏛️</span><span>湾内足止め26隻の早期解放を国連安保理に付託、米韓共同艦隊による護衛再開を米国に要請</span></li></ul></div>
+    <div class="sec-body" id="sec-KR-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>大統領首席補佐官がオマーン・カザフスタン・サウジアラビアを歴訪し、ホルムズ非経由の原油確保を交渉中</span></li><li><span class="b-icon">🏛️</span><span>KOSCO（韓国石油公社）が米国・豪州からの緊急原油調達契約を締結、月間500万バレルを確保</span></li><li><span class="b-icon">🏛️</span><span>政府が170億ドル緊急予算を展開し石炭発電所の再稼働を決定、エネルギー・社会・環境政策の優先順位を再調整</span></li><li><span class="b-icon">🏛️</span><span>湾内足止め26隻の早期解放を国連安保理に付託、米韓共同艦隊による護衛再開を米国に要請</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('KR-outlook')">
       <span class="sec-arrow" id="arr-KR-outlook">▶</span>
@@ -396,7 +396,7 @@ footer a{color:#777}
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
       <span>足止め船舶解放が長引くと物流コストがさらに上昇</span>
     </li></ul></div>
-    <div class="card-src">出典: ORF Online, BISI, CNBC</div>
+    <div class="card-src">出典: BISI, CNBC, KEIA, CNN</div>
   </div>
 </div>
 
@@ -408,7 +408,7 @@ footer a{color:#777}
       <span class="card-name">台湾</span>
     </div>
     <div class="card-hdr-right">
-      <span class="risk-badge risk-crit">危険度: 最高</span>
+      <span class="risk-badge risk-high">危険度: 高</span>
       <span class="card-arrow">▲</span>
     </div>
   </div>
@@ -422,51 +422,51 @@ footer a{color:#777}
     </div><div class="chip chip-alert">
       <div class="chip-val">3.2%</div>
       <div class="chip-lbl">電力予備率</div>
-    </div><div class="chip chip-alert">
-      <div class="chip-val">高</div>
-      <div class="chip-lbl">停電リスク</div>
+    </div><div class="chip">
+      <div class="chip-val">〜9月</div>
+      <div class="chip-lbl">供給確保期間</div>
     </div></div>
-    <div class="risk-meter"><div class="risk-meter-fill" style="width:92%;background:#c0392b"></div></div>
+    <div class="risk-meter"><div class="risk-meter-fill" style="width:70%;background:#e67e22"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">夏の電力需給逼迫に備えLNG緊急調達を継続。廃炉原発2基の再稼働計画を核安全委員会が審議中。</span>
+      <span class="ke-text">政府が9月分までのLNG供給確保を発表（5月）。米国産LNG長期契約（2026〜2050）が始動。</span>
     </div>
-    <p class="card-summary">LNG備蓄が11日分のみで東アジア最低水準。カタール産LNGが輸入の約3分の1を占めるが、ホルムズ経由が止まったまま。夏の冷房需要ピークに向けて深刻な電力不足リスクが高まっており、廃炉予定原発の再稼働論議が再燃。</p>
+    <p class="card-summary">政府が9月分まで天然ガスの供給確保を発表（5月）し、電力・石油ともに不足は発生していない。LNG備蓄は11日分で依然低水準だが、豪州・米国からの代替調達を継続中。2027年からは14日分へ引き上げ予定。原発再稼働計画が審議継続中。</p>
     
     <div class="sec-toggle" onclick="toggleSec('TW-energy')">
       <span class="sec-arrow" id="arr-TW-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-TW-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>LNG発電が電力供給の50%超を占める中、カタール産（輸入の38%）がホルムズ経由で途絶し在庫11日分まで急減</span></li><li><span class="b-icon">⚡</span><span>電力予備率3.2%（安全基準15%）と危険水域、TSMC・UMCなど半導体工場が自家発電設備を全面稼働</span></li><li><span class="b-icon">⚡</span><span>LNGタンカーの入港頻度が危機前の3日に1便から現在1日1便へと急増、バース容量が上限に近づいている</span></li><li><span class="b-icon">⚡</span><span>石炭火力を「最終手段」として緊急増強、LNG不足分を補填中。空気汚染悪化で市民の反発も</span></li></ul></div>
+    <div class="sec-body" id="sec-TW-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>LNG発電が電力供給の50%超を占める中、カタール産（輸入の38%）がホルムズ経由で途絶し在庫11日分まで急減</span></li><li><span class="b-icon">⚡</span><span>政府は9月分まで供給を確保と発表。豪州・米国からの代替調達が機能し、電力・石油不足は現時点では発生なし</span></li><li><span class="b-icon">⚡</span><span>LNGタンカーの入港頻度が危機前の3日に1便から現在1日1便へと急増、バース容量が上限に近づいている</span></li><li><span class="b-icon">⚡</span><span>石炭火力を「最終手段」として緊急増強、LNG不足分を補填中。空気汚染悪化で市民の反発も</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('TW-policy')">
       <span class="sec-arrow" id="arr-TW-policy">▶</span>
       <span>🏛️ 政策対応</span>
     </div>
-    <div class="sec-body" id="sec-TW-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>CPC（中油）がシェニエール社と1.2百万トン/年・2026〜2050年の米国LNG長期契約を締結、米国依存比率を2029年に25%へ引き上げ目標</span></li><li><span class="b-icon">🏛️</span><span>経済部が国殤（Guosheng）・馬鞍山（Ma-anshan）原子力発電所の2029年までの再稼働プロセスを開始（安全審査並行）</span></li><li><span class="b-icon">🏛️</span><span>産業用電力15%削減を義務化（5〜8月）、AIデータセンター向け電力使用の一時制限も実施</span></li><li><span class="b-icon">🏛️</span><span>米国・豪州・マレーシアからのスポットLNG緊急調達と、石炭・LCG（液化石炭ガス）への一時転換を承認</span></li></ul></div>
+    <div class="sec-body" id="sec-TW-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>CPC（中油）がシェニエール社と1.2百万トン/年・2026〜2050年の米国LNG長期契約を締結、米国依存比率を2029年に25%へ引き上げ目標</span></li><li><span class="b-icon">🏛️</span><span>経済部が国殤（Guosheng）・馬鞍山（Ma-anshan）原子力発電所の2029年までの再稼働プロセスを開始（安全審査並行）</span></li><li><span class="b-icon">🏛️</span><span>産業用電力15%削減を義務化（5〜8月）、AIデータセンター向け電力使用の一時制限も実施</span></li><li><span class="b-icon">🏛️</span><span>9月までの供給を確保済み。2027年からLNG備蓄を11日→14日分へ引き上げる計画を正式決定</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('TW-outlook')">
       <span class="sec-arrow" id="arr-TW-outlook">▶</span>
       <span>🔮 リスク見通し — 即時〜中期</span>
     </div>
     <div class="sec-body" id="sec-TW-outlook"><ul class="bullet-list"><li class="outlook-li">
-      <span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span>
-      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜2ヶ月）</span>
-      <span>7〜8月の冷房需要ピーク時に大規模停電が発生すれば半導体生産に壊滅的影響</span>
-    </li><li class="outlook-li">
       <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
-      <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時（〜1ヶ月）</span>
-      <span>廃炉原発再稼働が遅れれば6月中旬にもLNG備蓄が枯渇する恐れ</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜2ヶ月）</span>
+      <span>7〜8月の冷房需要ピーク時に大規模停電が発生すれば半導体生産に壊滅的影響（9月まで供給確保済みだが余裕は少ない）</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
       <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
       <span>電力不足が続けばTSMCの生産能力低下がグローバルサプライチェーンに波及</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
+      <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時（〜1ヶ月）</span>
+      <span>ホルムズ停戦崩壊リスクが高まると、9月以降の調達確保が改めて困難になる懸念</span>
+    </li><li class="outlook-li">
+      <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
-      <span>スポットLNG価格の高騰（JKM $17/MMBtu）で調達コストが急増</span>
+      <span>9月まで供給確保により当面の電力危機は回避、原発再稼働進展も緩和要因</span>
     </li></ul></div>
-    <div class="card-src">出典: Atlantic Council, Zero Carbon Analytics, CNBC</div>
+    <div class="card-src">出典: Energy Connects, Atlantic Council, CSIS, EIA</div>
   </div>
 </div>
 </section>
@@ -494,7 +494,7 @@ footer a{color:#777}
   </div>
   <div class="card-body">
     <div class="metric-chips"><div class="chip">
-      <div class="chip-val">14億bbl</div>
+      <div class="chip-val">~14億bbl</div>
       <div class="chip-lbl">戦略備蓄</div>
     </div><div class="chip">
       <div class="chip-val">110〜180日</div>
@@ -509,21 +509,21 @@ footer a{color:#777}
     <div class="risk-meter"><div class="risk-meter-fill" style="width:45%;background:#2980b9"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">トランプ・習近平会談でホルムズ再開への協調を確認。中国が米国産原油の購入拡大を表明。</span>
+      <span class="ke-text">中国が2026年に入り1日124万バレルペースで備蓄積み増しを継続。米中首脳会談でホルムズ再開協調を確認。</span>
     </div>
-    <p class="card-summary">戦略備蓄14億バレル（110〜180日分）と世界最大の在庫水準を維持。トランプ・習近平首脳会談後に米国産原油の輸入を増加。ホルムズ経由に依存しないロシア・中央アジア経由のパイプライン供給が下支え。輸出市場の縮小がGDP成長率を圧迫。</p>
+    <p class="card-summary">戦略備蓄約14億バレル（推計110〜180日分）と世界最大の在庫水準を維持。IEA非加盟国として協調放出には参加せず独自管理。国有製油所に商業在庫の取り崩しを承認し、ロシア・中央アジア経由のパイプライン供給で補填。トランプ・習近平首脳会談でホルムズ再開への協調を確認。</p>
     
     <div class="sec-toggle" onclick="toggleSec('CN-energy')">
       <span class="sec-arrow" id="arr-CN-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-CN-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>EIA推計で国内備蓄1.3億バレル（世界最大）を保有。IEA非加盟国として協調放出には参加せず、独自ペースで管理</span></li><li><span class="b-icon">⚡</span><span>ロシアESPO原油パイプライン（全体の約25%）がホルムズを迂回するため、危機の直接打撃は他のアジア諸国より限定的</span></li><li><span class="b-icon">⚡</span><span>国有製油所に商業在庫の取り崩しを4月に承認。中東からの調達不足分はロシア・中央アジア経由の増量で一部補填</span></li><li><span class="b-icon">⚡</span><span>輸出産業の落ち込みでGDP成長率目標を4.5%→3.3%に修正、内需刺激のためインフラ投資を加速</span></li></ul></div>
+    <div class="sec-body" id="sec-CN-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>推計備蓄1.3〜1.4億バレル（世界最大）を保有。IEA非加盟国として協調放出には参加せず、独自ペースで管理</span></li><li><span class="b-icon">⚡</span><span>ロシアESPO原油パイプライン（全体の約25%）がホルムズを迂回するため、危機の直接打撃は他のアジア諸国より限定的</span></li><li><span class="b-icon">⚡</span><span>国有製油所に商業在庫の取り崩しを4月に承認。中東からの調達不足分はロシア・中央アジア経由の増量で一部補填</span></li><li><span class="b-icon">⚡</span><span>輸出産業の落ち込みでGDP成長率目標を4.5%→3.3%に修正、内需刺激のためインフラ投資を加速</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('CN-policy')">
       <span class="sec-arrow" id="arr-CN-policy">▶</span>
       <span>🏛️ 政策対応</span>
     </div>
-    <div class="sec-body" id="sec-CN-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>トランプ・習近平首脳会談（4月）でホルムズ再開への協調枠組みに合意、米国産原油の追加購入（月200万bbl）を表明</span></li><li><span class="b-icon">🏛️</span><span>第14次五カ年計画（2026〜）で備蓄容量を2026年末までに20億バレル超へ拡張する方針を確定（現時点で米国の3倍超の備蓄量）</span></li><li><span class="b-icon">🏛️</span><span>NDRC（国家発展改革委員会）が製造業向けエネルギー補助金を拡大、電力料金の一時凍結を実施</span></li><li><span class="b-icon">🏛️</span><span>中央アジア・ロシア経由パイプライン供給量を月3,000万バレルに増強、中東依存比率の引き下げを加速</span></li></ul></div>
+    <div class="sec-body" id="sec-CN-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>トランプ・習近平首脳会談（4月）でホルムズ再開への協調枠組みに合意、米国産原油の追加購入（月200万bbl）を表明</span></li><li><span class="b-icon">🏛️</span><span>第14次五カ年計画（2026〜）で備蓄容量を2026年末までに20億バレル超へ拡張する方針を確定</span></li><li><span class="b-icon">🏛️</span><span>NDRC（国家発展改革委員会）が製造業向けエネルギー補助金を拡大、電力料金の一時凍結を実施</span></li><li><span class="b-icon">🏛️</span><span>中央アジア・ロシア経由パイプライン供給量を月3,000万バレルに増強、中東依存比率の引き下げを加速</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('CN-outlook')">
       <span class="sec-arrow" id="arr-CN-outlook">▶</span>
@@ -546,7 +546,7 @@ footer a{color:#777}
       <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
       <span>ロシア制裁回避による割引原油調達で相対的なコスト優位を維持</span>
     </li></ul></div>
-    <div class="card-src">出典: Columbia CGEP, CNBC, The Diplomat, EIA</div>
+    <div class="card-src">出典: EIA, Columbia CGEP, IndexBox, Discovery Alert</div>
   </div>
 </div>
 </section>
@@ -577,7 +577,7 @@ footer a{color:#777}
       <div class="chip-val">200万人</div>
       <div class="chip-lbl">停電影響人口</div>
     </div><div class="chip chip-alert">
-      <div class="chip-val">~80%</div>
+      <div class="chip-val">~98%</div>
       <div class="chip-lbl">輸入依存比率</div>
     </div><div class="chip chip-alert">
       <div class="chip-val">2〜3時間</div>
@@ -589,21 +589,21 @@ footer a{color:#777}
     <div class="risk-meter"><div class="risk-meter-fill" style="width:92%;background:#c0392b"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">ルソン・ビサヤ両グリッドで同時赤・黄警戒発令（5/15）。輪番停電が全国規模に拡大。</span>
+      <span class="ke-text">ルソン・ビサヤ両グリッドで同時赤・黄警戒（5/15）。比経済研究所が130〜310万人の貧困転落リスクを警告。</span>
     </div>
-    <p class="card-summary">5月13日にルソン島グリッドに高警戒発令、輪番停電が全国に拡大（約200万人が1回2〜3時間の停電）。5月15日にはルソン・ビサヤ両グリッドが同時赤・黄警戒。石炭・バイオマスへの燃料転換を緊急承認済み。国家エネルギー緊急宣言下で対応継続中。</p>
+    <p class="card-summary">ルソン・ビサヤ両グリッドで同時赤・黄警戒が発令（5/15）、約200万人が1回2〜3時間の輪番停電を経験。政府はEO110（国家エネルギー緊急令）を発令中で代替調達を継続。比経済研究所の推計では130〜310万人が新たに貧困層に転落する恐れ。</p>
     
     <div class="sec-toggle" onclick="toggleSec('PH-energy')">
       <span class="sec-arrow" id="arr-PH-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-PH-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>ルソン・ビサヤ両グリッドで同時赤・黄警戒発令（5/15）、200万人以上が1回2〜3時間の輪番停電を経験</span></li><li><span class="b-icon">⚡</span><span>セブパシフィック・フィリピン航空が国内外路線を相次ぎ運休・減便、観光地バギオの観光客が40〜50%減少</span></li><li><span class="b-icon">⚡</span><span>エネルギー省長官が「ディーゼルは45日分、LPGは25日分しか残っていない」と警告（3月末）</span></li><li><span class="b-icon">⚡</span><span>燃料輸入コスト+55%で国家財政が逼迫、外貨準備が急速に減少</span></li></ul></div>
+    <div class="sec-body" id="sec-PH-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>ルソン・ビサヤ両グリッドで同時赤・黄警戒発令（5/15）、200万人以上が1回2〜3時間の輪番停電を経験</span></li><li><span class="b-icon">⚡</span><span>セブパシフィック・フィリピン航空が国内外路線を相次ぎ運休・減便、観光地バギオの観光客が40〜50%減少</span></li><li><span class="b-icon">⚡</span><span>石油輸入依存98%・3月末時点の燃料備蓄は45日分（開戦時55〜57日から急減）</span></li><li><span class="b-icon">⚡</span><span>比経済研究所の試算で130〜310万人が貧困層に転落する恐れ、食料・燃料インフレが家計を直撃</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('PH-policy')">
       <span class="sec-arrow" id="arr-PH-policy">▶</span>
       <span>🏛️ 政策対応</span>
     </div>
-    <div class="sec-body" id="sec-PH-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>マルコス大統領が国家エネルギー緊急宣言を発令（3/24）、共和国法12316に署名し石油製品の消費税減免権限を2028年末まで取得</span></li><li><span class="b-icon">🏛️</span><span>マランパヤガス基金から200億ペソをDOEに放出し代替燃料調達を実施、石炭・バイオマス転換を緊急承認</span></li><li><span class="b-icon">🏛️</span><span>DOEが5月13日以降のルソン・ビサヤグリッド緊急対策を公表、輪番停電スケジュールを官報で周知</span></li><li><span class="b-icon">🏛️</span><span>米フィリピン軍燃料融通の要請（ザンボアンガ基地）とともに、インドネシア・マレーシアへの緊急原油・燃料調達交渉を開始</span></li></ul></div>
+    <div class="sec-body" id="sec-PH-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>マルコス大統領がEO110（国家エネルギー緊急令）を発令（3/24）、共和国法12316に署名し石油製品の消費税減免権限を2028年末まで取得</span></li><li><span class="b-icon">🏛️</span><span>マランパヤガス基金から200億ペソをDOEに放出し代替燃料調達を実施、石炭・バイオマス転換を緊急承認</span></li><li><span class="b-icon">🏛️</span><span>中国・インド・ロシアなど非伝統的な供給源との調達交渉を開始、米国・フィリピン軍事基地経由の燃料融通も要請</span></li><li><span class="b-icon">🏛️</span><span>DOEが輪番停電スケジュールを官報で周知、政府全機関に省エネ措置を義務化</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('PH-outlook')">
       <span class="sec-arrow" id="arr-PH-outlook">▶</span>
@@ -612,7 +612,7 @@ footer a{color:#777}
     <div class="sec-body" id="sec-PH-outlook"><ul class="bullet-list"><li class="outlook-li">
       <span class="risk-tag" style="background:#c0392b20;color:#c0392b;border:1px solid #c0392b40">最高リスク</span>
       <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時〜継続中</span>
-      <span>電力危機の継続による経済活動の麻痺と社会不安の高まり</span>
+      <span>電力危機の継続による経済活動の麻痺と社会不安の高まり、貧困転落者が最大310万人</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜2ヶ月）</span>
@@ -626,7 +626,7 @@ footer a{color:#777}
       <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
       <span>政情不安が外資誘致に影響し中期的な経済成長が損なわれる懸念</span>
     </li></ul></div>
-    <div class="card-src">出典: Wikipedia, CNN, The Diplomat, OSAC, Lowy Institute</div>
+    <div class="card-src">出典: Wikipedia, Al Jazeera, PIDS, DOE Philippines</div>
   </div>
 </div>
 
@@ -647,33 +647,33 @@ footer a{color:#777}
       <div class="chip-val">~40%</div>
       <div class="chip-lbl">中東原油依存</div>
     </div><div class="chip chip-alert">
-      <div class="chip-val">低下中</div>
-      <div class="chip-lbl">燃料基金残高</div>
+      <div class="chip-val">&lt;30日</div>
+      <div class="chip-lbl">国内燃料備蓄</div>
     </div><div class="chip">
       <div class="chip-val">↑拡大</div>
       <div class="chip-lbl">石炭発電比率</div>
     </div><div class="chip">
-      <div class="chip-val">60%</div>
+      <div class="chip-val">全国開始</div>
       <div class="chip-lbl">E10展開率</div>
     </div></div>
     <div class="risk-meter"><div class="risk-meter-fill" style="width:70%;background:#e67e22"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">日越「Power Asia」協定締結（5/2、ハノイ）。E10バイオ燃料の早期全国展開を決定。</span>
+      <span class="ke-text">首相がNghi Son隣接地への戦略石油備蓄基地の緊急建設を命令。備蓄30日未満の脆弱性に対応。</span>
     </div>
-    <p class="card-summary">E10バイオ燃料への移行を前倒しで実施し、ガソリン需給の一部を代替。燃料価格安定基金を取り崩して国内価格を抑制中。LNG不足補填のため石炭発電の稼働を拡大。日本との「Power Asia」協定でNghi Son製油所向け原油調達支援を受ける。</p>
+    <p class="card-summary">首相がNghi Son製油所隣接地への戦略石油備蓄基地の緊急建設を命令。国内燃料備蓄は30日未満と地域最低水準。E10バイオ燃料を4月から前倒し全国展開中。Q2〜Q3/2026が最も厳しい時期と見られ、年10%成長目標の達成は困難な情勢。</p>
     
     <div class="sec-toggle" onclick="toggleSec('VN-energy')">
       <span class="sec-arrow" id="arr-VN-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-VN-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>中東からの原油輸入が85%を占め、うちほぼ全量がクウェート産。3月にBrent価格が前月比+59%高騰し国内燃料価格を直撃</span></li><li><span class="b-icon">⚡</span><span>バイクタクシー・デリバリーなどギグワーカーが燃料費急騰で収入の30〜40%を失い生活危機に直面</span></li><li><span class="b-icon">⚡</span><span>燃料価格安定基金（FPSF）を1カ月で9回取り崩し（計VND5.3兆≒217億円）、国内価格を抑制中。基金に国家予算VND8兆を緊急補填（3/27）</span></li><li><span class="b-icon">⚡</span><span>Nghi Son製油所が日本・Power Asia協定による支援で原油調達を確保し、稼働率85%→95%に回復</span></li></ul></div>
+    <div class="sec-body" id="sec-VN-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>中東からの原油輸入が依然40%超を占め、Brent $100〜110台の高値が輸送・物流コストを直撃</span></li><li><span class="b-icon">⚡</span><span>バイクタクシー・デリバリーなどギグワーカーが燃料費急騰で収入の30〜40%を失い生活危機に直面</span></li><li><span class="b-icon">⚡</span><span>燃料価格安定基金（FPSF）を取り崩し続け国家予算からの補填を実施、基金の持続可能性に懸念</span></li><li><span class="b-icon">⚡</span><span>Nghi Son製油所は原油調達を確保し稼働率85%→95%に回復、5月分供給は充足</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('VN-policy')">
       <span class="sec-arrow" id="arr-VN-policy">▶</span>
       <span>🏛️ 政策対応</span>
     </div>
-    <div class="sec-body" id="sec-VN-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>首相がディーゼル・ガソリン・航空燃料への環境税を4/15まで停止し価格抑制、さらに延長を検討中</span></li><li><span class="b-icon">🏛️</span><span>政治局・政府・首相が4週間分・長期分の2シナリオで燃料供給緊急計画を策定・実施中</span></li><li><span class="b-icon">🏛️</span><span>ロシア制裁緩和を機にベトナムとして初のロシア産原油輸入を探索、中東依存の分散を図る</span></li><li><span class="b-icon">🏛️</span><span>E10バイオ燃料の全国義務化を6カ月前倒し（2026年7月）、メコン川水力増強とともに国内エネルギー自立を加速</span></li></ul></div>
+    <div class="sec-body" id="sec-VN-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>首相がNghi Son隣接地への戦略石油備蓄基地の緊急建設を命令、30日未満という備蓄の脆弱性への抜本対策</span></li><li><span class="b-icon">🏛️</span><span>政治局・政府が4週間分・長期分の2シナリオで燃料供給緊急計画を策定・実施中</span></li><li><span class="b-icon">🏛️</span><span>ロシア制裁緩和を機にベトナムとして初のロシア産原油輸入を探索、中東依存の分散を図る</span></li><li><span class="b-icon">🏛️</span><span>E10バイオ燃料の全国義務化を4月から前倒し展開（6カ月前倒し）、消費税停止措置を継続延長</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('VN-outlook')">
       <span class="sec-arrow" id="arr-VN-outlook">▶</span>
@@ -681,12 +681,12 @@ footer a{color:#777}
     </div>
     <div class="sec-body" id="sec-VN-outlook"><ul class="bullet-list"><li class="outlook-li">
       <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
-      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
-      <span>燃料価格安定基金の枯渇により、2026年後半に価格急騰が表面化する懸念</span>
+      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
+      <span>Q2〜Q3/2026が最も困難な時期。高エネルギー価格と限定供給が重なり、年10%GDP成長目標の達成が困難</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
-      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
-      <span>中東依存40%のうち代替調達が確保できなければ製油所稼働に影響</span>
+      <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
+      <span>燃料価格安定基金の枯渇により、2026年後半に価格急騰が表面化する懸念</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
       <span class="horizon-tag" style="background:#6b635515;color:#6b6355;border:1px solid #6b635535">長期（6ヶ月超）</span>
@@ -694,9 +694,9 @@ footer a{color:#777}
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#27ae6020;color:#27ae60;border:1px solid #27ae6040">低リスク</span>
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短〜中期</span>
-      <span>Power Asia協定による日本の支援で短〜中期的なエネルギー安全保障を確保</span>
+      <span>Power Asia協定による日本の支援とNghi Son稼働回復で短〜中期的なエネルギー安全保障を確保</span>
     </li></ul></div>
-    <div class="card-src">出典: Vietnam Briefing, Al Jazeera, CNN</div>
+    <div class="card-src">出典: Vietnam Briefing, Asia Times, The Investor, Reccessary</div>
   </div>
 </div>
 </section>
@@ -727,11 +727,11 @@ footer a{color:#777}
       <div class="chip-val">&lt;25%</div>
       <div class="chip-lbl">ガス貯蔵量</div>
     </div><div class="chip chip-alert">
-      <div class="chip-val">50€/MWh</div>
+      <div class="chip-val">50.4€/MWh</div>
       <div class="chip-lbl">TTF価格</div>
-    </div><div class="chip">
-      <div class="chip-val">&gt;10億€</div>
-      <div class="chip-lbl">緊急財政</div>
+    </div><div class="chip chip-alert">
+      <div class="chip-val">€120〜150/MWh</div>
+      <div class="chip-lbl">産業電力価格</div>
     </div><div class="chip chip-alert">
       <div class="chip-val">-22%</div>
       <div class="chip-lbl">産業稼働率</div>
@@ -739,15 +739,15 @@ footer a{color:#777}
     <div class="risk-meter"><div class="risk-meter-fill" style="width:70%;background:#e67e22"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">ドイツがスペインと並びEU緊急エネルギー財政措置の最大拠出国に。TTF価格50€/MWh超突破。</span>
+      <span class="ke-text">欧州ガス貯蔵が2018年以来最低水準（31bcm）。ドイツの産業電力は€120〜150/MWhに高騰。</span>
     </div>
-    <p class="card-summary">欧州全体のガス貯蔵量は容量の50%以下、ドイツ・フランスはともに25%未満まで低下。欧州委員会とともに10億ユーロ超の緊急財政措置を発動。TTFは5月15日に50€/MWh超まで上昇。化学・金属産業では稼働縮小が継続。</p>
+    <p class="card-summary">欧州ガス貯蔵は2018年以来最低水準（31bcm、容量の約27%）。ドイツ・フランスともに貯蔵容量の25%未満。TTFが50€/MWhを突破し産業電力は€120〜150/MWhに高騰。化学・金属産業の稼働縮小が継続。2026〜27年冬に向けた貯蔵積み増しが最重要課題。</p>
     
     <div class="sec-toggle" onclick="toggleSec('DE-energy')">
       <span class="sec-arrow" id="arr-DE-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-DE-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>欧州ガス貯蔵は4/1時点でEU全体314TWh（容量の27.7%）と2021〜22年の危機以来最低水準。ドイツ国内も貯蔵容量の25%未満まで低下</span></li><li><span class="b-icon">⚡</span><span>ロシアパイプラインガスの喪失に続きカタールLNG（ホルムズ経由）も途絶、欧州は史上初の「二重喪失」に直面</span></li><li><span class="b-icon">⚡</span><span>TTF価格50€/MWhを突破（危機前比3倍）、BASF・ティッセンクルップなど化学・金属大手が稼働を20〜30%縮小</span></li><li><span class="b-icon">⚡</span><span>LNG輸入ターミナル容量が上限近くで稼働しており、冬季に向けた貯蔵積み増しには供給源の拡大が不可欠な状況</span></li></ul></div>
+    <div class="sec-body" id="sec-DE-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>欧州ガス貯蔵は4/1時点でEU全体31bcm（容量の約27%）と2018年以来最低水準。ドイツ国内も貯蔵容量の25%未満まで低下</span></li><li><span class="b-icon">⚡</span><span>ロシアパイプラインガスの喪失に続きカタールLNG（ホルムズ経由）も途絶、欧州は史上初の「二重喪失」に直面</span></li><li><span class="b-icon">⚡</span><span>TTF価格50€/MWhを突破（危機前比3倍）、BASF・ティッセンクルップなど化学・金属大手が稼働を20〜30%縮小。産業電力は€120〜150/MWhに高騰</span></li><li><span class="b-icon">⚡</span><span>LNG輸入ターミナル容量が上限近くで稼働しており、冬季に向けた貯蔵積み増しには供給源の拡大が不可欠な状況</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('DE-policy')">
       <span class="sec-arrow" id="arr-DE-policy">▶</span>
@@ -776,7 +776,7 @@ footer a{color:#777}
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜2ヶ月）</span>
       <span>エネルギー高騰によるインフレ再加速でECBの利下げ余地が縮小</span>
     </li></ul></div>
-    <div class="card-src">出典: Bruegel, IndexBox, ECB, IEEFA</div>
+    <div class="card-src">出典: Bruegel, IndexBox, Columbia CGEP, IEEFA</div>
   </div>
 </div>
 
@@ -800,8 +800,8 @@ footer a{color:#777}
       <div class="chip-val">&lt;25%</div>
       <div class="chip-lbl">ガス貯蔵量</div>
     </div><div class="chip">
-      <div class="chip-val">15%</div>
-      <div class="chip-lbl">航空便削減</div>
+      <div class="chip-val">€60〜80/MWh</div>
+      <div class="chip-lbl">電力価格</div>
     </div><div class="chip">
       <div class="chip-val">+35%</div>
       <div class="chip-lbl">LNG輸入増</div>
@@ -809,15 +809,15 @@ footer a{color:#777}
     <div class="risk-meter"><div class="risk-meter-fill" style="width:70%;background:#e67e22"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">エールフランス、欧州内短距離路線を6月から一部運休へ。イベリア経由LNG輸入拡大で欧州に協力。</span>
+      <span class="ke-text">仏・西・葡のLNGターミナルが欧州の「代替ガス回廊」として機能。電力価格はドイツの半値以下に安定。</span>
     </div>
-    <p class="card-summary">原子力発電（発電の70%）が欧州内最大の緩和要因として機能。ガス貯蔵はドイツと同水準の25%未満。エールフランスは欧州域内短距離路線の一部を6月から運休予定。イベリア半島のLNG輸入インフラを活用した調達多様化を進めている。</p>
+    <p class="card-summary">原子力発電（発電の70%）が欧州内最大の緩和要因として機能。電力価格は€60〜80/MWhとドイツ（€120〜150）より大幅に低く安定。ガス貯蔵はドイツと同水準の25%未満だが、イベリア半島のLNG輸入インフラを活用した調達多様化を欧州全体に提供。</p>
     
     <div class="sec-toggle" onclick="toggleSec('FR-energy')">
       <span class="sec-arrow" id="arr-FR-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-FR-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>原子力70%（56基中54基稼働）が欧州最大の緩和要因として機能し、ドイツと異なりガス依存度が低く電力危機を抑制</span></li><li><span class="b-icon">⚡</span><span>ガス貯蔵25%未満はドイツと同水準だが、イベリア半島経由のLNG調達を積み増し欧州への供給を支援</span></li><li><span class="b-icon">⚡</span><span>エールフランスが6月から欧州域内短距離路線の15%を運休（燃油代高騰）、国内線乗客にTGVへの移行を促す</span></li><li><span class="b-icon">⚡</span><span>電力輸出余力があり（ドイツ・イタリア向け）欧州電力危機の「最後の砦」としての役割を担う</span></li></ul></div>
+    <div class="sec-body" id="sec-FR-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>原子力70%（56基中54基稼働）が欧州最大の緩和要因として機能し、ドイツと異なりガス依存度が低く電力危機を抑制</span></li><li><span class="b-icon">⚡</span><span>電力価格€60〜80/MWhはドイツ（€120〜150）の半値以下で、欧州電力危機の「緩衝材」として機能</span></li><li><span class="b-icon">⚡</span><span>ガス貯蔵25%未満はドイツと同水準だが、イベリア半島経由のLNG調達を積み増し欧州への供給を支援</span></li><li><span class="b-icon">⚡</span><span>エールフランスが6月から欧州域内短距離路線の15%を運休（燃油代高騰）、国内線乗客にTGVへの移行を促す</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('FR-policy')">
       <span class="sec-arrow" id="arr-FR-policy">▶</span>
@@ -846,7 +846,7 @@ footer a{color:#777}
       <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
       <span>原子力+イベリアLNGの組み合わせで欧州諸国の中では相対的に安定</span>
     </li></ul></div>
-    <div class="card-src">出典: Bruegel, ECB, Euronews</div>
+    <div class="card-src">出典: IndexBox, Euronews, ECB, IEEFA</div>
   </div>
 </div>
 
@@ -873,15 +873,15 @@ footer a{color:#777}
       <div class="chip-val">ホルムズ</div>
       <div class="chip-lbl">軍事派遣</div>
     </div><div class="chip chip-alert">
-      <div class="chip-val">&lt;30%</div>
+      <div class="chip-val">~12日分</div>
       <div class="chip-lbl">ガス貯蔵</div>
     </div></div>
     <div class="risk-meter"><div class="risk-meter-fill" style="width:70%;background:#e67e22"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">英国がホルムズ防衛ミッションにドローン・戦闘機・海軍艦艇を派遣（5月）。</span>
+      <span class="ke-text">英国がホルムズ防衛ミッションにドローン・戦闘機・海軍艦艇を派遣（5月）。エネルギーインフレ前年比+17.87%。</span>
     </div>
-    <p class="card-summary">ドローン・戦闘機・海軍艦艇をホルムズ防衛ミッション（国際商業船舶保護）に派遣（5月）。北海ガス生産の長期減少とLNG市場での争奪戦が重なる。IEA緊急行動計画に基づく備蓄放出調整を実施中。</p>
+    <p class="card-summary">ドローン・戦闘機・海軍艦艇をホルムズ防衛ミッション（国際商業船舶保護）に派遣（5月）。北海ガス生産の長期減少とLNG市場での争奪戦が重なる。エネルギー価格インフレは前年比+17.87%（4月）。ガス貯蔵は平均消費の12日分しかなく構造的脆弱性が継続。</p>
     
     <div class="sec-toggle" onclick="toggleSec('GB-energy')">
       <span class="sec-arrow" id="arr-GB-energy">▶</span>
@@ -916,7 +916,7 @@ footer a{color:#777}
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
       <span>エネルギーコスト高騰がインフレ再加速をもたらし景気後退が長引く</span>
     </li></ul></div>
-    <div class="card-src">出典: CNBC, BISI, IEEFA</div>
+    <div class="card-src">出典: BISI, UK Commons Library, CNBC, IEEFA</div>
   </div>
 </div>
 </section>
@@ -959,30 +959,30 @@ footer a{color:#777}
     <div class="risk-meter"><div class="risk-meter-fill" style="width:45%;background:#2980b9"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">トランプ大統領がProject Freedom（ホルムズ軍事護衛作戦）を停止。対イラン包括合意に向け交渉継続中。</span>
+      <span class="ke-text">5/11トランプがイラン提案を拒否、MOU交渉難航。Project Freedom停止継続中。EIA予測Brent~$106/bbl。</span>
     </div>
-    <p class="card-summary">原油輸出は高水準を維持し、中国・欧州向け緊急供給を拡大。EIA STEOによれば5〜6月のBrent価格は約106ドル/bbl水準を予測。トランプ大統領が「Project Freedom」軍事作戦を停止し、パキスタン仲介で対イラン外交交渉が進行中。</p>
+    <p class="card-summary">5月6日にトランプ大統領がProject Freedom（ホルムズ軍事護衛作戦）を停止し一枚紙MOU交渉に切り替え。5月11日にはトランプがイランの提案を拒否し交渉が難航。IEA協調放出で1.72億バレルを拠出。シェール生産1,340万b/dと輸出は高水準を維持。</p>
     
     <div class="sec-toggle" onclick="toggleSec('US-energy')">
       <span class="sec-arrow" id="arr-US-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-US-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>シェール原油生産が1,340万b/dと過去最高水準を維持。高油価が産業利益を押し上げ、テキサス・パーミアン盆地を中心に増産が続く</span></li><li><span class="b-icon">⚡</span><span>欧州・アジア向けLNG輸出が急増しチャーターレートが過去最高水準に。米国が世界最大のLNG輸出国として危機の恩恵を享受</span></li><li><span class="b-icon">⚡</span><span>3月の世界供給量が-1,010万b/d（97mb/d）と史上最大の落ち込みを記録。米国はIEA協調放出で1.72億バレルを拠出し最大拠出国に</span></li><li><span class="b-icon">⚡</span><span>国内ガソリン$4.2/ガロンは欧州・アジアより低く国内消費者への影響は相対的に軽微</span></li></ul></div>
+    <div class="sec-body" id="sec-US-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>シェール原油生産が1,340万b/dと過去最高水準を維持。高油価が産業利益を押し上げ、テキサス・パーミアン盆地を中心に増産が続く</span></li><li><span class="b-icon">⚡</span><span>欧州・アジア向けLNG輸出が急増しチャーターレートが過去最高水準に。米国が世界最大のLNG輸出国として危機の恩恵を享受</span></li><li><span class="b-icon">⚡</span><span>IEAによれば14mb/d以上が供給途絶の記録的ショック。米国はIEA協調放出で1.72億バレルを拠出し最大拠出国に</span></li><li><span class="b-icon">⚡</span><span>国内ガソリン$4.2/ガロンは欧州・アジアより低く国内消費者への影響は相対的に軽微</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('US-policy')">
       <span class="sec-arrow" id="arr-US-policy">▶</span>
       <span>🏛️ 政策対応</span>
     </div>
-    <div class="sec-body" id="sec-US-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>トランプ大統領がProject Freedom（ホルムズ軍事護衛作戦）を一時停止（5月）、パキスタン仲介での対イラン外交に切り替え</span></li><li><span class="b-icon">🏛️</span><span>IEA協調備蓄放出で1.72億バレルを拠出（主要拠出国）、EIA STEOで5〜6月のBrent価格を~$106/bblと予測</span></li><li><span class="b-icon">🏛️</span><span>習近平との首脳会談でホルムズ再開への共同圧力に合意し、中国の米国産原油追加購入（月200万bbl）を引き出す</span></li><li><span class="b-icon">🏛️</span><span>同盟国（日本・韓国・EU）への緊急原油供給を拡大し、エネルギー外交でのリーダーシップを強化</span></li></ul></div>
+    <div class="sec-body" id="sec-US-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>トランプ大統領がProject Freedom（ホルムズ軍事護衛作戦）を停止（5/6）し、パキスタン仲介での対イランMOU交渉に切り替え</span></li><li><span class="b-icon">🏛️</span><span>5/11トランプがイランの提案を拒否・交渉が難航。停戦は「崩壊寸前」状態だが軍事再開には至らず</span></li><li><span class="b-icon">🏛️</span><span>IEA協調備蓄放出で1.72億バレルを拠出（主要拠出国）、同盟国（日本・韓国・EU）への緊急原油供給を拡大</span></li><li><span class="b-icon">🏛️</span><span>習近平との首脳会談でホルムズ再開への共同圧力に合意し、中国の米国産原油追加購入（月200万bbl）を引き出す</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('US-outlook')">
       <span class="sec-arrow" id="arr-US-outlook">▶</span>
-      <span>🔮 リスク見通し — 短期〜当面</span>
+      <span>🔮 リスク見通し — 即時〜当面</span>
     </div>
     <div class="sec-body" id="sec-US-outlook"><ul class="bullet-list"><li class="outlook-li">
-      <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
-      <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（〜3ヶ月）</span>
-      <span>対イラン交渉が決裂した場合、軍事的オプションの再発動で地域緊張が急騰</span>
+      <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
+      <span class="horizon-tag" style="background:#c0392b15;color:#c0392b;border:1px solid #c0392b35">即時（〜1ヶ月）</span>
+      <span>MOU交渉決裂・停戦崩壊の場合、軍事的オプション（Project Freedom再発動）で地域緊張が急騰</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
       <span class="horizon-tag" style="background:#e67e2215;color:#e67e22;border:1px solid #e67e2235">短期（1〜3ヶ月）</span>
@@ -996,7 +996,7 @@ footer a{color:#777}
       <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
       <span>外交解決に成功すれば同盟国への供給拡大で地政学的影響力を強化</span>
     </li></ul></div>
-    <div class="card-src">出典: EIA STEO May 2026, CNBC, Discover Alert</div>
+    <div class="card-src">出典: EIA STEO May 2026, CNN, Axios, IEA OMR May 2026</div>
   </div>
 </div>
 
@@ -1029,15 +1029,15 @@ footer a{color:#777}
     <div class="risk-meter"><div class="risk-meter-fill" style="width:20%;background:#27ae60"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">Trans Mountain経由アジア向け輸出が拡大。IEA協調放出に2,360万バレルを拠出。</span>
+      <span class="ke-text">Trans Mountain経由アジア向け輸出が拡大。IEA協調放出に2,360万バレルを拠出（4月〜）。</span>
     </div>
-    <p class="card-summary">Trans Mountain拡張パイプライン経由のアジア向け輸出が本格稼働。IEA協調備蓄放出に2,360万バレルを拠出予定。4月から生産量を14万b/d増産。アルバータ州の財政黒字が拡大。高油価の恩恵を享受しながら対アジア供給を強化中。</p>
+    <p class="card-summary">Trans Mountain拡張パイプライン経由のアジア向け輸出が本格稼働。IEA協調備蓄放出に2,360万バレルを拠出。4月から生産量を14万b/d増産。アルバータ州の財政黒字が拡大。高油価の恩恵を享受しながら対アジア供給を強化中。</p>
     
     <div class="sec-toggle" onclick="toggleSec('CA-energy')">
       <span class="sec-arrow" id="arr-CA-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-CA-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>Trans Mountain拡張（TMX）パイプラインが本格稼働し、アジア向け輸出が日量89万バレルに拡大。高油価でオイルサンド産業は空前の利益</span></li><li><span class="b-icon">⚡</span><span>アルバータ州財政が高油価で過去最大の黒字を計上。カナダ経済全体では資源輸出がGDPを支える</span></li><li><span class="b-icon">⚡</span><span>ただしLNG輸出ターミナルが未整備でLNG輸出はパイプライン・液化能力がボトルネック。アジア向けLNG需要に即応できない課題が残る</span></li><li><span class="b-icon">⚡</span><span>LNG Canadaフェーズ1（BC州キティマット）が稼働し年間1,400万トンを輸出中。アジアLNG市場での先行者利益を享受</span></li></ul></div>
+    <div class="sec-body" id="sec-CA-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>Trans Mountain拡張（TMX）パイプラインが本格稼働し、アジア向け輸出が日量89万バレルに拡大。高油価でオイルサンド産業は空前の利益</span></li><li><span class="b-icon">⚡</span><span>アルバータ州財政が高油価で過去最大の黒字を計上。カナダ経済全体では資源輸出がGDPを支える</span></li><li><span class="b-icon">⚡</span><span>LNG Canadaフェーズ1（BC州キティマット）が稼働し年間1,400万トンを輸出中。アジアLNG市場での先行者利益を享受</span></li><li><span class="b-icon">⚡</span><span>米国への原油輸出も増加（米国の粗油輸入の60%がカナダ産）、TMX開通後は対アジアルートも多様化</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('CA-policy')">
       <span class="sec-arrow" id="arr-CA-policy">▶</span>
@@ -1066,7 +1066,7 @@ footer a{color:#777}
       <span class="horizon-tag" style="background:#27ae6015;color:#27ae60;border:1px solid #27ae6035">当面継続</span>
       <span>国内需要への影響は軽微で、危機対応より供給拡大にリソースを集中</span>
     </li></ul></div>
-    <div class="card-src">出典: S&amp;P Global, Canada Action, Discover Alert</div>
+    <div class="card-src">出典: S&amp;P Global, EIA, Canada Action</div>
   </div>
 </div>
 </section>
@@ -1102,28 +1102,28 @@ footer a{color:#777}
     </div><div class="chip chip-alert">
       <div class="chip-val">ガソリン46日/ディーゼル33日</div>
       <div class="chip-lbl">燃料備蓄</div>
-    </div><div class="chip chip-alert">
-      <div class="chip-val">深刻打撃</div>
-      <div class="chip-lbl">農業・物流</div>
+    </div><div class="chip">
+      <div class="chip-val">148億豪ドル</div>
+      <div class="chip-lbl">パッケージ規模</div>
     </div></div>
     <div class="risk-meter"><div class="risk-meter-fill" style="width:92%;background:#c0392b"></div></div>
     <div class="key-event-row">
       <span class="ke-icon">📌</span>
-      <span class="ke-text">数十年ぶりに米国を緊急燃料供給源として活用。政府の燃料レジリエンスパッケージが実施段階に入る。</span>
+      <span class="ke-text">148億豪ドルの燃料安全保障パッケージ発表（5月）。政府所有の燃料備蓄を初めて設立し、50日分以上を目標。</span>
     </div>
-    <p class="card-summary">国内原油産出約32万b/dに対し輸入精製品は約85万b/dと輸入依存が深刻。数十年ぶりに米国を緊急燃料供給源として活用。農業・物流・採掘業への打撃が継続しており、政府の燃料レジリエンスパッケージが実施段階に入った。</p>
+    <p class="card-summary">政府が総額148億豪ドルの燃料安全保障・レジリエンスパッケージを発表（5月）し、沖合燃料備蓄50日分以上を目標に設定。危機前は30日未満（IEA基準の90日を大幅下回り）と先進国最低水準だった。数十年ぶりに米国を緊急供給源として活用中。農業・物流・採掘業への打撃が継続。</p>
     
     <div class="sec-toggle" onclick="toggleSec('AU-energy')">
       <span class="sec-arrow" id="arr-AU-energy">▶</span>
       <span>⚡ エネルギー・産業影響</span>
     </div>
-    <div class="sec-body" id="sec-AU-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>国内稼働精製所がアンポルLytton（ブリスベン）とビバエナジーGeelong（メルボルン）の2カ所のみ、国内需要の20%未満しかカバーできず</span></li><li><span class="b-icon">⚡</span><span>現在の燃料備蓄はガソリン44〜46日、ディーゼル33日、航空燃料30日（いずれもIEA基準90日を大幅下回る）</span></li><li><span class="b-icon">⚡</span><span>57隻の燃料タンカーが月末までに4.1億リットルを搬入予定だが、農業・物流・鉱業セクターへの安定供給はギリギリの状態</span></li><li><span class="b-icon">⚡</span><span>ディーゼル価格急騰が農業機械・輸送コストを直撃し、2026〜27年の食料・消費財価格に二次的インフレを引き起こす恐れ</span></li></ul></div>
+    <div class="sec-body" id="sec-AU-energy"><ul class="bullet-list"><li><span class="b-icon">⚡</span><span>国内稼働精製所がアンポルLytton（ブリスベン）とビバエナジーGeelong（メルボルン）の2カ所のみ、国内需要の20%未満しかカバーできず</span></li><li><span class="b-icon">⚡</span><span>現在の燃料備蓄はガソリン44〜46日、ディーゼル33日、航空燃料30日（IEA基準90日を大幅下回る）</span></li><li><span class="b-icon">⚡</span><span>57隻の燃料タンカーが月末までに4.1億リットルを搬入予定だが、農業・物流・鉱業セクターへの安定供給はギリギリの状態</span></li><li><span class="b-icon">⚡</span><span>ディーゼル価格急騰が農業機械・輸送コストを直撃し、2026〜27年の食料・消費財価格に二次的インフレを引き起こす恐れ</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('AU-policy')">
       <span class="sec-arrow" id="arr-AU-policy">▶</span>
       <span>🏛️ 政策対応</span>
     </div>
-    <div class="sec-body" id="sec-AU-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>アルバネーゼ政権が107億豪ドルの燃料安全保障・レジリエンスパッケージを発表。32億豪ドルでディーゼル・航空燃料10億リットルの国家備蓄を構築</span></li><li><span class="b-icon">🏛️</span><span>燃料消費税を3カ月間半額に引き下げ（家庭・輸送コスト緩和）、輸入業者・製造業者向けに75億豪ドルの無利子融資を実施</span></li><li><span class="b-icon">🏛️</span><span>数十年ぶりに米国を主要緊急供給源として活用（月間3,000万リットル）、日本・米国との三国間エネルギー安全保障対話を開始</span></li><li><span class="b-icon">🏛️</span><span>農業・物流部門への燃料優先割当制度を導入し、食料サプライチェーンの維持を最優先</span></li></ul></div>
+    <div class="sec-body" id="sec-AU-policy"><ul class="bullet-list"><li><span class="b-icon">🏛️</span><span>アルバネーゼ政権が148億豪ドルの燃料安全保障・レジリエンスパッケージを発表（5/6）。32億豪ドルで政府所有のディーゼル・航空燃料備蓄（約10億リットル）を初設立、75億豪ドルの燃料・肥料安全保障ファシリティを展開。目標：ディーゼル・航空燃料50日分以上</span></li><li><span class="b-icon">🏛️</span><span>燃料消費税を3カ月間半額に引き下げ（家庭・輸送コスト緩和）、75億豪ドルの燃料・肥料安全保障ファシリティ（無利子融資・出資・保証）を実施</span></li><li><span class="b-icon">🏛️</span><span>数十年ぶりに米国を主要緊急供給源として活用（月間3,000万リットル）、日本・米国との三国間エネルギー安全保障対話を開始</span></li><li><span class="b-icon">🏛️</span><span>農業・物流部門への燃料優先割当制度を導入し、食料サプライチェーンの維持を最優先</span></li></ul></div>
     
     <div class="sec-toggle" onclick="toggleSec('AU-outlook')">
       <span class="sec-arrow" id="arr-AU-outlook">▶</span>
@@ -1140,13 +1140,13 @@ footer a{color:#777}
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#e67e2220;color:#e67e22;border:1px solid #e67e2240">高リスク</span>
       <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中〜長期</span>
-      <span>精製能力の欠如で危機が長期化した場合の自立的回復が困難</span>
+      <span>精製能力の欠如で危機が長期化した場合の自立的回復が困難。50日目標達成まで時間がかかる</span>
     </li><li class="outlook-li">
       <span class="risk-tag" style="background:#2980b920;color:#2980b9;border:1px solid #2980b940">中リスク</span>
       <span class="horizon-tag" style="background:#2980b915;color:#2980b9;border:1px solid #2980b935">中期（3〜6ヶ月）</span>
       <span>採掘業（主要輸出産業）の生産低下が国家財政に影響</span>
     </li></ul></div>
-    <div class="card-src">出典: OilPrice.com, IEEFA, Discover Alert, EIA</div>
+    <div class="card-src">出典: PM Australia, S&amp;P Global, DCCEEW, Macquarie University</div>
   </div>
 </div>
 </section>
