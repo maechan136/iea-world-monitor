@@ -7,12 +7,22 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
-const dataPath = path.join(__dirname, 'data', 'latest.json');
+const dataPath  = path.join(__dirname, 'data', 'latest.json');
+const appJsPath = path.join(__dirname, 'app.js');
 if (!fs.existsSync(dataPath)) {
   console.error('❌ data/latest.json が見つかりません');
   process.exit(1);
 }
+if (!fs.existsSync(appJsPath)) {
+  console.error('❌ app.js が見つかりません');
+  process.exit(1);
+}
+
+// app.js の SRI ハッシュをビルド時に自動計算
+const appJsContent = fs.readFileSync(appJsPath);
+const appJsSRI = 'sha384-' + crypto.createHash('sha384').update(appJsContent).digest('base64');
 
 const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
 const now = new Date();
@@ -446,38 +456,7 @@ ${REGIONS.map(r => regionSection(r)).join('\n')}
   お問い合わせ: productivity.counselors.369@gmail.com
 </footer>
 
-<script>
-function toggleCard(id) {
-  const card = document.getElementById(id);
-  const opening = !card.classList.contains('open');
-  card.classList.toggle('open');
-  if (opening) {
-    card.querySelectorAll('.sec-body').forEach(b => b.classList.add('open'));
-    card.querySelectorAll('.sec-arrow').forEach(a => a.style.transform = 'rotate(90deg)');
-  }
-}
-function toggleSec(id) {
-  const body  = document.getElementById('sec-' + id);
-  const arrow = document.getElementById('arr-' + id);
-  const open  = body.classList.toggle('open');
-  arrow.style.transform = open ? 'rotate(90deg)' : '';
-}
-function goRegion(id, btn) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-window.addEventListener('scroll', () => {
-  const ids  = [${REGIONS.map(r=>`'reg-${r.id}'`).join(',')}];
-  const tabs = document.querySelectorAll('.nav-btn');
-  let cur = 0;
-  ids.forEach((id, i) => {
-    const el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top <= 52) cur = i;
-  });
-  tabs.forEach((t, i) => t.classList.toggle('active', i === cur));
-});
-</script>
+<script src="app.js" integrity="${appJsSRI}" crossorigin="anonymous"></script>
 </body>
 </html>`;
 
