@@ -138,7 +138,7 @@ function outlookHorizonRange(items) {
 
 function collapsibleSection(code, sectionId, label, content) {
   return `
-    <div class="sec-toggle" onclick="toggleSec('${code}-${sectionId}')">
+    <div class="sec-toggle" data-toggle-sec="${code}-${sectionId}">
       <span class="sec-arrow" id="arr-${code}-${sectionId}">▶</span>
       <span>${label}</span>
     </div>
@@ -154,7 +154,7 @@ function countryCard(code) {
 
   return `
 <div class="country-card" id="${id}">
-  <div class="card-hdr" onclick="toggleCard('${id}')">
+  <div class="card-hdr" data-toggle-card="${id}">
     <div class="card-hdr-left">
       <span class="card-code">${code}</span>
       <span class="card-flag">${meta.flag}</span>
@@ -439,7 +439,7 @@ ${STATS.map(s => `  <div class="stat-item">
 
 <!-- ═══ REGION NAV ═══ -->
 <nav class="region-nav" id="regionNav">
-${REGIONS.map((r, i) => `  <button class="nav-btn${i===0?' active':''}" onclick="goRegion('reg-${r.id}',this)">${r.icon} ${r.title}</button>`).join('\n')}
+${REGIONS.map((r, i) => `  <button class="nav-btn${i===0?' active':''}" data-region="reg-${r.id}">${r.icon} ${r.title}</button>`).join('\n')}
 </nav>
 
 <!-- ═══ MAIN CONTENT ═══ -->

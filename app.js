@@ -1,10 +1,10 @@
 // IEA World Monitor — UI interactions
-// External script (no inline JS needed)
+// External script — CSP compliant (no inline handlers)
 
 function toggleCard(id) {
-  const card = document.getElementById(id);
+  var card = document.getElementById(id);
   if (!card) return;
-  const opening = !card.classList.contains('open');
+  var opening = !card.classList.contains('open');
   card.classList.toggle('open');
   if (opening) {
     card.querySelectorAll('.sec-body').forEach(function(b) { b.classList.add('open'); });
@@ -27,6 +27,22 @@ function goRegion(id, btn) {
   if (btn) btn.classList.add('active');
 }
 
+// Event delegation — replaces all onclick attributes
+document.addEventListener('click', function(e) {
+  // Card header toggle
+  var hdr = e.target.closest('[data-toggle-card]');
+  if (hdr) { toggleCard(hdr.getAttribute('data-toggle-card')); return; }
+
+  // Section toggle
+  var sec = e.target.closest('[data-toggle-sec]');
+  if (sec) { toggleSec(sec.getAttribute('data-toggle-sec')); return; }
+
+  // Region nav button
+  var nav = e.target.closest('[data-region]');
+  if (nav) { goRegion(nav.getAttribute('data-region'), nav); return; }
+});
+
+// Scroll spy for region nav
 window.addEventListener('scroll', function() {
   var sections = document.querySelectorAll('.region-sec');
   var tabs     = document.querySelectorAll('.nav-btn');
