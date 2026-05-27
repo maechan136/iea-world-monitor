@@ -139,10 +139,10 @@ function outlookHorizonRange(items) {
 function collapsibleSection(code, sectionId, label, content) {
   return `
     <div class="sec-toggle" data-toggle-sec="${code}-${sectionId}">
-      <span class="sec-arrow" id="arr-${code}-${sectionId}">▶</span>
+      <span class="sec-arrow" id="arr-${code}-${sectionId}" style="transform:rotate(90deg)">▶</span>
       <span>${label}</span>
     </div>
-    <div class="sec-body" id="sec-${code}-${sectionId}">${content}</div>`;
+    <div class="sec-body open" id="sec-${code}-${sectionId}">${content}</div>`;
 }
 
 function countryCard(code) {
@@ -153,7 +153,7 @@ function countryCard(code) {
   const id = `card-${code.toLowerCase()}`;
 
   return `
-<div class="country-card" id="${id}">
+<div class="country-card open" id="${id}">
   <div class="card-hdr" data-toggle-card="${id}">
     <div class="card-hdr-left">
       <span class="card-code">${code}</span>
